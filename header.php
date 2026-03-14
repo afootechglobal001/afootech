@@ -44,32 +44,32 @@
                     <ul class="animated fadeIn">
                         <div class="sub-nav-div">
                             <a class="service-div" href="<?php echo $websiteUrl?>" title="Software Development And Training">                             
-                                <div class="pix-div"><img src="<?php echo $websiteUrl?>/all-images/services/software-development-project-ideas.webp" alt="Software Project Development"/></div>
+                                <div class="pix-div"><img src="<?php echo $websiteUrl?>/uploaded_files/services/software-development-project-ideas.webp" alt="Software Project Development"/></div>
                                 <li>Software Project Development</li> 
                             </a>                          
                             
                             <a class="service-div" href="<?php echo $websiteUrl?>" title="Web Application Development">   
-                                <div class="pix-div"><img src="<?php echo $websiteUrl?>/all-images/services/Web-Application-Development.jpg" alt="Web Application Development"/></div>
+                                <div class="pix-div"><img src="<?php echo $websiteUrl?>/uploaded_files/services/Web-Application-Development.jpg" alt="Web Application Development"/></div>
                                 <li>Web Application Development</li>                               
                             </a>
 
                             <a class="service-div" href="<?php echo $websiteUrl?>" title="Mobile Application Development">   
-                                <div class="pix-div"><img src="<?php echo $websiteUrl?>/all-images/services/Mobile-Application-Development.jpg" alt="Mobile Application Development"/></div>
+                                <div class="pix-div"><img src="<?php echo $websiteUrl?>/uploaded_files/services/Mobile-Application-Development.jpg" alt="Mobile Application Development"/></div>
                                 <li>Mobile Application Development</li>                                
                             </a>
 
                             <a class="service-div" href="<?php echo $websiteUrl?>" title="Networking And Cyber Security">   
-                                <div class="pix-div"><img src="<?php echo $websiteUrl?>/all-images/services/Networking-And-Cyber-Security.jpg" alt="Networking And Cyber Security"/></div>
+                                <div class="pix-div"><img src="<?php echo $websiteUrl?>/uploaded_files/services/Networking-And-Cyber-Security.jpg" alt="Networking And Cyber Security"/></div>
                                 <li>Networking And Cyber Security</li>                               
                             </a>
 
                             <a class="service-div" href="<?php echo $websiteUrl?>" title="Website Search Engine Optimization">   
-                                <div class="pix-div"><img src="<?php echo $websiteUrl?>/all-images/services/Search-Engine-Optimization.jpg" alt="Website Search Engine Optimization"/></div>
+                                <div class="pix-div"><img src="<?php echo $websiteUrl?>/uploaded_files/services/Search-Engine-Optimization.jpg" alt="Website Search Engine Optimization"/></div>
                                 <li>Website Search Engine Optimization (SEO)</li>                             
                             </a>
 
                             <a class="service-div" href="<?php echo $websiteUrl?>" title="UIUX And Graphics Design">   
-                                <div class="pix-div"><img src="<?php echo $websiteUrl?>/all-images/services/UIUX-And-Graphics-Design.jpg" alt="UIUX And Graphics Design"/></div>
+                                <div class="pix-div"><img src="<?php echo $websiteUrl?>/uploaded_files/services/UIUX-And-Graphics-Design.jpg" alt="UIUX And Graphics Design"/></div>
                                 <li>UIUX And Graphics Design</li>                              
                             </a>                         
                         </div>                          
