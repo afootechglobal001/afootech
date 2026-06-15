@@ -7,8 +7,8 @@
 	$websiteUrl='http://localhost/afootech/afootech';
 
 	//$websitePath = $_SERVER['DOCUMENT_ROOT'];
-	$websitePath = $_SERVER['DOCUMENT_ROOT'].'/weblist-studio/WebListStudio-GetFoodStuffs'; //dirname(__FILE__);
-	$codeVersion= date('Ymdhis');
+	$websitePath = $_SERVER['DOCUMENT_ROOT'].'/afootech/afootech'; //dirname(__FILE__);
+	$codeVersion= date('Ymdhis'); /// System Code Version
 ?>
 <?php
 $userOsBrowser = $_SERVER['HTTP_USER_AGENT'];
