@@ -8,7 +8,7 @@
 
 	//$websitePath = $_SERVER['DOCUMENT_ROOT'];
 	$websitePath = $_SERVER['DOCUMENT_ROOT'].'/afootech/afootech'; //dirname(__FILE__);
-	$codeVersion= date('Ymdhis');
+	$codeVersion= date('Ymdhis'); /// System Code Version
 ?>
 <?php
 $userOsBrowser = $_SERVER['HTTP_USER_AGENT'];
