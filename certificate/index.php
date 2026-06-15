@@ -14,14 +14,12 @@
     <meta name="keywords"
         content="AfooTECH certificate verification, verify student certificate Nigeria, ICT training certificate verification, AfooTECH Global certificate portal, student certificate authentication, ICT training institute Nigeria, certificate validation system" />
 
-    <meta property="og:title"
-        content="<?php echo $appName ?> | Student Certificate Verification" />
+    <meta property="og:title" content="<?php echo $appName ?> | Student Certificate Verification" />
     <meta property="og:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/afootech-banner.jpg" />
     <meta property="og:description"
         content="Official certificate verification portal for students trained at <?php echo $appName ?>. Confirm the authenticity of issued ICT training certificates online." />
 
-    <meta name="twitter:title"
-        content="<?php echo $appName ?> | Certificate Verification" />
+    <meta name="twitter:title" content="<?php echo $appName ?> | Certificate Verification" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/afootech-banner.jpg" />
     <meta name="twitter:description"
