@@ -92,10 +92,10 @@
                         individuals and organizations.</p>
 
                     <div class="btn-div">
-                        <a href="<?php echo $websiteUrl?>">
+                        <a href="<?php echo $websiteUrl?>/siwes-it">
                             <button class="btn" title="Apply For Training">Apply For Training <i
                                     class="bi-arrow-right"></i></button></a>
-                        <a href="<?php echo $websiteUrl?>">
+                        <a href="<?php echo $websiteUrl?>/siwes-it">
                             <button class="btn right-btn" title="SIWES/IT Program"><strong>SIWES/IT Program</strong> <i
                                     class="bi-arrow-right"></i></button></a>
                     </div>

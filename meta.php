@@ -14,6 +14,8 @@
     rel="stylesheet" />
 <link href="<?php echo $websiteUrl?>/style/main-style.css?v=<?php echo $codeVersion?>" type="text/css"
     rel="stylesheet" />
+<link href="<?php echo $websiteUrl?>/style/training/main-style.css?v=<?php echo $codeVersion?>" type="text/css"
+    rel="stylesheet" />
 
 <script src="<?php echo $websiteUrl?>/js/jquery-v3.6.1.min.js"></script>
 <script src="<?php echo $websiteUrl?>/js/paramount.js?v=<?php echo $codeVersion?>"></script>
@@ -24,6 +26,7 @@
 
 <link href="<?php echo $websiteUrl?>/slide-property/product-carousel/carousel.css" rel="stylesheet" type="text/css" />
 <script src="<?php echo $websiteUrl?>/slide-property/product-carousel/carousel.js" type="text/javascript"></script>
+<link href="<?php echo $websiteUrl ?>/slide-property/engine/style.css" rel="stylesheet" type="text/css" />
 
 <!-- external link -->
 <!-- Slick CSS -->
