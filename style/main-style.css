@@ -33,7 +33,7 @@ header .header-top-div{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-    background: #2d4066;
+    background: var(--primary-color);
 }
 
 header .header-top-div .header-top-div-in{
@@ -151,7 +151,7 @@ header .header-div-in{
 }
 
 header .header-div-in .logo-div{
-	width: 180px;
+	width: 190px;
 	overflow: hidden;
 	cursor: pointer;
 }
@@ -716,7 +716,7 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 	border:none;
 	height:47px;
 	min-width: 220px;
-	padding: 0px 0px 0px 20px;
+	padding: 0px 1px 0px 20px;
 	border-radius: 25px;
 	color:var(--text-white);
 	font-size:14px;
@@ -1331,7 +1331,7 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 	border:none;
 	height:45px;
 	min-width: 150px;
-	padding: 0px 0px 0px 20px;
+	padding: 0px 1px 0px 20px;
 	border-radius: 25px;
 	color:var(--text-white);
 	font-size:15px;
@@ -2886,5 +2886,3 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 		gap: 10px;
 	}
 }
-
-
