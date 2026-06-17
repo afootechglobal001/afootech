@@ -9,7 +9,7 @@
 /* LEFT SIDE */
 .login-image-div{
   position: fixed;
-  left: 0;
+  right: 0;
   width: 25%;
   height: 100%;
   overflow: hidden;
@@ -109,7 +109,7 @@
   position: absolute;
   width: 75%;
   height: 100%;
-  right: 0px;
+  left: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
