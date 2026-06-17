@@ -137,7 +137,7 @@
         
         <div class="right-nav-div">
             <div class="nav-icon-div"><i class="bi-search"></i></div>  
-            <a href="<?php echo $websiteUrl?>/siwes-it" title="Apply For Training">
+            <a href="<?php echo $websiteUrl?>/training" title="Apply For Training">
             <button class="btn" title="Apply For Training">Apply For Training <i class="bi-arrow-right"></i></button></a>
             <button class="mobile-btn" onclick="_open_menu()"><i class="bi-text-right"></i></button>
         </div>         

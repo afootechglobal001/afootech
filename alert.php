@@ -35,6 +35,14 @@
     </div>
 </div>
 
+<div class="webcam-div">
+    <div class="div-in">
+        <div class="webcam-div-in">
+            <div id="my_camera"></div>
+            <button class="btn" type="button" onClick="snapPicture()"><i class="fa fa-camera"></i> Take Snapshot </button>
+        </div>
+    </div>
+</div>
 
 <div class="sidenavdiv">
 

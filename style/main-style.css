@@ -676,7 +676,7 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
     color: var(--body-color);
     text-align: left;
 	padding-top: 60px;
-    gap: 10px;
+    gap: 22px;
     float: left; 
 }
 
@@ -959,6 +959,7 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	gap: 25px;
 }
 
 .main-pages-back-div .title-div{
@@ -968,6 +969,12 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 	justify-content: space-between;
 }
 
+.main-pages-back-div .title-div .title-column {
+   display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
 .main-pages-back-div .title-div .top-title{
 	padding: 5px 12px;
 	font-size: 13px;
@@ -975,6 +982,7 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 	border-radius: 3px;
 	color: var(--secondary-color);
 	background: rgb(215, 53, 58,.1);
+	width: fit-content;
 } 
 
 .main-pages-back-div .center-title .center-top-title{
@@ -1691,6 +1699,7 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 	min-height: 400px;
 	display: flex;
 	flex-direction: column;
+	gap: 20px;
 } 
 
 .about-back-div .about-div .about-content-div .top-title{

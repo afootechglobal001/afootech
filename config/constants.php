@@ -46,4 +46,11 @@ var userDeviceId = "<?php echo $userDeviceId;?>"; /// For User Device Id //
 
 /// Site Middleware Urls ///
 var siteMiddlewareUrl = websiteUrl + '/config/code'; //// For site url
+
+/// Training Middleware Urls ///
+var registerUrl = websiteUrl + '/training/register'; //// For Institution Url
+var institutionDetailsUrl = websiteUrl + '/training/institution-details'; //// For Institution Url
+var programDetailsUrl = websiteUrl + '/training/program-details'; //// For Institution Url
+var uploadPassportUrl = websiteUrl + '/training/upload'; //// For Institution Url
+
 </script>

@@ -4,7 +4,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <?php include '../meta.php' ?>
+    <?php include 'meta.php' ?>
     <title><?php echo $appName ?> | Best ICT Training Centre in Ogun State, Nigeria</title>
     <meta name="description"
         content="AfooTECH Global: A leading ICT training centre in Ogun State, Nigeria. Learn software development, web development, mobile app development, networking, cybersecurity, UI/UX design, graphics design, and other digital skills." />
@@ -34,6 +34,17 @@
                 <div class="logo-div animated fadeIn">
                     <a href="<?php echo $websiteUrl ?>">
                     <img src="<?php echo $websiteUrl ?>/all-images/images/logo.png" alt="Logo"></a>
+                </div>
+
+                <div class="social-media-wrapper">
+                    <a href="tel:(+234) 813 125 2996" title="Call Customer Care">
+                        <div class="social-icon"><i class="bi-telephone-outbound-fill"></i></div>
+                    </a>
+                    
+                    <a href="https://api.whatsapp.com/send?text=Hello AfooTECH Global&amp;phone=+234 812 700 0262" target="_blank"
+                        title="Whatsapp">
+                        <div class="social-icon whatsapp"><i class="bi-whatsapp"></i></div>
+                    </a>
                 </div>
             </div>
 
@@ -92,7 +103,7 @@
                     </div>
 
                     <div class="btn-div">
-                        <a href="<?php echo $websiteUrl?>">
+                        <a href="<?php echo $websiteUrl?>/training/register">
                         <button class="btn" id="submitBtn" title="Proceed To Registration" onclick="">Proceed To Registration<i class="bi-arrow-right"></i></button></a>
                         <a href="<?php echo $websiteUrl?>">
                         <button class="btn right-btn" title="Print Acceptance Letter"><strong>Print Acceptance Letter</strong> <i
