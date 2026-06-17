@@ -40,7 +40,6 @@ $(function () {
 });
 
 //////////////////////////// upload image from webcam ////////////////////////////
-
 Webcam.set({
     width: 270,
     height: 200,
@@ -56,12 +55,12 @@ function takeSnapShot() {
 
 function snapPicture() {
     Webcam.snap(function (data_uri) {
-        $("#passport").val(data_uri);
-        document.getElementById("cam-pix").innerHTML =
-            '<img id="passport-preview" src="' + data_uri + '"/>';
-        $(".webcam-div").fadeOut(500);
-    });
-    Webcam.reset();
+    $("#passport").val(data_uri);
+    document.getElementById("cam-pix").innerHTML =
+        '<img id="passport-preview" src="' + data_uri + '"/>';
+    $(".webcam-div").fadeOut(500);
+  });
+  Webcam.reset();
 }
 
 //////////////////////////// end upload image from webcam ////////////////////////////
