@@ -45,12 +45,11 @@ var userIpAddress = "<?php echo $userIpAddress;?>"; /// For User IP Address //
 var userDeviceId = "<?php echo $userDeviceId;?>"; /// For User Device Id //
 
 /// Site Middleware Urls ///
-var siteMiddlewareUrl = websiteUrl + '/config/code'; //// For site url
+var siteMiddlewareUrl = websiteUrl + '/config/code'; //// For Site Middleware url
+
+/// Training Middleware Urls ///
+var trainingMiddlewareUrl = websiteUrl + '/training/config/code'; //// For Training Middleware url
 
 /// Training Middleware Urls ///
 var registerUrl = websiteUrl + '/training/register'; //// For Institution Url
-var institutionDetailsUrl = websiteUrl + '/training/institution-details'; //// For Institution Url
-var programDetailsUrl = websiteUrl + '/training/program-details'; //// For Institution Url
-var uploadPassportUrl = websiteUrl + '/training/upload'; //// For Institution Url
-
 </script>

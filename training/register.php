@@ -22,56 +22,9 @@
                 </div></a>
 
                 <div class="form-back-div">
-                    <div class="form-div" data-aos="fade-in" data-aos-duration="1200">
-                        <h1>Welcome <span>Student!</span></h1>
-                        <p>
-                            Create your account and register for your SIWES/IT program with <?php echo $appName ?>.
-                        </p>
-
-                        <div class="inner-form" id="viewLogin">
-                            <div class="row-wrapper">
-                                <div class="text_field_container" id="firstName_container">
-                                    <script>
-                                        textField({
-                                            id: 'firstName',
-                                            title: 'First Name'
-                                        });
-                                    </script>
-                                </div>
-
-                                <div class="text_field_container" id="lastName_container">
-                                    <script>
-                                        textField({
-                                            id: 'lastName',
-                                            title: 'Last Name'
-                                        });
-                                    </script>
-                                </div>
-                            </div>
-
-                            <div class="text_field_container" id="emailAddress_container">
-                                <script>
-                                    textField({
-                                        id: 'emailAddress',
-                                        title: 'Email Address',
-                                        type: 'email'
-                                    });
-                                </script>
-                            </div>
-
-                            <div class="text_field_container" id="phoneNumber_container">
-                                <script>
-                                    textField({
-                                        id: 'phoneNumber',
-                                        title: 'Phone Number'
-                                    });
-                                </script>
-                            </div>
-
-                            <div class="btn-div">
-                                <button class="btn full-btn" id="submitBtn" title="Proceed" onclick="window.location.href = institutionDetailsUrl;">Proceed <i class="bi-arrow-right"></i></button>
-                            </div>
-                        </div>
+                    <div id="page-content">
+                        <?php $page='registerPage';?>
+                        <?php include $websitePath.'/training/config/content-page.php';?>
                     </div>
                 </div>
             </div>
@@ -82,6 +35,18 @@
                 </p>
             </div>  
         </div>
+        <script>
+            $(document).ready(function () {
+                let savedPage = sessionStorage.getItem("currentAuthPage");
+
+                if (savedPage !== "registerPage") {
+                    _getPage({
+                        page: savedPage,
+                        url: trainingMiddlewareUrl
+                    });
+                }
+            });
+        </script>
     </section>
     <?php include 'bottom-scripts.php' ?>
 </body>

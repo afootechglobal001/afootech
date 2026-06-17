@@ -9,7 +9,7 @@
 /* LEFT SIDE */
 .login-image-div{
   position: fixed;
-  right: 0;
+  left: 0;
   width: 25%;
   height: 100%;
   overflow: hidden;
@@ -19,49 +19,62 @@
   flex-direction: column;
 }
 
-/* image slides */
-.login-image-div::before,
-.login-image-div::after{
-  content: '';
+.login-image-div .image-slide-1,
+.login-image-div .image-slide-2,
+.login-image-div .image-slide-3 {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
-  animation-duration: 12s;
-  animation-iteration-count: infinite;
-  z-index: -2;
+  opacity: 0;
+  animation: fadeSlide 15s infinite;
 }
 
-/* overlay */
-.login-image-div .image-overlay{
+.login-image-div .image-slide-1 {
+  background-image: url('../../all-images/body-pix/auth-slide-1.jpeg');
+  animation-delay: 0s;
+}
+
+.login-image-div .image-slide-2 {
+  background-image: url('../../all-images/body-pix/auth-slide-2.jpeg');
+  animation-delay: 5s;
+}
+
+.login-image-div .image-slide-3 {
+  background-image: url('../../all-images/body-pix/auth-slide-3.webp');
+  animation-delay: 10s;
+}
+
+/* FADE KEYFRAMES */
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.login-image-div .image-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: -1;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
 }
 
-
-/* images */
-.login-image-div::before{
-  background-image: url('../../all-images/body-pix/auth-slide-1.jpeg');
-  animation: fade1 9s infinite;
-}
-
-.login-image-div::after{
-  background-image: url('../../all-images/body-pix/auth-slide-2.jpeg');
-  animation: fade2 9s infinite;
-}
-
-@keyframes fade1{
-  0%,45%{opacity:1;}
-  50%,95%{opacity:0;}
-  100%{opacity:1;}
-}
-
-@keyframes fade2{
-  0%,45%{opacity:0;}
-  50%,95%{opacity:1;}
-  100%{opacity:0;}
+.login-image-div .logo-div,
+.login-image-div .bottom-container {
+  position: relative;
+  z-index: 2;
 }
 
 .login-image-div .logo-div{
@@ -109,7 +122,7 @@
   position: absolute;
   width: 75%;
   height: 100%;
-  left: 0px;
+  right: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,16 +215,20 @@
   color: var(--text-white);
   background: var(--primary-color);
   transition: background-position 0.4s ease-in-out, transform 0.2s ease-in-out;
+  white-space: nowrap;
+}
+
+.login-card-div .form-section .form-div .inner-form .btn-div .btn i{
+  font-size: 13px;
 }
 
 .login-card-div .form-section .form-div .inner-form .btn-div .full-btn {
   width: 100%;
-  height: 50px;
 }
 
 .login-card-div .form-section .form-div .inner-form .btn-div .back-btn {
   background: rgba(200, 200, 200, 0.7);
-  color: var(--body-color);
+  color: var(--sub-body-color);
 }
 
 .login-card-div .form-section .form-div .inner-form .btn-div .btn:hover {
@@ -235,10 +252,11 @@
 }
 
 .login-card-div .form-section .form-div .inner-form .cam-pix {
-  width: 100%;
+  width: 350px;
   height: 300px;
   position: relative;
   border-radius: 8px;
+  margin: 10px auto;
   border: #e6e6e6 1px solid;
 }
 
@@ -257,7 +275,7 @@
 }
 
 .login-card-div .form-section .form-div .inner-form .cam-pix .btn-container {
-  width: 100%;
+  width: 350px;
   height: 300px;
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
@@ -334,6 +352,15 @@
     display: none; 
   }
   .login-card-div{
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 420px) {	
+.login-card-div .form-section .form-div .inner-form .cam-pix {
+    width: 100%;
+  }
+  .login-card-div .form-section .form-div .inner-form .cam-pix .btn-container {
     width: 100%;
   }
 }
