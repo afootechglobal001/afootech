@@ -12,26 +12,22 @@
     rel="stylesheet" />
 <link href="<?php echo $websiteUrl?>/style/tablePaginator.css?v=<?php echo $codeVersion?>" type="text/css"
     rel="stylesheet" />
-<link href="<?php echo $websiteUrl?>/style/main-style.css?v=<?php echo $codeVersion?>" type="text/css"
+<link href="<?php echo $websiteUrl?>/training/styles/main-style.css?v=<?php echo $codeVersion?>" type="text/css"
+    rel="stylesheet" />
+<link href="<?php echo $websiteUrl?>/training/styles/auth-style.css?v=<?php echo $codeVersion?>" type="text/css"
     rel="stylesheet" />
 
 <script src="<?php echo $websiteUrl?>/js/jquery-v3.6.1.min.js"></script>
 <script src="<?php echo $websiteUrl?>/js/paramount.js?v=<?php echo $codeVersion?>"></script>
-<script src="<?php echo $websiteUrl?>/js/scripts.js?v=<?php echo $codeVersion?>"></script>
-<script src="<?php echo $websiteUrl?>/js/textfield-selectfield.js?v=<?php echo $codeVersion?>"></script>
 <script src="<?php echo $websiteUrl?>/js/tablePaginator.js?v=<?php echo $codeVersion?>"></script>
+<script src="<?php echo $websiteUrl?>/js/textfield-selectfield.js?v=<?php echo $codeVersion?>"></script>
+<script src="<?php echo $websiteUrl?>/training/js/webcam_library.js"></script>
 <script src="<?php echo $websiteUrl?>/js/aos.js"></script>
 
-<link href="<?php echo $websiteUrl?>/slide-property/product-carousel/carousel.css" rel="stylesheet" type="text/css" />
-<script src="<?php echo $websiteUrl?>/slide-property/product-carousel/carousel.js" type="text/javascript"></script>
+<script src="<?php echo $websiteUrl?>/training/js/script.js?v=<?php echo $codeVersion?>"></script>
+<script src="<?php echo $websiteUrl?>/training/js/useAuth.js?v=<?php echo $codeVersion?>"></script>
 
-<!-- external link -->
-<!-- Slick CSS -->
-<link href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" rel="stylesheet" type="text/css" />
-<!-- Slick JS -->
-<script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js" type="text/javascript"></script>
-
-<script src="<?php echo $websiteUrl?>/js/site/useCertificate.js?v=<?php echo $codeVersion?>"></script>
+<link href="<?php echo $websiteUrl ?>/slide-property/engine/style.css" rel="stylesheet" type="text/css" />
 
 <meta property="og:type" content="Website" />
 <meta property="og:site_name" content="<?php echo $appName?>">

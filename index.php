@@ -92,10 +92,10 @@
                         individuals and organizations.</p>
 
                     <div class="btn-div">
-                        <a href="<?php echo $websiteUrl?>/siwes-it">
+                        <a href="<?php echo $websiteUrl?>/training">
                             <button class="btn" title="Apply For Training">Apply For Training <i
                                     class="bi-arrow-right"></i></button></a>
-                        <a href="<?php echo $websiteUrl?>/siwes-it">
+                        <a href="<?php echo $websiteUrl?>/training">
                             <button class="btn right-btn" title="SIWES/IT Program"><strong>SIWES/IT Program</strong> <i
                                     class="bi-arrow-right"></i></button></a>
                     </div>
@@ -226,7 +226,7 @@
             <div class="body-div-in">
                 <div class="main-pages-back-div">
                     <div class="title-div" data-aos="fade-in" data-aos-duration="1200">
-                        <div>
+                        <div class="title-column">
                             <span class="top-title">WHAT WE DO</span>
                             <h2>Boost Your Business With Our Diverse <span>#Services</span></h2>
                         </div>
@@ -336,7 +336,7 @@
             <div class="body-div-in">
                 <div class="main-pages-back-div">
                     <div class="title-div" data-aos="fade-in" data-aos-duration="1200">
-                        <div>
+                        <div class="title-column">
                             <span class="top-title">OUR PORTFOLIOS</span>
                             <h2>Explore Our Creative And Innovative <span>#Portfolios</span></h2>
                         </div>
@@ -571,7 +571,7 @@
             <div class="body-div-in">
                 <div class="main-pages-back-div">
                     <div class="title-div service-title-div" data-aos="fade-in" data-aos-duration="1200">
-                        <div>
+                        <div class="title-column">
                             <span class="top-title">WHAT WE OFFER</span>
                             <h2>Dive into Our Transformative and Pioneering <span>#Training</span></h2>
                         </div>
@@ -1323,7 +1323,7 @@
             <div class="body-div-in">
                 <div class="main-pages-back-div">
                     <div class="title-div" data-aos="fade-in" data-aos-duration="1200">
-                        <div>
+                        <div class="title-column">
                             <span class="top-title">LATEST INSIGHTS</span>
                             <h2>Our Latest News And <span>#Articles</span></h2>
                         </div>
