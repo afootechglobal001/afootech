@@ -7,7 +7,7 @@ function _leftSideSection($websiteUrl, $appName)
         <div class="image-slide-2"></div>
         <div class="image-slide-3"></div>
         <div class="logo-div">
-            <a href="<?php echo $websiteUrl ?>">
+            <a href="<?php echo $websiteUrl ?>/training">
                 <img src="<?php echo $websiteUrl ?>/all-images/images/icon.png" alt="Logo"></a>
         </div>
 

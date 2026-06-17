@@ -11,12 +11,12 @@
     <meta name="keywords"
         content="SIWES Training centre in Remo, Ogun State, SIWES Placement centre in Remo Ogun State, IT placement centre in Remo Ogun State, Best internship Training centre in Remo, Ogun State, AfooTECH GLOBAL IT SOLUTION, AfooTECH Global, Best ICT training centre in Ogun State, Best ICT training centre in Nigeria, Software development training, Web development training, Web app development training, Android app development training, Programming training, Coding academy in Ogun State, Networking training, Cybersecurity training, UI UX design training, Graphics design training, Digital skills training, IT training centre in Remo, ICT academy Nigeria, Software engineering training, Ogun State, Nigeria, Ode Remo" />
     <meta property="og:title" content="<?php echo $appName ?> | SIWES | IT Training" />
-    <meta property="og:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/training-banner.png" />
+    <meta property="og:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/training-banner.jpg" />
     <meta property="og:description"
         content="Join AfooTECH Global ICT Training Centre and learn practical digital skills including software development, networking, UI/UX design, graphics design, and more." />
     <meta name="twitter:title" content="<?php echo $appName ?> | SIWES | IT Training" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/training-banner.png" />
+    <meta name="twitter:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/training-banner.jpg" />
     <meta name="twitter:description"
         content="Join AfooTECH Global ICT Training Centre and learn practical digital skills including software development, networking, UI/UX design, graphics design, and more." />
 </head>
