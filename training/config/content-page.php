@@ -1,4 +1,4 @@
-<?php if($page=='registerPage'){?>
+<?php if ($page == 'registerPage') { ?>
     <div class="form-div" data-aos="fade-in" data-aos-duration="1200">
         <h1>Welcome <span>Student!</span></h1>
         <p>
@@ -46,13 +46,15 @@
             </div>
 
             <div class="btn-div">
-                <button class="btn full-btn" id="submitBtn" title="Proceed" onclick="_getNextPage({page: 'institutionDetailsPage'});">Proceed <i class="bi bi-arrow-right-circle"></i></button>
+                <button class="btn full-btn" id="submitBtn" title="Proceed"
+                    onclick="_getNextPage({page: 'institutionDetailsPage'});">Proceed <i
+                        class="bi bi-arrow-right-circle"></i></button>
             </div>
         </div>
     </div>
-<?php }?>
+<?php } ?>
 
-<?php if($page=='institutionDetailsPage'){?>
+<?php if ($page == 'institutionDetailsPage') { ?>
     <div class="form-div">
         <h1>Institution <span>Information</span></h1>
         <p>
@@ -69,14 +71,7 @@
                 </script>
             </div>
 
-            <div class="text_field_container" id="levelId_container">
-                <script>
-                    selectField({
-                        id: 'levelId',
-                        title: 'Select Cuurent Level'
-                    });
-                </script>
-            </div>
+
 
             <div class="text_field_container" id="nameOfInstitution_container">
                 <script>
@@ -96,6 +91,15 @@
                 </script>
             </div>
 
+            <div class="text_field_container" id="levelId_container">
+                <script>
+                    selectField({
+                        id: 'levelId',
+                        title: 'Select Cuurent Level'
+                    });
+                </script>
+            </div>
+
             <div class="text_field_container" id="matricNo_container">
                 <script>
                     textField({
@@ -104,16 +108,19 @@
                     });
                 </script>
             </div>
-            
+
             <div class="btn-div">
-                <button class="btn back-btn" title="Back to previous" onclick="_getNextPage({page: 'registerPage'});"><i class="bi bi-arrow-left-circle"></i> Back</button>
-                <button class="btn" id="submitBtn" title="Proceed" onclick="_getNextPage({page: 'programDetailsPage'});">Proceed <i class="bi bi-arrow-right-circle"></i></button>
+                <button class="btn back-btn" title="Back to previous" onclick="_getNextPage({page: 'registerPage'});"><i
+                        class="bi bi-arrow-left-circle"></i> Back</button>
+                <button class="btn" id="submitBtn" title="Proceed"
+                    onclick="_getNextPage({page: 'programDetailsPage'});">Proceed <i
+                        class="bi bi-arrow-right-circle"></i></button>
             </div>
         </div>
     </div>
-<?php }?>
+<?php } ?>
 
-<?php if($page=='programDetailsPage'){?>
+<?php if ($page == 'programDetailsPage') { ?>
     <div class="form-div" data-aos="fade-in" data-aos-duration="1200">
         <h1>Program <span>Information</span></h1>
         <p>
@@ -147,16 +154,19 @@
                     });
                 </script>
             </div>
-            
+
             <div class="btn-div">
-                <button class="btn back-btn" title="Back to previous" onclick="_getNextPage({page: 'institutionDetailsPage'});"><i class="bi bi-arrow-left-circle"></i> Back</button>
-                <button class="btn" id="submitBtn" title="Proceed" onclick="_getNextPage({page: 'passportPage'});">Proceed <i class="bi bi-arrow-right-circle"></i></button>
+                <button class="btn back-btn" title="Back to previous"
+                    onclick="_getNextPage({page: 'institutionDetailsPage'});"><i class="bi bi-arrow-left-circle"></i>
+                    Back</button>
+                <button class="btn" id="submitBtn" title="Proceed" onclick="_getNextPage({page: 'passportPage'});">Proceed
+                    <i class="bi bi-arrow-right-circle"></i></button>
             </div>
         </div>
     </div>
-<?php }?>
+<?php } ?>
 
-<?php if($page=='passportPage'){?>
+<?php if ($page == 'passportPage') { ?>
     <div class="form-div" data-aos="fade-in" data-aos-duration="1200">
         <h1>Upload <span>Passport</span></h1>
         <p>
@@ -185,15 +195,19 @@
                 </div>
             </div>
             <div class="issue-text" id="issues_blogPix"></div>
-            
+
             <div class="alert alert-success form-alert-div">
-                <span><i class="bi-pencil-square"></i> Note:</span> 
-                Kindly note that a registration fee of (<strong><span style="font-size:14px;" id=""><s>N</s>10,000.00</span></strong>) will be required before completing your registration.
+                <span><i class="bi-pencil-square"></i> Note:</span>
+                Kindly note that a registration fee of (<strong><span style="font-size:14px;"
+                        id=""><s>N</s>10,000.00</span></strong>) will be required before completing your registration.
             </div>
             <div class="btn-div">
-                <button class="btn back-btn" title="Back to previous" onclick="_getNextPage({page: 'programDetailsPage'});"><i class="bi bi-arrow-left-circle"></i> Back</button>
-                <button class="btn full-btn" id="submitBtn" title="Proceed to Payment" onclick="_completeRegistration();">Proceed to Payment <i class="bi bi-credit-card"></i></button>
+                <button class="btn back-btn" title="Back to previous"
+                    onclick="_getNextPage({page: 'programDetailsPage'});"><i class="bi bi-arrow-left-circle"></i>
+                    Back</button>
+                <button class="btn full-btn" id="submitBtn" title="Proceed to Payment"
+                    onclick="_completeRegistration();">Proceed to Payment <i class="bi bi-credit-card"></i></button>
             </div>
         </div>
     </div>
-<?php }?>
+<?php } ?>
