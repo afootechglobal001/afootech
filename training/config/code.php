@@ -1,4 +1,4 @@
-<?php require_once 'constants.php';?>
+<?php include '../../config/constants.php';?>
 <?php
 $action=$_POST['action'];
 switch ($action){
