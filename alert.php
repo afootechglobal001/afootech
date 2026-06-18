@@ -92,8 +92,6 @@
     </div>
 
 
-
-
     <div class="index-menu-back-div">
         <div class="top-div">
             <div class="logo-div">
@@ -197,17 +195,17 @@
                 </a>
             </div>
 
-            <div class="div">
-                <a href="<?php echo $websiteUrl;?>" title="Apply For Program">
-                    <li class="student-li" <?php if ($page=='contact') {?> id="active-li" <?php }?>><i
-                            class="bi-person-circle"></i> Apply For Program</li>
+            <div class="div primary">
+                <a href="<?php echo $websiteUrl;?>/training" title="Apply For Training">
+                    <li class="training-li" <?php if ($page=='training') {?> id="active-li" <?php }?>><i
+                            class="bi-person-circle"></i> Apply For Training</li>
                 </a>
             </div>
 
-            <div class="div">
-                <a href="<?php echo $websiteUrl;?>" title="Apply For Training">
-                    <li class="training-li" <?php if ($page=='contact') {?> id="active-li" <?php }?>><i
-                            class="bi-person-circle"></i> Apply For Training</li>
+            <div class="div secondary">
+                <a href="<?php echo $websiteUrl;?>/training" title="Apply For SIWES/IT Program">
+                    <li class="student-li" <?php if ($page=='training') {?> id="active-li" <?php }?>><i
+                            class="bi-person-circle"></i> SIWES/IT Program</li>
                 </a>
             </div>
         </div>

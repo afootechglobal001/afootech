@@ -750,15 +750,24 @@ a {
   cursor: pointer;
 }
 
-.index-menu-back-div .div-in .puple {
+.index-menu-back-div .div-in .primary {
   background: var(--primary-color);
 }
 
-.index-menu-back-div .div-in .puple:hover {
+.index-menu-back-div .div-in .primary:hover {
   background: var(--secondary-color);
 }
 
-.index-menu-back-div .div-in .puple li {
+.index-menu-back-div .div-in .secondary {
+  background: var(--secondary-color);
+}
+
+.index-menu-back-div .div-in .secondary:hover {
+  background: var(--primary-color);
+}
+
+.index-menu-back-div .div-in .primary li,
+.index-menu-back-div .div-in .secondary li {
   color: var(--text-white);
 }
 
@@ -773,7 +782,8 @@ a {
   margin-right: 10px;
 }
 
-.index-menu-back-div .div-in .puple li i {
+.index-menu-back-div .div-in .primary li i,
+.index-menu-back-div .div-in .secondary li i {
   color: var(--text-white);
 }
 
@@ -798,11 +808,7 @@ a {
   cursor: pointer;
   font-size: 12px;
   border-radius: 5px;
-  -moz-transition: all 0.2s ease-in 02s;
   transition: all 0.2s ease-in 0.2s;
-  -webkit-transition: all 0.2s ease-in 0.2s;
-  -ms-transition: all 0.2s ease-in 0.2s;
-  -o-transition: all 0.2s ease-in 0.2s;
 }
 
 .index-menu-back-div .div-in .div .sub-li li:hover {

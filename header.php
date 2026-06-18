@@ -4,9 +4,9 @@
         <div class="header-top-div-in">
             <div class="left-div">  
                 <a href="tel:(+234) 813 125 2996" title="Contact Us">         
-                <div class="contact dsp-none"><i class="bi-telephone-outbound"></i> (+234) 813 125 2996</div></a>
+                <div class="contact dsp-none"><i class="bi bi-telephone-outbound-fill"></i> (+234) 813 125 2996</div></a>
                 <a href="mailto:info@afootech.com" title="Mail Us"> 
-                <div class="contact no-border"><i class="bi-envelope"></i> info@afootech.com</div></a>
+                <div class="contact no-border"><i class="bi bi-envelope-fill"></i> info@afootech.com</div></a>
             </div>
 
             <div class="right-div">
