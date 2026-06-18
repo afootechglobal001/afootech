@@ -141,6 +141,7 @@
 }
 
 .login-image-div .logo-div img {
+  object-fit: cover;
   width: 100%;
 }
 

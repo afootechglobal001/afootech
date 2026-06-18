@@ -11,7 +11,7 @@
 
             <div class="right-div">
                 <ul>
-                    <a href="<?php echo $websiteUrl ?>" title="SIWES/IT">
+                    <a href="<?php echo $websiteUrl ?>/training" title="SIWES/IT">
                     <li class="li">SIWES/IT</li></a>
                     <a href="<?php echo $websiteUrl ?>" title="Frequently Asked Questions">
                     <li>FAQ</li></a>
