@@ -72,7 +72,7 @@ header .header-top-div .header-top-div-in .left-div .no-border{
 }
 
 header .header-top-div .header-top-div-in .left-div .contact i{
-	color: var(--text-white);
+	color: var(--secondary-color);
 	font-size: 12px;
 }
 
@@ -551,7 +551,7 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 @media all and (max-width:380px) {
 	header .header-div-in .right-nav-div .btn{
 		min-width: 140px;
-		padding: 0px 15px;
+		padding: 0px 20px;
 	}
 	header .header-div-in .right-nav-div .btn i{
 		display: none;
@@ -676,7 +676,7 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
     color: var(--body-color);
     text-align: left;
 	padding-top: 60px;
-    gap: 22px;
+    gap: 20px;
     float: left; 
 }
 
@@ -691,11 +691,10 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 } 
 
 .slide-div .content-back-div .text-content-div h2{
-	padding: 0px;
-	margin: 0px;
 	min-height: 125px;
 	color: var(--sub-body-color);
 	font-size: 45px;
+	line-height: 55px;
 	font-family: title-font;
 } 
 
@@ -817,10 +816,14 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 @media all and (max-width:600px) {
 	.slide-div .content-back-div .text-content-div h2{
 		font-size: 7vw;
+		line-height: 8.5vw;
 	} 
 }
 
 @media all and (max-width:520px) {
+	.slide-div .content-back-div .text-content-div h2{
+		min-height: 70px;
+	} 
 	.slide-div .content-back-div .text-content-div .btn-div{
 		display: flex;
 		flex-direction: column;
@@ -834,17 +837,13 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 	.slide-div .content-back-div .text-content-div .btn-div .right-btn{
 		width: 100%;
 	}
-	.slide-div .content-back-div .text-content-div p{
-		padding: 0px;
-		margin: 0px;
-	}
 }
 
 
 @media all and (max-width:450px) {
-	.slide-div .content-back-div .text-content-div h2{
-		min-height: 100px;
-	} 
+	.slide-div .content-back-div .text-content-div {
+		gap: 10px;
+	}
 	.moving-object .div-in{
 		padding: 10px 25px;
 	}
@@ -863,9 +862,6 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 	.slide-div .content-back-div .text-content-div .top-title{
 		font-size: 13px;
 	}
-	.slide-div .content-back-div .text-content-div h2{
-		font-size: 7vw;
-	} 
 }
 
 
@@ -1100,6 +1096,7 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
+		gap: 10px;
 		margin-bottom: 30px;
 	}
 	.main-pages-back-div .center-title{
@@ -1848,6 +1845,7 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 @media all and (max-width:500px) {	
 	.about-back-div .about-div .about-content-div h2{
 		font-size: 6vw;
+		line-height: 8vw;
 	}
 }
 
@@ -2572,8 +2570,8 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 
 .footer-div .footer-div-in .segment-back-div .segment-div .logo-div{
 	width: 180px;
-	padding: 15px;
-	border-radius: 5px;
+	padding: 10px;
+	border-radius: 10px;
 	background: var(--bg-white);
 	overflow: hidden;
 } 
@@ -2721,6 +2719,11 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 .footer-div .footer-div-in .segment-back-div .segment-div .input-container{ 
 	display: flex;
 	flex-direction: column;
+	gap: 15px;
+}
+
+.input-container .footer_text_field {
+	border-radius: 50px;
 }
 
 .footer-div .footer-div-in .segment-back-div .segment-div .input-container .btn{
@@ -2761,7 +2764,11 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
 }
 
 
-
+@media all and (max-width: 400px) {
+	.footer-div .footer-div-in .segment-back-div .segment-div .input-container .btn{
+		width: 100%;
+	}
+}
 
 
 .footer-div .main-bottom-div{ 
