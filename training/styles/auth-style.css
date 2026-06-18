@@ -9,17 +9,16 @@
   justify-content: center;
   z-index: 200;
   background: var(--bg-white);
+  border-bottom: rgba(215, 215, 215, 0.7) 1px solid;
 }
 
 .mobile-header .inner-div {
   width: 85%;
   max-width: 1200px;
-  padding-top: 20px;
-  padding-bottom: 5px;
+  padding: 10px 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: rgba(215, 215, 215, 0.7) 1px solid;
 }
 
 .mobile-header .inner-div .logo {
@@ -190,7 +189,7 @@
 
 /* FORM SECTION */
 .login-card-div .form-section {
-  width: 90%;
+  width: 80%;
   height: auto;
   max-width: 500px;
   display: flex;
@@ -458,6 +457,9 @@
   }
   .login-card-div .form-section .logo-div {
     display: none;
+  }
+  .login-card-div {
+    background: var(--bg-color2);
   }
   @media all and (max-height: 780px) {
     .login-card-div .form-section {
