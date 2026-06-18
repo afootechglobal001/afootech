@@ -459,7 +459,7 @@
     display: none;
   }
   .login-card-div {
-    background: var(--bg-color2);
+    background: var(--bg-color3);
   }
   @media all and (max-height: 780px) {
     .login-card-div .form-section {
