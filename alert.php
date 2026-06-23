@@ -35,10 +35,6 @@
     </div>
 </div>
 
-<div class="network-alert" style="display:none;">
-    No internet connection. Please check your network.
-</div>
-
 <div class="webcam-div">
     <div class="div-in">
         <div class="webcam-div-in">
