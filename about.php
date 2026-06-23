@@ -269,17 +269,17 @@
                                 </div>
                                 <div class="content">
                                     <h3>500+</h3>
-                                    <div class="stat-label">Students Trained</div>
+                                    <p>Students Trained</p>
                                 </div>
                             </div>
 
-                            <div class="stat-item">
+                            <div class="stat-item no-mobile-border">
                                 <div class="stat-icon">
                                     <i class="bi bi-suitcase-lg"></i>
                                 </div>
                                 <div class="content">
                                     <h3>100+</h3>
-                                    <div class="stat-label">Projects Completed</div>
+                                    <p>Projects Completed</p>
                                 </div>
                             </div>
 
@@ -289,17 +289,17 @@
                                 </div>
                                 <div class="content">
                                     <h3>98%</h3>
-                                    <div class="stat-label">Client Satisfaction</div>
+                                    <p>Client Satisfaction</p>
                                 </div>
                             </div>
 
-                            <div class="stat-item noborder">
+                            <div class="stat-item no-border">
                                 <div class="stat-icon">
                                     <i class="bi bi-award"></i>
                                 </div>
                                 <div class="content">
                                     <h3>15+</h3>
-                                    <div class="stat-label">Years Experience</div>
+                                    <p>Years Experience</p>
                                 </div>
                             </div>
                         </div>
