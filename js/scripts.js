@@ -18,19 +18,17 @@ function _call_carousel(cnt) {
 
 
 $(window).scroll(function () {
-	var scrollheight = $(window).scrollTop();
-  
-	// Toggle header class based on scroll position
-	if (scrollheight >= 100) {
-	  $("header").addClass("fixed").removeClass("absolute");
-	  $(".header-div-in").addClass("border");
-	  $("#back2Top").fadeIn(1000);
-	} else {
-	  $("header").addClass("absolute").removeClass("fixed");
-	  $(".header-div-in").removeClass("border");
-	  $("#back2Top").fadeOut(1000);
-	}
-  });
+    var scrollheight = $(window).scrollTop();
+    if (scrollheight >= 100) {
+        $("header").addClass("fixed").removeClass("absolute");
+        $(".header-div-in").addClass("border");
+        $("#back2Top").fadeIn(1000);
+    } else {
+        $("header").addClass("absolute").removeClass("fixed");
+        $(".header-div-in").removeClass("border");
+        $("#back2Top").fadeOut(1000);
+    }
+});
   
 
 function _back_to_top(){

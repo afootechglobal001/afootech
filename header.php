@@ -32,7 +32,7 @@
         <nav>
             <ul>                          
                 <a href="<?php echo $websiteUrl ?>" title="Home Page"><li <?php if (($websiteAutoUrl=="$websiteUrl/index")||($websiteAutoUrl=="$websiteUrl/")||($websiteAutoUrl=="$websiteUrl")) {?> class="active" <?php }?>> Home</li></a>        
-                <a href="<?php echo $websiteUrl?>" title="About Us">
+                <a href="<?php echo $websiteUrl?>/about" title="About Us">
                     <li class="about <?php if (strstr($websiteAutoUrl, "$websiteUrl/about")) {?> active <?php }?>">
                         About Us
                     </li>
@@ -114,7 +114,7 @@
                             <div class="each-container info-container">
                                 <div class="pix-div"><img src="<?php echo $websiteUrl?>/all-images/body-pix/training.png" alt="training"/></div>
                                 <p>AfooTECH Global Organize and develop teams based on skill level, business type, and availability, aiming to build ICT capacity within organizations and individuals..</p>
-                                <a href="<?php echo $websiteUrl?>">
+                                <a href="<?php echo $websiteUrl?>/training">
                                 <button class="btn" title="Apply For Training">Apply For Training <i class="bi-arrow-right"></i></button></a> 
                             </div>                        
                         </div>                          

@@ -35,6 +35,10 @@
     </div>
 </div>
 
+<div class="network-alert" style="display:none;">
+    No internet connection. Please check your network.
+</div>
+
 <div class="webcam-div">
     <div class="div-in">
         <div class="webcam-div-in">
@@ -109,7 +113,7 @@
             </div>
 
             <div class="div">
-                <a href="<?php echo $websiteUrl ?>" title="About Us">
+                <a href="<?php echo $websiteUrl ?>/about" title="About Us">
                     <li <?php if ($page=='about.php') {?> id="active-li" <?php }?>><i class="bi-building"></i> About Us
                     </li>
                 </a>

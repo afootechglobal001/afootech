@@ -47,11 +47,12 @@
 
             <div class="btn-div">
                 <button class="btn full-btn" id="submitBtn" title="Proceed"
-                    onclick="_getNextPage({page: 'institutionDetailsPage'});">Proceed <i
+                    onclick="_proceedStudentBioData();">Proceed <i
                         class="bi bi-arrow-right-circle"></i></button>
             </div>
         </div>
     </div>
+    <script>_setInputValues();</script>
 <?php } ?>
 
 <?php if ($page == 'institutionDetailsPage') { ?>
