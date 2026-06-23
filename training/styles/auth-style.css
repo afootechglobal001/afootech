@@ -315,8 +315,13 @@
   height: 300px;
   position: relative;
   border-radius: 8px;
-  margin: 10px auto;
+  margin: auto;
+  margin-top: 10px;
   border: #e6e6e6 1px solid;
+}
+
+.login-card-div .form-section .form-div .inner-form .issue-border {
+  border: #f00 1px dashed;
 }
 
 .login-card-div .form-section .form-div .inner-form .cam-pix .cam-pix-inner {
@@ -403,6 +408,7 @@
   font-size: 10px;
   font-style: italic;
   display: none;
+  padding-left: 70px;
 }
 
 .login-card-div .form-section .form-div .inner-form .form-title {
