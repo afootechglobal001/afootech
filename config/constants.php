@@ -38,8 +38,8 @@ $userDeviceId=getBrowserId();
 
 <script>
 var websiteUrl = "<?php echo $websiteUrl;?>";
-var apiKey = 'b58b8bf717120383cd5e13d247beb6b9'; /// For API Key //
-var endPoint = 'https://getfoodstuffs.com.ng/api/dev'; /// Server End Point url
+var apiKey = '0cda191ec51136e7e3d60195ec753d30'; /// For API Key //
+var endPoint = 'https://afootechglobal.com/api/training/dev'; /// Server End Point url
 var userOsBrowser = "<?php echo $userOsBrowser;?>"; /// For User OS Browser //
 var userIpAddress = "<?php echo $userIpAddress;?>"; /// For User IP Address //
 var userDeviceId = "<?php echo $userDeviceId;?>"; /// For User Device Id //
@@ -52,4 +52,7 @@ var trainingMiddlewareUrl = websiteUrl + '/training/config/code'; //// For Train
 
 /// Training Middleware Urls ///
 var registerUrl = websiteUrl + '/training/register'; //// For Institution Url
+
+///// Passport Path //////
+var passportPath=websiteUrl+'/uploaded_files/passport'; /// For Passport Path ///
 </script>
