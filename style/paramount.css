@@ -50,6 +50,10 @@ html {
   --active-color: #090;
   --active-color2: #98cd99;
   --sub-text-color: #d7353a;
+  --blue: #2563eb;
+            --emerald: #10b981;
+            --purple: #8b5cf6;
+            --orange: #f97316;
 }
 
 h1,
@@ -64,6 +68,11 @@ h6 {
 }
 
 p {
+  padding: 0px;
+  margin: 0px;
+}
+
+ul {
   padding: 0px;
   margin: 0px;
 }

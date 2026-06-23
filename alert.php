@@ -109,7 +109,7 @@
             </div>
 
             <div class="div">
-                <a href="<?php echo $websiteUrl ?>" title="About Us">
+                <a href="<?php echo $websiteUrl ?>/about" title="About Us">
                     <li <?php if ($page=='about.php') {?> id="active-li" <?php }?>><i class="bi-building"></i> About Us
                     </li>
                 </a>
