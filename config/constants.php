@@ -54,5 +54,5 @@ var trainingMiddlewareUrl = websiteUrl + '/training/config/code'; //// For Train
 var registerUrl = websiteUrl + '/training/register'; //// For Institution Url
 
 ///// Passport Path //////
-var passportPath=websiteUrl+'/uploaded_files/passport'; /// For Passport Path ///
+var passportPath=websiteUrl+'/uploaded_files/studentPassport'; /// For Passport Path ///
 </script>

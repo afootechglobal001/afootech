@@ -22,7 +22,7 @@
         content="Join AfooTECH Global ICT Training Centre and learn practical digital skills including software development, networking, UI/UX design, graphics design, and more." />
 
 </head>
-
+<script src="https://js.paystack.co/v1/inline.js"></script>
 <body>
     <?php include '../alert.php' ?>
     <div class="mobile-header">
@@ -51,6 +51,38 @@
 
         <div class="login-card-div">
             <div class="form-section">
+                <div class="registration-progress">
+                    <div class="steps">
+                        <div class="step active" data-page="registerPage">
+                            <div class="circle">1</div>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <div class="step" data-page="institutionDetailsPage">
+                            <div class="circle">2</div>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <div class="step" data-page="programDetailsPage">
+                            <div class="circle">3</div>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <div class="step" data-page="passportPage">
+                            <div class="circle">4</div>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <div class="step" data-page="summaryPage">
+                            <div class="circle">5</div>
+                        </div>
+                    </div>
+                </div>
+
                 <a href="<?php echo $websiteUrl ?>/training">
                     <div class="logo-div">
                         <img src="<?php echo $websiteUrl ?>/all-images/images/logo.png" alt="Logo">
@@ -74,10 +106,12 @@
         <script>
             $(document).ready(function () {
                 let savedPage = sessionStorage.getItem("currentAuthPage") ?? "registerPage";
+
                 _getPage({
                     page: savedPage,
                     url: trainingMiddlewareUrl
                 });
+                _updateProgress(savedPage);
             });
         </script>
     </section>
