@@ -86,22 +86,22 @@
                 </script>
             </div>
 
-            <div class="text_field_container" id="nameOfInstitution_container">
+            <div class="text_field_container" id="institutionName_container">
                 <script>
                     textField({
-                        id: 'nameOfInstitution',
+                        id: 'institutionName',
                         title: 'Name Of Institution',
-                        value: studentSession?.nameOfInstitution ?? ''
+                        value: studentSession?.institutionName ?? ''
                     });
                 </script>
             </div>
 
-            <div class="text_field_container" id="department_container">
+            <div class="text_field_container" id="departmentName_container">
                 <script>
                     textField({
-                        id: 'department',
+                        id: 'departmentName',
                         title: 'Department',
-                        value: studentSession?.department ?? ''
+                        value: studentSession?.departmentName ?? ''
                     });
                 </script>
             </div>
@@ -117,12 +117,12 @@
                 </script>
             </div>
 
-            <div class="text_field_container" id="matricNo_container">
+            <div class="text_field_container" id="matricNumber_container">
                 <script>
                     textField({
-                        id: 'matricNo',
+                        id: 'matricNumber',
                         title: 'Refrence/Matric No',
-                        value: studentSession?.matricNo ?? ''
+                        value: studentSession?.matricNumber ?? ''
                     });
                 </script>
             </div>
@@ -185,7 +185,7 @@
                             id: 'durationId',
                             title: 'Select Duration',
                             fieldValue: selectedDuration?.durationId ?? '',
-                            fieldLabel: (selectedDuration?.durationName ?? '') + ' (<s>N</s>' + thousandSeperator(selectedDuration?.trainingAmount ?? 0) +')'
+                            fieldLabel: (selectedDuration?.durationName ?? '') + ' (<s>N</s>' + thousandSeperator(selectedDuration?.formFee ?? 0) +')'
                         });
                     });
                 </script>
@@ -232,13 +232,13 @@
                 </div>
 
                 <div class="cam-pix-inner" id="cam-pix">
-                    <img src="<?php echo $websiteUrl ?>/uploaded_files/passport/sample.jpg" />
+                    <img id="passportPreview" src="<?php echo $websiteUrl ?>/uploaded_files/studentPassport/sample.jpg" alt="Profile Image"/>
                 </div>
 
                 <script>
-                    $(document).ready(function() {
-                        const passport = studentSession?.passport ? studentSession?.passport : "<?php echo $websiteUrl ?>/uploaded_files/passport/sample.jpg";
-                        $("#cam-pix img").attr("src", passport).attr("alt", "Profile Image");
+                    $(document).ready(function(){
+                        const passport = studentSession?.passport ? studentSession.passport : "<?php echo $websiteUrl ?>/uploaded_files/studentPassport/sample.jpg";
+                        $("#passportPreview").attr("src", passport).attr("alt", "Profile Image");
                     });
                 </script>
             </div>
@@ -352,9 +352,9 @@
 
             <div class="alert alert-success form-alert-div">
                 <span><i class="bi-pencil-square"></i> Note:</span>
-                Kindly note that a registration fee of (<strong><span style="font-size:14px;" id="trainingAmount"><s>N</s>
+                Kindly note that a registration fee of (<strong><span style="font-size:14px;" id="formFee"><s>N</s>
                     <script>
-                        $("#trainingAmount").html('<s>N</s>' + thousandSeperator(getSelectedProgramCourseDurationSession?.data?.[0]?.trainingAmount));
+                        $("#formFee").html('<s>N</s>' + thousandSeperator(getSelectedProgramCourseDurationSession?.data?.[0]?.formFee));
                     </script></span></strong>) will be required before completing your registration.
             </div>
 

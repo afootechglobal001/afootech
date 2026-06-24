@@ -434,6 +434,59 @@
   bottom: 20px;
 }
 
+
+.registration-progress{
+   margin-bottom:20px;
+}
+
+.registration-progress .steps{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+}
+
+.registration-progress .steps .step{
+  text-align:center;
+  width:50px;
+  position:relative;
+}
+
+.registration-progress .steps .circle{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+   background: rgba(200, 200, 200, 0.7);
+  color: var(--sub-body-color);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    font-size:13px;
+    font-family: sub-title-font;
+}
+
+.registration-progress .steps .line{
+  height:3px;
+  background: rgba(200, 200, 200, 0.7);
+  flex:1;
+  border-radius: 25px;
+  margin-top:15px;
+}
+
+.registration-progress .steps .step.active .circle{
+  background: var(--primary-color);
+  color: var(--text-white);
+}
+
+.registration-progress .steps .step.done .circle{
+  background:var(--primary-color);
+  color:var(--text-white);
+}
+
+.registration-progress .steps .line.active{
+  background: var(--primary-color);
+}
+
 @media all and (max-width: 930px) {
   .login-image-div {
     display: none;
@@ -466,6 +519,10 @@
   }
   .login-card-div {
     background: var(--bg-color3);
+  }
+  .registration-progress{
+    margin-bottom:0px;
+    margin-top: 10px;
   }
   @media all and (max-height: 780px) {
     .login-card-div .form-section {

@@ -15,4 +15,24 @@ switch ($action){
 		$ids = $_POST['ids'];
 		require_once('content-page.php');
 	break;	
+
+	case 'uploadStudentPassport':
+		$newPassport = $_POST['newPassport'] ?? '';
+		$passport = $_POST['passport'] ?? '';
+	
+		///// Validate Student Passport /////
+		if (!empty($passport)) {
+    		$passport = preg_replace('#^data:image/\w+;base64,#i', '', $passport);
+			$passport = str_replace(' ', '+', $passport);
+			$passport = base64_decode($passport);
+		}
+		
+		//// Upload Student Passport ////
+		$uploadStudentPassportDir = "../../uploaded_files/studentPassport/";
+
+		//// Create Directory If Not Exists ////
+		if(!empty($newPassport)){
+			file_put_contents($uploadStudentPassportDir . $newPassport, $passport);
+		}
+    break;
 }?>
