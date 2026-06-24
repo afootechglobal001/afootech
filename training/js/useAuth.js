@@ -1,43 +1,18 @@
 $(function () {
-
-
     studentPreview = {
-
-
         UpdatePreview: function(obj){
-
-
             if(!window.FileReader){
-
                 console.error("FileReader not supported");
                 return;
-
             }
 
-
             let reader = new FileReader();
-
-
-
             reader.onload = function(e){
-
-
-                $("#passportPreview")
-                    .attr("src", e.target.result)
-                    .attr("alt","Profile Image");
-
-
+                $("#passportPreview").attr("src", e.target.result).attr("alt","Profile Image");
             };
-
-
             reader.readAsDataURL(obj.files[0]);
-
-
         }
-
     };
-
-
 });
 
 //////////////////////////// upload image from webcam ////////////////////////////
@@ -55,28 +30,11 @@ function takeSnapShot() {
 }
 
 function snapPicture(){
-
-
     Webcam.snap(function(data_uri){
-
-
-
-        $("#passportPreview")
-            .attr("src", data_uri)
-            .attr("alt","Profile Image");
-
-
-
+        $("#passportPreview").attr("src", data_uri).attr("alt","Profile Image");
         $(".webcam-div").fadeOut(500);
-
-
-
     });
-
-
     Webcam.reset();
-
-
 }
 //////////////////////////// end upload image from webcam ////////////////////////////
 
@@ -717,7 +675,7 @@ function _callPayStack(
             _uploadStudentPassport(newPassport);
         },
             onClose: function () {
-            //_callPaymentCancelled(paymentId);
+            _callPaymentCancelled(paymentId);
             return false;
         },
     };
@@ -820,7 +778,7 @@ function _callPaymentCancelled(
 ) {
     try {
         _callRawEndPoints({
-        url: `user/exam/exam-payment-cancelled?paymentId=${paymentId}`,
+        url: `registration/payment-cancelled?paymentId=${paymentId}`,
         })
         .then(() => {
             $("#submitBtn")
