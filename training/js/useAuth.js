@@ -717,7 +717,7 @@ function _callPayStack(
             _uploadStudentPassport(newPassport);
         },
             onClose: function () {
-            //_callPaymentCancelled(paymentId);
+            _callPaymentCancelled(paymentId);
             return false;
         },
     };
@@ -820,7 +820,7 @@ function _callPaymentCancelled(
 ) {
     try {
         _callRawEndPoints({
-        url: `user/exam/exam-payment-cancelled?paymentId=${paymentId}`,
+        url: `registration/payment-cancelled?paymentId=${paymentId}`,
         })
         .then(() => {
             $("#submitBtn")
