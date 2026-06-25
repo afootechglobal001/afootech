@@ -618,6 +618,17 @@
   }
 }
 
+@media all and (max-width: 585px) {
+  .otp-wrapper .otp-container {
+    gap: 5px;
+  }
+
+  .otp-wrapper .otp-container .otp_text_field{
+    min-width: 30px; 
+    height: 55px;
+  }
+}
+
 @media all and (max-width: 500px) {
   .login-card-div .footer-container {
     display: none;
