@@ -353,7 +353,7 @@
 
             <div class="alert alert-success form-alert-div">
                 <span><i class="bi-pencil-square"></i> Note:</span>
-                Kindly note that a registration fee of (<strong><span style="font-size:14px;" id="formFee"><s>N</s>
+                Kindly note that a <span><strong style="color:red;">non-refundable</strong></span> registration fee of  (<strong><span style="font-size:14px;" id="formFee"><s>N</s>
                     <script>
                         $("#formFee").html('<s>N</s>' + thousandSeperator(getSelectedProgramCourseDurationSession?.data?.[0]?.formFee));
                     </script></span></strong>) will be required before completing your registration.
