@@ -103,9 +103,8 @@
                         <a href="<?php echo $websiteUrl ?>/training/register">
                             <button class="btn" id="submitBtn" title="Proceed To Registration" onclick="">Proceed To
                                 Registration<i class="bi-arrow-right"></i></button></a>
-                        <a href="<?php echo $websiteUrl ?>">
-                            <button class="btn right-btn" title="Print Acceptance Letter"><strong>Print Acceptance
-                                    Letter</strong> <i class="bi-arrow-right"></i></button></a>
+                            <button class="btn right-btn" title="Print Acceptance Letter" onclick="_getForm({page: 'proceedAcceptanceLetterForm', url: trainingMiddlewareUrl})"><strong>Print Acceptance
+                                    Letter</strong> <i class="bi-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
