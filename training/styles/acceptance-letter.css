@@ -1,0 +1,213 @@
+@charset "utf-8";
+/* CSS Document */
+.letter-body {
+    background-color: #f5f6f8;
+}
+.acceptance-letter-wrapper {
+    width: 800px;
+    min-height: calc(100% - 100px);
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+    margin: 50px auto;
+}
+
+.acceptance-letter-body {
+	width:100%;
+	background: var(--bg-white);
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+	position: relative;
+	overflow: hidden;
+    border-radius: 10px;
+}
+
+.acceptance-letter-body .letter-header {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.acceptance-letter-body .letter-header img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.acceptance-letter-body .letter-content {
+    padding: 20px 50px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.acceptance-letter-body .letter-content .top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.acceptance-letter-body .letter-content .top-container .flex-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.acceptance-letter-body .letter-content .top-container .flex-content span {
+    color: var(--body-color);
+    font-size: 15px;
+    font-family: title-font;
+}
+
+.acceptance-letter-body .letter-content .top-container .flex-content p {
+    color: var(--sub-body-color);
+    font-size: 16px;
+    font-family: title-font;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    border-bottom: 2px solid var(--sub-body-color);
+    min-width: 220px;
+}
+
+.acceptance-letter-body .letter-content .recipient {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.acceptance-letter-body .letter-content .recipient .top-container .flex-content p{
+    min-width: 300px;
+    font-family: sub-title-font;
+}
+
+.acceptance-letter-body .letter-content .recipient .top-container .flex-content p.bold{
+    font-family: title-font;
+}
+
+.acceptance-letter-body .letter-content .salutation {
+   font-family: body-font;
+   font-size: 15px;
+   color: var(--sub-body-color);
+}
+
+.acceptance-letter-body .letter-content .title {
+    font-family: title-font;
+    font-size: 25px;
+    line-height: 35px;
+    color: var(--body-color);
+    text-transform: uppercase;
+}
+
+.acceptance-letter-body .letter-content .body-text {
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    color: var(--sub-body-color);
+}
+
+.acceptance-letter-body .letter-content .body-text p strong{
+     color: var(--body-color);
+}
+
+.acceptance-letter-body .letter-content .body-text p{
+    text-align: justify;
+    font-size: 15px;
+    line-height: 27px;
+    font-family: sub-title-font;
+}
+
+.acceptance-letter-body .letter-content .flex-signature {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.acceptance-letter-body .letter-content .flex-signature .signature {
+    max-width: 180px;
+    overflow: hidden;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--sub-body-color);
+}
+
+.acceptance-letter-body .letter-content .flex-signature .signature img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.acceptance-letter-body .letter-content .flex-signature .column-signature {
+    display: flex;
+    flex-direction: column;
+}
+
+.acceptance-letter-body .letter-content .flex-signature .column-signature em{
+    font-size: 13px;
+}
+
+.acceptance-letter-wrapper .download-area {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.acceptance-letter-wrapper .download-area .btn-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.acceptance-letter-wrapper .download-area .btn-container .btn {
+    background:var(--primary-color);
+    color: var(--text-white);
+    border: none;
+    height: 45px;
+    padding: 0px 25px;
+    border-radius: 25px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    font-family: sub-title-font;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 16px rgba(11, 30, 58, 0.2);
+}
+
+.acceptance-letter-wrapper .download-area .btn-container .btn i {
+    font-size: 14px;
+}
+
+.acceptance-letter-wrapper .download-area .btn-container .btn:hover {
+    background: #1a355f;
+    transform: scale(1.01);
+    box-shadow: 0 10px 24px rgba(11, 30, 58, 0.3);
+}
+
+.acceptance-letter-wrapper .download-area .btn-container .print-btn {
+    background:#198754;
+}
+
+.acceptance-letter-wrapper .download-area .download-note {
+    font-size: 13px;
+    color: #6a7c94;
+    text-align: center;
+    width: 100%;
+}
+
+@media print {
+    body {
+        background: none;
+        padding: 0;
+    }
+    .acceptance-letter-body {
+        box-shadow: none;
+        max-width: 100%;
+        padding: 20px;
+    }
+    .acceptance-letter-wrapper .download-area {
+        display: none !important;
+    }
+}

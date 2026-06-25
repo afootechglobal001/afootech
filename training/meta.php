@@ -16,6 +16,8 @@
     rel="stylesheet" />
 <link href="<?php echo $websiteUrl?>/training/styles/auth-style.css?v=<?php echo $codeVersion?>" type="text/css"
     rel="stylesheet" />
+<link href="<?php echo $websiteUrl?>/training/styles/acceptance-letter.css?v=<?php echo $codeVersion?>" type="text/css"
+    rel="stylesheet" />
 
 <script src="<?php echo $websiteUrl?>/js/jquery-v3.6.1.min.js"></script>
 <script src="<?php echo $websiteUrl?>/js/paramount.js?v=<?php echo $codeVersion?>"></script>
@@ -26,8 +28,12 @@
 
 <script src="<?php echo $websiteUrl?>/training/js/script.js?v=<?php echo $codeVersion?>"></script>
 <script src="<?php echo $websiteUrl?>/training/js/useAuth.js?v=<?php echo $codeVersion?>"></script>
+<script src="<?php echo $websiteUrl?>/training/js/usePrintAcceptanceLetter.js?v=<?php echo $codeVersion?>"></script>
+
 
 <link href="<?php echo $websiteUrl ?>/slide-property/engine/style.css" rel="stylesheet" type="text/css" />
+<!-- ///// External Link //// -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <meta property="og:type" content="Website" />
 <meta property="og:site_name" content="<?php echo $appName?>">

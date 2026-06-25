@@ -44,15 +44,11 @@ var userOsBrowser = "<?php echo $userOsBrowser;?>"; /// For User OS Browser //
 var userIpAddress = "<?php echo $userIpAddress;?>"; /// For User IP Address //
 var userDeviceId = "<?php echo $userDeviceId;?>"; /// For User Device Id //
 
-/// Site Middleware Urls ///
+/// All Middlewares
 var siteMiddlewareUrl = websiteUrl + '/config/code'; //// For Site Middleware url
-
-/// Training Middleware Urls ///
 var trainingMiddlewareUrl = websiteUrl + '/training/config/code'; //// For Training Middleware url
-
-/// Training Middleware Urls ///
-var registerUrl = websiteUrl + '/training/register'; //// For Institution Url
-
-///// Passport Path //////
+var registerUrl = websiteUrl + '/training/register'; //// For Register Url
 var passportPath=websiteUrl+'/uploaded_files/studentPassport'; /// For Passport Path ///
+var studentOtpVerificationUrl=websiteUrl+'/training/verify'; /// For OTP Verification Url ///
+var studentAcceptanceLetterUrl=websiteUrl+'/training/print-acceptance-letter'; /// For OTP Verification Url ///
 </script>
