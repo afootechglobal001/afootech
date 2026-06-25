@@ -676,8 +676,7 @@ function _callPayStack(
                 .html(
                 `<div class="alert-loading-div"><div class="icon"><img src="${websiteUrl}/all-images/images/loading.gif" width="20px" alt="Loading"/></div><div class="text"><p>PROCESSING...</p></div></div>`,
                 ).fadeIn(500);
-            _getTransactionDetailsFromPaystack(paymentId, paystackSecretKey, paystackId);
-            _uploadStudentPassport(newPassport);
+            _uploadStudentPassport(newPassport, paymentId, paystackSecretKey, paystackId);
         },
             onClose: function () {
             _callPaymentCancelled(paymentId);
@@ -687,6 +686,32 @@ function _callPayStack(
 
     var handler = PaystackPop.setup(options);
     handler.openIframe();
+}
+
+/// Upload Student Passport ///
+function _uploadStudentPassport(newPassport, paymentId, paystackSecretKey, paystackId) {
+    studentSession = JSON.parse(localStorage.getItem("studentCompleteBioDataSession")) || {};
+    const passport = studentSession?.passport;
+
+    const formData = new FormData();
+    formData.append("action","uploadStudentPassport");
+    formData.append("passport", passport);
+    formData.append("newPassport", newPassport);
+
+    _callFileEndPoints({
+        url: trainingMiddlewareUrl,
+        formData,
+        expectJson:false,
+    })
+    .then(()=>{
+        _getTransactionDetailsFromPaystack(paymentId, paystackSecretKey, paystackId);
+    })
+    .catch((error)=>{
+        console.error("Error:",error);
+        _callAjaxError(() => 
+            _uploadStudentPassport(newPassport)
+        );
+    });
 }
 
 /// Call Get Transaction Details From Paystack ///
@@ -737,7 +762,7 @@ function _callPaymentSuccess(paymentId, paystackId, paystackCharges) {
             _clearAllSession();
             _showCustomConfirm({
                 callback: () => {
-                   window.location.replace(registerUrl); 
+                   window.location.replace(trainingUrl); 
                 },
                 title: "Registration Successful!",
                 message: response?.message,
@@ -801,35 +826,6 @@ function _callPaymentCancelled(
     }
 }
 
-/// Upload Student Passport ///
-function _uploadStudentPassport(newPassport) {
-    studentSession = JSON.parse(localStorage.getItem("studentCompleteBioDataSession")) || {};
-    const passport = studentSession?.passport;
-
-    const formData = new FormData();
-    formData.append("action","uploadStudentPassport");
-    formData.append("passport", passport);
-    formData.append("newPassport", newPassport);
-
-    _callFileEndPoints({
-        url: trainingMiddlewareUrl,
-        formData,
-        expectJson:false,
-    })
-    .then(()=>{
-        console.log("Passport uploaded");
-    })
-    .catch((error)=>{
-        console.error("Error:",error);
-        _callAjaxError(() => 
-            _uploadStudentPassport(newPassport)
-        );
-    });
-
-
-
-}
-
 //// Clear All Session Storage ///
 function _clearAllSession() {
     localStorage.clear();
@@ -853,7 +849,7 @@ function _resendEmail() {
             _clearAllSession();
             _showCustomConfirm({
                 callback: () => {
-                   window.location.replace(registerUrl); 
+                   window.location.replace(trainingUrl); 
                 },
                 title: "Email Resent Successfully!",
                 message: response?.message,
