@@ -15,7 +15,18 @@
     
     <section class="login-div">
         <?php _leftSideSection($websiteUrl, $appName); ?>
+        <script>
+            $(document).ready(function () {
+                let studentVerificationDataSession = JSON.parse(localStorage.getItem("studentVerificationDataSession"));
+                if (!studentVerificationDataSession) {
+                    window.location.href = trainingUrl;
+                    return;
+                }
 
+                $("#fullName").html(studentVerificationDataSession?.fullName);
+                $("#userEmailAddress").html(studentVerificationDataSession?.emailAddress);
+            });
+        </script>
         <div class="login-card-div">
             <div class="form-section">
                 <a href="<?php echo $websiteUrl ?>/training">
@@ -27,8 +38,8 @@
                 <div class="form-back-div">
                     <div class="form-div" data-aos="fade-in" data-aos-duration="1200">
                         <h1> OTP <span>Verification</span></h1>
-                        <div class="alert alert-success form-alert-div"> <i class="bi-person"></i> Hi, <span id="">Paul Emmanuel</span>,	
-                            an <span>OTP</span> has been sent to your email address (<span id="">seunemmanuel107@gmail.com</span>). Kindly check your <strong>INBOX</strong> or <strong>SPAM</strong> to
+                        <div class="alert alert-success form-alert-div"> <i class="bi-person"></i> Hi, <span id="fullName"></span>,	
+                            an <span>OTP</span> has been sent to your email address (<span id="userEmailAddress"></span>). Kindly check your <strong>INBOX</strong> or <strong>SPAM</strong> to
                             confirm.
                         </div>
                         
@@ -45,18 +56,18 @@
 
                             <div class="forgot-container">
                                 Didn't get the OTP?
-                                <button title="Resend OTP" class="resendOtpBtn" id="resendOtpBtn" onclick=""><strong>Resend OTP</strong></button>
+                                <button title="Resend OTP" class="resendOtpBtn" id="resendOtpBtn" onclick="_verifyStudentRegistration(true);"><strong>Resend OTP</strong></button>
                                 <div id="resendCountdown"></div>
                             </div>
 
                             <div class="btn-div">
-                                <button class="btn full-btn" id="verifyBtn" title="Proceed" onclick="window.location.href = studentAcceptanceLetterUrl;">Proceed <i class="bi-arrow-right"></i></button>
+                                <button class="btn full-btn" id="printBtn" title="Proceed" onclick="_printAcceptanceLetter();">Proceed <i class="bi-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <script>
-                    _counDownOtp(10);
+                    _counDownOtp(180);
                 </script>
             </div>
 

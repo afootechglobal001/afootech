@@ -152,6 +152,16 @@ function _progressBar(){
 			observer.observe(bar);
 		});
 	});
-	
+}
+
+function _getActiveCcontactLink(text) {
+	$('#next-usa, #next-nigeria').removeClass('active-btn');
+	$('#next-'+text).addClass('active-btn');
+}
+
+function _nextContactPage(nextId, text) {
+	_getActiveCcontactLink(text);
+	$("#nigeriaHideDiv, #usaHideDiv").hide();
+	$("#" + nextId).fadeIn(1000);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

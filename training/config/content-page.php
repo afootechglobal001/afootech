@@ -6,7 +6,8 @@
     <div class="form-div" data-aos="fade-in" data-aos-duration="1200">
         <h1>Welcome <span>Student!</span></h1>
         <p>
-            Create your account and register for your SIWES/IT program with <?php echo $appName ?>.
+            Provide basic information required to register for <strong>SIWES/IT</strong> and <strong>Diploma</strong>
+            program with <?php echo $appName ?>.
         </p>
 
         <div class="inner-form" id="viewLogin">
@@ -70,7 +71,7 @@
     <div class="form-div">
         <h1>Institution <span>Information</span></h1>
         <p>
-            Provide your institution information to begin your SIWES/IT registration with <?php echo $appName ?>.
+            Provide your institution and academic details to proceed.
         </p>
 
         <div class="inner-form">
@@ -146,7 +147,7 @@
     <div class="form-div" data-aos="fade-in" data-aos-duration="1200">
         <h1>Program <span>Information</span></h1>
         <p>
-            Select your preferred program to continue your SIWES/IT registration with <?php echo $appName ?>.
+            Select your preferred available program for proper billing proceess.
         </p>
 
         <div class="inner-form" id="viewLogin">
@@ -210,7 +211,7 @@
     <div class="form-div" data-aos="fade-in" data-aos-duration="1200">
         <h1>Upload <span>Passport</span></h1>
         <p>
-            Upload your passport photograph to complete your SIWES/IT registration with <?php echo $appName ?>.
+            Upload your passport photograph to complete your registration with <?php echo $appName ?>.
         </p>
 
         <div class="inner-form">
@@ -264,7 +265,7 @@
     <div class="form-div" data-aos="fade-in" data-aos-duration="1200">
         <h1>Registration <span>Review</span></h1>
         <p>
-            Kindly review your submitted information to ensure everything is accurate before completing your SIWES registration.
+            Kindly review your information to ensure everything is accurate before you submit your registration form.
         </p>
 
         <div class="inner-form">
@@ -413,7 +414,7 @@
             </div>
 
             <div class="btn-div">
-                <button class="btn" id="proceedBtn" title="Proceed" onclick="window.location.href = studentOtpVerificationUrl;">Proceed <i
+                <button class="btn" id="proceedBtn" title="Proceed" onclick="_verifyStudentRegistration();">Proceed <i
                         class="bi bi-arrow-right-circle"></i></button>
             </div>
         </div>

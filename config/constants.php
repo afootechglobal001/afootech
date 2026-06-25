@@ -48,6 +48,7 @@ var userDeviceId = "<?php echo $userDeviceId;?>"; /// For User Device Id //
 var siteMiddlewareUrl = websiteUrl + '/config/code'; //// For Site Middleware url
 var trainingMiddlewareUrl = websiteUrl + '/training/config/code'; //// For Training Middleware url
 var registerUrl = websiteUrl + '/training/register'; //// For Register Url
+var trainingUrl = websiteUrl + '/training'; //// For Training Url
 var passportPath=websiteUrl+'/uploaded_files/studentPassport'; /// For Passport Path ///
 var studentOtpVerificationUrl=websiteUrl+'/training/verify'; /// For OTP Verification Url ///
 var studentAcceptanceLetterUrl=websiteUrl+'/training/print-acceptance-letter'; /// For OTP Verification Url ///

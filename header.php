@@ -15,7 +15,7 @@
                     <li class="li">SIWES/IT</li></a>
                     <a href="<?php echo $websiteUrl ?>" title="Frequently Asked Questions">
                     <li>FAQ</li></a>
-                    <a href="<?php echo $websiteUrl ?>" title="Contact Us">
+                    <a href="<?php echo $websiteUrl ?>/contact-us" title="Contact Us">
                     <li>Contact Us</li></a>  
                     <a href="<?php echo $websiteUrl ?>" title="Gallery">
                     <li>Gallery</li></a>                                
