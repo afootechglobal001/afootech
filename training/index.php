@@ -46,7 +46,7 @@
 
             <div class="content-wrapper">
                 <div class="content-div" data-aos="fade-in" data-aos-duration="1000">
-                    <h1>Welcome to AfooTECH Global <span>SIWES & IT</span> Programs</h1>
+                    <h1>Welcome to AfooTECH Global <span>Diploma, SIWES & IT</span> Programs</h1>
                     <p class="description">
                         Apply for any of the available training programs listed below and start your journey into a
                         future-ready tech career.

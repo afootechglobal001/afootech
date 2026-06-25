@@ -613,10 +613,15 @@ function _proceedToPaymentCallback(formData) {
             _btnDisable("submitBtn", btnText, false);
         } else {
             _showCustomConfirm({
-                title: "Unable to Process Payment",
+                title: "Account Already Exists",
                 message: error.message,
                 alertType: "error",
+                falseActionBtn: true,
                 trueActionBtnText: "OK",
+                falseActionBtnText: "RESEND EMAIL",
+                falseActionCallback: () => {
+                    _resendEmail();
+                },
                 closeOnOverlayClick: true,
             });
             _btnDisable("submitBtn", btnText, false);
@@ -777,7 +782,7 @@ function _callPaymentCancelled(
     paymentId,
 ) {
     try {
-        _callRawEndPoints({
+        _callFetchEndPoints({
         url: `registration/payment-cancelled?paymentId=${paymentId}`,
         })
         .then(() => {
@@ -829,4 +834,54 @@ function _uploadStudentPassport(newPassport) {
 function _clearAllSession() {
     localStorage.clear();
     sessionStorage.clear();
+}
+
+//// Resend Email/////
+function _resendEmail() {
+    studentSession = JSON.parse(localStorage.getItem("studentCompleteBioDataSession")) || {};
+    const emailAddress = studentSession?.emailAddress;
+
+    try {
+        //// Pre Loader //////
+        _showLoader("Resending Email... Please wait...");
+
+        //// call endpoint //////
+        _callFetchEndPoints({
+            url: `registration/resend-acknowledgment-email?emailAddress=${emailAddress}`,
+        })
+        .then((response) => {
+            _clearAllSession();
+            _showCustomConfirm({
+                callback: () => {
+                   window.location.replace(registerUrl); 
+                },
+                title: "Email Resent Successfully!",
+                message: response?.message,
+                alertType: "success",
+                trueActionBtnText: "DONE",
+                closeOnOverlayClick: false,
+            });
+           _hideLoader();
+        })
+        .catch((error) => {
+        console.error("Error:", error);
+        if (error.status == 0) {
+            _callAjaxError(() => _resendEmail(), error.message); // retry if needed
+            _hideLoader();
+        } else {
+            _showCustomConfirm({
+                title: "Unable to Send Email",
+                message: error.message,
+                alertType: "error",
+                trueActionBtnText: "OK",
+                closeOnOverlayClick: true,
+            });
+            _hideLoader();
+        }
+    });
+    } catch (error) {
+        console.error("Error:", error);
+        _callCatchError(() => _resendEmail());
+       _hideLoader();
+    }
 }
