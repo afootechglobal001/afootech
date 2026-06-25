@@ -4,8 +4,8 @@
 	$appName='AfooTECH Global';
 	
 	//$websiteUrl='https://afootech.com';
-	$websiteUrl='http://localhost/afootech/afootech';
-
+	//$websiteUrl='http://localhost/afootech/afootech';
+$websiteUrl='http://10.196.25.177/afootech/afootech';
 	//$websitePath = $_SERVER['DOCUMENT_ROOT'];
 	$websitePath = $_SERVER['DOCUMENT_ROOT'].'/afootech/afootech'; //dirname(__FILE__);
 	$codeVersion= date('Ymdhis'); /// System Code Version
