@@ -4,18 +4,18 @@
         <div class="header-top-div-in">
             <div class="left-div">  
                 <a href="tel:(+234) 813 125 2996" title="Contact Us">         
-                <div class="contact dsp-none"><i class="bi-telephone-outbound"></i> (+234) 813 125 2996</div></a>
+                <div class="contact dsp-none"><i class="bi bi-telephone-outbound-fill"></i> (+234) 813 125 2996</div></a>
                 <a href="mailto:info@afootech.com" title="Mail Us"> 
-                <div class="contact no-border"><i class="bi-envelope"></i> info@afootech.com</div></a>
+                <div class="contact no-border"><i class="bi bi-envelope-fill"></i> info@afootech.com</div></a>
             </div>
 
             <div class="right-div">
                 <ul>
-                    <a href="<?php echo $websiteUrl ?>" title="SIWES/IT">
+                    <a href="<?php echo $websiteUrl ?>/training" title="SIWES/IT">
                     <li class="li">SIWES/IT</li></a>
                     <a href="<?php echo $websiteUrl ?>" title="Frequently Asked Questions">
                     <li>FAQ</li></a>
-                    <a href="<?php echo $websiteUrl ?>" title="Contact Us">
+                    <a href="<?php echo $websiteUrl ?>/contact-us" title="Contact Us">
                     <li>Contact Us</li></a>  
                     <a href="<?php echo $websiteUrl ?>" title="Gallery">
                     <li>Gallery</li></a>                                
@@ -32,7 +32,7 @@
         <nav>
             <ul>                          
                 <a href="<?php echo $websiteUrl ?>" title="Home Page"><li <?php if (($websiteAutoUrl=="$websiteUrl/index")||($websiteAutoUrl=="$websiteUrl/")||($websiteAutoUrl=="$websiteUrl")) {?> class="active" <?php }?>> Home</li></a>        
-                <a href="<?php echo $websiteUrl?>" title="About Us">
+                <a href="<?php echo $websiteUrl?>/about" title="About Us">
                     <li class="about <?php if (strstr($websiteAutoUrl, "$websiteUrl/about")) {?> active <?php }?>">
                         About Us
                     </li>
@@ -114,7 +114,7 @@
                             <div class="each-container info-container">
                                 <div class="pix-div"><img src="<?php echo $websiteUrl?>/all-images/body-pix/training.png" alt="training"/></div>
                                 <p>AfooTECH Global Organize and develop teams based on skill level, business type, and availability, aiming to build ICT capacity within organizations and individuals..</p>
-                                <a href="<?php echo $websiteUrl?>">
+                                <a href="<?php echo $websiteUrl?>/training">
                                 <button class="btn" title="Apply For Training">Apply For Training <i class="bi-arrow-right"></i></button></a> 
                             </div>                        
                         </div>                          
@@ -137,8 +137,8 @@
         
         <div class="right-nav-div">
             <div class="nav-icon-div"><i class="bi-search"></i></div>  
-            <a href="<?php echo $websiteUrl?>" title="APPLY NOW">
-            <button class="btn" title="APPLY NOW">Request For A Quote <i class="bi-arrow-right"></i></button></a>
+            <a href="<?php echo $websiteUrl?>/training" title="Apply For Training">
+            <button class="btn" title="Apply For Training">Apply For Training <i class="bi-arrow-right"></i></button></a>
             <button class="mobile-btn" onclick="_open_menu()"><i class="bi-text-right"></i></button>
         </div>         
     </div> 

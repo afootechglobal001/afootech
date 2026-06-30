@@ -35,6 +35,14 @@
     </div>
 </div>
 
+<div class="webcam-div">
+    <div class="div-in">
+        <div class="webcam-div-in">
+            <div id="my_camera"></div>
+            <button class="btn" type="button" onClick="snapPicture()"><i class="fa fa-camera"></i> Take Snapshot </button>
+        </div>
+    </div>
+</div>
 
 <div class="sidenavdiv">
 
@@ -84,8 +92,6 @@
     </div>
 
 
-
-
     <div class="index-menu-back-div">
         <div class="top-div">
             <div class="logo-div">
@@ -103,7 +109,7 @@
             </div>
 
             <div class="div">
-                <a href="<?php echo $websiteUrl ?>" title="About Us">
+                <a href="<?php echo $websiteUrl ?>/about" title="About Us">
                     <li <?php if ($page=='about.php') {?> id="active-li" <?php }?>><i class="bi-building"></i> About Us
                     </li>
                 </a>
@@ -189,17 +195,17 @@
                 </a>
             </div>
 
-            <div class="div">
-                <a href="<?php echo $websiteUrl;?>" title="Apply For Program">
-                    <li class="student-li" <?php if ($page=='contact') {?> id="active-li" <?php }?>><i
-                            class="bi-person-circle"></i> Apply For Program</li>
+            <div class="div primary">
+                <a href="<?php echo $websiteUrl;?>/training" title="Apply For Training">
+                    <li class="training-li" <?php if ($page=='training') {?> id="active-li" <?php }?>><i
+                            class="bi-person-circle"></i> Apply For Training</li>
                 </a>
             </div>
 
-            <div class="div">
-                <a href="<?php echo $websiteUrl;?>" title="Apply For Training">
-                    <li class="training-li" <?php if ($page=='contact') {?> id="active-li" <?php }?>><i
-                            class="bi-person-circle"></i> Apply For Training</li>
+            <div class="div secondary">
+                <a href="<?php echo $websiteUrl;?>/training" title="Apply For SIWES/IT Program">
+                    <li class="student-li" <?php if ($page=='training') {?> id="active-li" <?php }?>><i
+                            class="bi-person-circle"></i> SIWES/IT Program</li>
                 </a>
             </div>
         </div>

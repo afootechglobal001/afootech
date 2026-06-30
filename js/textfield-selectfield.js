@@ -109,6 +109,78 @@ function _clickOption(selectedOption, id, value) {
 };
 
 
+function otpField(options) {
+  const { id = "otpCode", length = 6, onKeyPressFunction = null } = options;
+  let inputs = "";
+  for (let i = 0; i < length; i++) {
+    inputs += `
+      <input
+        class="otp_text_field"
+        type="text"
+        maxlength="1"
+        data-index="${i}"
+        ${onKeyPressFunction ? `onkeypress="${onKeyPressFunction}"` : ''}
+      />
+    `;
+  }
+
+  const template = `
+  <div class="otp-wrapper">
+    <div class="otp-container" id="${id}_box">
+      ${inputs}
+    </div>
+    <input type="hidden" id="${id}" />
+    <div class="issueText" id="issue_${id}"></div>
+  </div>
+  `;
+  $("#" + id + "_container").html(template);
+
+  const otpInputs = $("#" + id + "_box .otp_text_field");
+
+  // Auto move + update hidden input
+  otpInputs.on("input", function () {
+    let value = $(this).val();
+
+    if (value.length === 1) {
+      $(this).next(".otp_text_field").focus();
+    }
+    updateOTP();
+  });
+
+  // Paste OTP (e.g. 109735)
+  otpInputs.on("paste", function (e) {
+    e.preventDefault();
+
+    let pastedData = e.originalEvent.clipboardData.getData("text")
+      .replace(/\D/g, "")
+      .slice(0, length);
+    
+    for (let i = 0; i < pastedData.length; i++) {
+      otpInputs.eq(i).val(pastedData[i]);
+    }
+
+    updateOTP();
+    // focus next empty or last box
+    otpInputs.eq(pastedData.length - 1).focus();
+  });
+
+  // Backspace move back
+  otpInputs.on("keydown", function (e) {
+    if (e.key === "Backspace" && $(this).val() === "") {
+      $(this).prev(".otp_text_field").focus();
+    }
+  });
+
+  function updateOTP() {
+    let otp = "";
+    otpInputs.each(function () {
+      otp += $(this).val();
+    });
+    $("#" + id).val(otp);
+  }
+}
+
+
 /// Toggle Password Visibility ///
 $(document).on("input", ".text_field[type='password']", function() {
   const icon = $(".toggle-password[data-target='" + this.id + "']");
@@ -134,140 +206,3 @@ $(document).on("click", ".toggle-password", function() {
       icon.removeClass("bi-eye-slash-fill").addClass("bi-eye-fill");
   }
 });
-
-
-
-
-function _getSelectPaymentMethod(fieldId){
-	const data=[
-		{
-			'paymentMethodId': 1,
-			'paymentMethodName': 'DEBIT/CREDIT CARD',
-		},
-		{
-			'paymentMethodId': 2,
-			'paymentMethodName': 'PAY WITH WALLET',
-		},
-		{
-			'paymentMethodId': 3,
-			'paymentMethodName': 'BANK TRANSFER',
-		}
-	]
-
-	for (let i = 0; i < data.length; i++) {
-		const id = data[i].paymentMethodId;
-		const value = data[i].paymentMethodName;
-		$('#searchList_'+ fieldId).append('<li onclick="_clickOption(\'searchList_' + fieldId + '\', \'' + id + '\', \'' + value + '\')">'+ value +'</li>');
-	}	
-}
-
-function _getSelectDeliveryLocation(fieldId){
-	const data=[
-		{
-			'deliveryLocationId': 1,
-			'deliveryLocationName': 'GATEWAY POLYTECHNIC, SAAPADE',
-		},
-		{
-			'deliveryLocationId': 2,
-			'deliveryLocationName': 'OLABISI ONABANJO UNIVERSITY',
-		}
-	]
-
-	for (let i = 0; i < data.length; i++) {
-		const id = data[i].deliveryLocationId;
-		const value = data[i].deliveryLocationName;
-		$('#searchList_'+ fieldId).append('<li onclick="_clickOption(\'searchList_' + fieldId + '\', \'' + id + '\', \'' + value + '\')">'+ value +'</li>');
-	}		
-}
-
-function _getSelectDeliveryArea(fieldId){
-	const data=[
-		{
-			'deliveryAreaId': 1,
-			'deliveryAreaName': 'AGBERO ODE',
-		},
-		{
-			'deliveryAreaId': 2,
-			'deliveryAreaName': 'SABO ISHARA',
-		},
-		{
-			'deliveryAreaId': 3,
-			'deliveryAreaName': 'GARAGE IPARA',
-		}
-	]
-
-	for (let i = 0; i < data.length; i++) {
-		const id = data[i].deliveryAreaId;
-		const value = data[i].deliveryAreaName;
-		$('#searchList_'+ fieldId).append('<li onclick="_clickOption(\'searchList_' + fieldId + '\', \'' + id + '\', \'' + value + '\')">'+ value +'</li>');
-	}	
-}
-
-///// Admin SelectFields ///////////
-function _getSelectStatusId(fieldId, statusIds){
-	try {
-		$.ajax({
-			type: "GET",
-			url: endPoint+"/preset-data/fetch-status?statusId="+statusIds,
-			dataType: "json",
-			cache: false,
-			headers: {
-				'apiKey': apiKey,
-				'userOsBrowser': userOsBrowser,
-				'userIpAddress': userIpAddress,
-				'userDeviceId': userDeviceId,
-				'Authorization': 'Bearer ' + loginAccessKey
-			},
-			success: function(info) {
-				const data = info.data;
-				const success = info.success;
-
-				if (success === true) {
-					for (let i = 0; i < data.length; i++) {
-						const id = data[i].statusId;
-						const value = data[i].statusName;
-						$('#searchList_'+ fieldId).append('<li onclick="_clickOption(\'searchList_' + fieldId + '\', \'' + id + '\', \'' + value + '\');">'+ value +'</li>');
-					}	
-				} else {
-					_actionAlert(info.message, false);
-					const response = info.response;
-					if (response < 100) {
-						_logOut();
-					}
-				}
-			}
-		});
-	} catch (error) {
-		console.error("Error: ", error);
-		_actionAlert('An unexpected error occurred. Please try again.', false);
-	}
-}
-
-function _getSelectCategory(fieldId) {
-	try {
-		//// call endpoint //////
-		_callFetchEndPoints({
-			url: `admin/settings/information-category/fetch-information-category?statusId=1`,
-			accessKey: true,
-		})
-		.then((response) => {
-            _staffValidationCheck(response.response);
-			for (let i = 0; i < response.data.length; i++) {
-				const id = response.data[i].categoryId;
-				const value = response.data[i].categoryName;
-				$('#searchList_'+ fieldId).append('<li onclick="_clickOption(\'searchList_' + fieldId + '\', \'' + id + '\', \'' + value + '\');">'+ value +'</li>');
-			}				
-		
-			if (response < 100) {
-				_logOut();
-			}
-		 })
-		.catch((error) => {
-			console.error("Error:", error);
-			_actionAlert(error.message, false);
-		});
-	} catch (error) {
-		console.error("Error:", error);
-		_actionAlert('An unexpected error occurred. Please try again.', false);
-  	}
-}

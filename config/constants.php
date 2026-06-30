@@ -7,8 +7,8 @@
 	$websiteUrl='http://localhost/afootech/afootech';
 
 	//$websitePath = $_SERVER['DOCUMENT_ROOT'];
-	$websitePath = $_SERVER['DOCUMENT_ROOT'].'/weblist-studio/WebListStudio-GetFoodStuffs'; //dirname(__FILE__);
-	$codeVersion= date('Ymdhis');
+	$websitePath = $_SERVER['DOCUMENT_ROOT'].'/afootech/afootech'; //dirname(__FILE__);
+	$codeVersion= date('Ymdhis'); /// System Code Version
 ?>
 <?php
 $userOsBrowser = $_SERVER['HTTP_USER_AGENT'];
@@ -38,12 +38,18 @@ $userDeviceId=getBrowserId();
 
 <script>
 var websiteUrl = "<?php echo $websiteUrl;?>";
-var apiKey = 'b58b8bf717120383cd5e13d247beb6b9'; /// For API Key //
-var endPoint = 'https://getfoodstuffs.com.ng/api/dev'; /// Server End Point url
+var apiKey = '0cda191ec51136e7e3d60195ec753d30'; /// For API Key //
+var endPoint = 'https://afootechglobal.com/api/training/dev'; /// Server End Point url
 var userOsBrowser = "<?php echo $userOsBrowser;?>"; /// For User OS Browser //
 var userIpAddress = "<?php echo $userIpAddress;?>"; /// For User IP Address //
 var userDeviceId = "<?php echo $userDeviceId;?>"; /// For User Device Id //
 
-/// Site Middleware Urls ///
-var siteMiddlewareUrl = websiteUrl + '/config/code'; //// For site url
+/// All Middlewares
+var siteMiddlewareUrl = websiteUrl + '/config/code'; //// For Site Middleware url
+var trainingMiddlewareUrl = websiteUrl + '/training/config/code'; //// For Training Middleware url
+var registerUrl = websiteUrl + '/training/register'; //// For Register Url
+var trainingUrl = websiteUrl + '/training'; //// For Training Url
+var passportPath=websiteUrl+'/uploaded_files/studentPassport'; /// For Passport Path ///
+var studentOtpVerificationUrl=websiteUrl+'/training/verify'; /// For OTP Verification Url ///
+var studentAcceptanceLetterUrl=websiteUrl+'/training/print-acceptance-letter'; /// For OTP Verification Url ///
 </script>

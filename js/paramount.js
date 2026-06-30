@@ -139,10 +139,10 @@ function _showCustomConfirm(options) {
 			<div class="btn-div">
 				${
           falseActionBtn
-            ? `<button id="confirmCancelBtn" class="btn false-btn">${falseActionBtnText}</button>`
+            ? `<button id="confirmCancelBtn" class="btn false-btn" title="${falseActionBtnText}">${falseActionBtnText}</button>`
             : ""
         }
-				<button id="confirmOkBtn" class="btn">${trueActionBtnText}</button>
+				<button id="confirmOkBtn" class="btn" title="${trueActionBtnText}">${trueActionBtnText}</button>
 			</div>
 		</div>
 	`;
@@ -164,14 +164,15 @@ function _showCustomConfirm(options) {
       });
   }
 
-    $("#customConfirmModal").off("click");
-if (closeOnOverlayClick) {
-  $("#customConfirmModal").on("click", function (e) {
-    if (e.target === this) {
-      _modalClose();
-    }
-  });
-}
+  $("#customConfirmModal").off("click");
+
+  if (closeOnOverlayClick) {
+    $("#customConfirmModal").on("click", function (e) {
+      if (e.target === this) {
+        _modalClose();
+      }
+    });
+  }
 }
 function _modalClose() {
   $("#customConfirmModal").html("").fadeOut(200);
@@ -193,7 +194,9 @@ function _validateEmptyValue(fieldId, fieldName) {
 }
 
 function _validateEmail(fieldId, fieldName) {
-  const value = $("#" + fieldId).val().trim();
+  const value = $("#" + fieldId)
+    .val()
+    .trim();
   if (!value) {
     $("#" + fieldId).addClass("issue");
     $("#issue_" + fieldId).html("PROVIDE " + fieldName.toUpperCase());
@@ -207,7 +210,7 @@ function _validateEmail(fieldId, fieldName) {
   if (/email|username/i.test(fieldName)) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       isValid = false;
-      message = "PROVIDE A VALID " + fieldName.toUpperCase() + " ADDRESS";
+      message = "PROVIDE A VALID " + fieldName.toUpperCase();
     }
   }
 
@@ -410,10 +413,33 @@ function _hideLoader() {
   $('#globalLoader').fadeOut(150);
 }
 
-function _formatDate(dateString) {
-  if (!dateString) return "N/A"; // fallback if no date
-  const dateObj = new Date(dateString);
-  const options = { day: "2-digit", month: "short", year: "numeric" };
-  // Example: 25 Jan 2025
-  return dateObj.toLocaleDateString("en-GB", options).replace(" ", " ");
+function _formatDate(newDate) {
+  if (!newDate) return "";
+
+  const d = new Date(newDate);
+  const day = d.getDate();
+  const month = d.toLocaleDateString("en-US", { month: "long" });
+  const year = d.getFullYear();
+
+  // Get ordinal suffix
+  const getOrdinal = (n) => {
+    const j = n % 10,
+      k = n % 100;
+
+    if (j === 1 && k !== 11) return `${n}st`;
+    if (j === 2 && k !== 12) return `${n}nd`;
+    if (j === 3 && k !== 13) return `${n}rd`;
+    return `${n}th`;
+  };
+
+  return `${getOrdinal(day)} ${month}, ${year}`;
+}
+
+function capitalizeFirstLetterOfEachWord(inputText) {
+  const words = inputText.toLowerCase().split(" ");
+  for (let i = 0; i < words.length; i++) {
+    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+  }
+  const result = words.join(" ");
+  return result;
 }

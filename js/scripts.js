@@ -18,19 +18,17 @@ function _call_carousel(cnt) {
 
 
 $(window).scroll(function () {
-	var scrollheight = $(window).scrollTop();
-  
-	// Toggle header class based on scroll position
-	if (scrollheight >= 100) {
-	  $("header").addClass("fixed").removeClass("absolute");
-	  $(".header-div-in").addClass("border");
-	  $("#back2Top").fadeIn(1000);
-	} else {
-	  $("header").addClass("absolute").removeClass("fixed");
-	  $(".header-div-in").removeClass("border");
-	  $("#back2Top").fadeOut(1000);
-	}
-  });
+    var scrollheight = $(window).scrollTop();
+    if (scrollheight >= 100) {
+        $("header").addClass("fixed").removeClass("absolute");
+        $(".header-div-in").addClass("border");
+        $("#back2Top").fadeIn(1000);
+    } else {
+        $("header").addClass("absolute").removeClass("fixed");
+        $(".header-div-in").removeClass("border");
+        $("#back2Top").fadeOut(1000);
+    }
+});
   
 
 function _back_to_top(){
@@ -154,81 +152,16 @@ function _progressBar(){
 			observer.observe(bar);
 		});
 	});
-	
 }
 
-
-
-
- 
-function _get_form(page){
-	$('#get-more-div').html('<div class="ajax-loader"><img src="'+websiteUrl+'/all-images/images/ajax-loader.gif"/></div>').fadeIn('fast');
-		var action='get-form';
-		var dataString ='action='+ action+'&page='+ page;
-		$.ajax({
-		type: "POST",
-		url: local_url,
-		data: dataString,
-		cache: false,
-		success: function(html){$('#get-more-div').html(html);}
-	});
-}
-function _selectOption(selectBoxId) {
-    
-    if ($('#searchPanel_'+selectBoxId).is(":visible")) {
-        $('#searchPanel_'+selectBoxId).css('display', 'none');
-        $('#'+selectBoxId).css('opacity', '1');
-    } else {
-        $('#'+selectBoxId).css('opacity', '0');
-        $('#searchPanel_'+selectBoxId).css('display', 'flex');
-        $('#txtSearchValue_'+selectBoxId).focus();
-    }
+function _getActiveCcontactLink(text) {
+	$('#next-usa, #next-nigeria').removeClass('active-btn');
+	$('#next-'+text).addClass('active-btn');
 }
 
-    function filter(selectBoxId) {
-        var valThis = $('#txtSearchValue_'+selectBoxId).val();
-        $('#searchList_'+selectBoxId+' > li').each(function() {
-            var text = $(this).text();
-            (text.toLowerCase().indexOf(valThis.toLowerCase()) > -1) ? $(this).show(): $(this).hide();
-        });
-    };
-
-   function _clickOption(selectedOption, id, value) {
-        selectBoxId = selectedOption.replace("searchList_", "");
-        // Clear previous options and set the selected one
-        $('#'+selectBoxId).html(`<option selected="selected" value="${id}">${value}</option>`);
-        _selectOption(selectBoxId);
-    };
-    
+function _nextContactPage(nextId, text) {
+	_getActiveCcontactLink(text);
+	$("#nigeriaHideDiv, #usaHideDiv").hide();
+	$("#" + nextId).fadeIn(1000);
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-function _get_parent_type(select_id,parent_type_id){
-	var dataString = "parent_type_id=" + parent_type_id;
-	$.ajax({
-		type: "POST",
-		url: endPoint + '/setups/parent-type',
-		data: dataString,
-		dataType: 'json',
-		cache: false,
-		headers: {
-			'apiKey': apiKey,
-		},
-		success: function(info){
-			var success = info.success;
-			var message = info.message;
-			var fetch = info.data;
-  
-			if (success == true) {
-				for (var i = 0; i < fetch.length; i++) {
-				  var id = fetch[i].parent_type_id;
-				  var value = fetch[i].parent_type_name;
-				  $('#'+ select_id).append('<li onclick="_clickOption(\'' + select_id + '\', \'' + id + '\', \'' + value + '\')">'+ value +'</li>');
-				}
-			}else{
-				_actionAlert(message,false);
-		  	}
-		}, 
-	});
-  }
