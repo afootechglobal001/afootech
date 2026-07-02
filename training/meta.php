@@ -29,6 +29,7 @@
 <script src="<?php echo $websiteUrl?>/training/js/script.js?v=<?php echo $codeVersion?>"></script>
 <script src="<?php echo $websiteUrl?>/training/js/useAuth.js?v=<?php echo $codeVersion?>"></script>
 <script src="<?php echo $websiteUrl?>/training/js/usePrintAcceptanceLetter.js?v=<?php echo $codeVersion?>"></script>
+<script src="<?php echo $websiteUrl?>/training/js/useTuitionFee.js?v=<?php echo $codeVersion?>"></script>
 
 
 <link href="<?php echo $websiteUrl ?>/slide-property/engine/style.css" rel="stylesheet" type="text/css" />

@@ -420,3 +420,43 @@
         </div>
     </div>
 <?php } ?>
+
+<?php if ($page == 'proceedPayTutionFee') { ?>
+    <div class="caption-div animated fadeIn">
+        <div class="caption-title-div">
+            <div class="title-div">
+                <div class="icon-div"><i class="bi bi-credit-card"></i></div>
+                <h3>PAY TUITION FEE</h3>
+            </div>
+
+            <div class="btn-div">
+                <button class="btn" title="Close" onclick="_alertClose(<?php echo $modalLayer ?>);">
+                    <i class="bi bi-x-lg"></i> Close
+                </button>
+            </div>
+        </div>
+        <!-- /////////// Title ////////////////////////////// -->
+        <div class="caption-notification">
+            <p>
+                Kindly provide your registered <strong>Email Address</strong> to continue with your tuition fee payment. Your details will be verified before you can proceed.
+            </p>
+        </div>
+
+        <div class="caption-body">
+            <div class="text_field_container" id="verifyEmailAddress_container">
+                <script>
+                    textField({
+                        id: 'verifyEmailAddress',
+                        title: 'Email Address',
+                        type: 'email',
+                    });
+                </script>
+            </div>
+
+            <div class="btn-div">
+                <button class="btn" id="proceedBtn" title="Proceed" onclick="_proceedVerifyStudentAccount();">Proceed <i
+                        class="bi bi-arrow-right-circle"></i></button>
+            </div>
+        </div>
+    </div>
+<?php } ?>
