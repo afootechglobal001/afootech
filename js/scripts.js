@@ -18,8 +18,10 @@ function _call_carousel(cnt) {
 
 
 $(window).scroll(function () {
-    var scrollheight = $(window).scrollTop();
-    if (scrollheight >= 100) {
+	const scrollHeight = $(window).scrollTop();
+	const windowWidth = $(window).width();
+
+    if (scrollHeight >= 100) {
         $("header").addClass("fixed").removeClass("absolute");
         $(".header-div-in").addClass("border");
         $("#back2Top").fadeIn(1000);
@@ -28,6 +30,31 @@ $(window).scroll(function () {
         $(".header-div-in").removeClass("border");
         $("#back2Top").fadeOut(1000);
     }
+
+	if (windowWidth <= 870) {
+		$(".sticky-div").css({
+		position: "relative",
+		top: "0",
+		height: "auto",
+		overflow: "visible",
+		});
+	} else {
+		if (scrollHeight >= 700) {
+		$(".sticky-div").css({
+			position: "sticky",
+			top: "140px",
+			"min-height": "280px",
+			overflow: "auto",
+		});
+		} else {
+		$(".sticky-div").css({
+			position: "relative",
+			top: "0",
+			height: "auto",
+			overflow: "auto",
+		});
+		}
+	}
 });
   
 
@@ -38,30 +65,27 @@ function _back_to_top(){
 }
 
 
+///// for FAQs
 function _collapse(div_id) {
-    // Get the currently clicked FAQ element
-    const currentFaq = document.getElementById(div_id);
-    const currentIcon = document.getElementById(div_id + "num");
-    const currentAnswer = document.getElementById(div_id + "answer");
+  const $currentFaq = $("#" + div_id);
+  const $currentIcon = $("#" + div_id + "num");
+  const $currentAnswer = $("#" + div_id + "answer");
 
-    // Get all FAQ elements
-    const allFaqs = document.querySelectorAll('.faq-toggle');
+  $(".faq-toggle.active-faq").each(function () {
+    if (this.id !== div_id) {
+      $(this).removeClass("active-faq");
+      $(this).find(".expand-div").html('&nbsp;<i class="bi-plus"></i>&nbsp;');
+      $(this).find(".answer-div").slideUp("slow");
+    }
+  });
 
-    allFaqs.forEach(faq => {
-        // Close all other FAQs
-        if (faq.id !== div_id) {
-            const icon = document.getElementById(faq.id + "num");
-            const answer = document.getElementById(faq.id + "answer");
-            faq.classList.remove('active-faq');
-            icon.innerHTML = '&nbsp;<i class="bi-plus"></i>&nbsp;';
-            $(answer).slideUp('slow');
-        }
-    });
-
-    // Toggle the current FAQ
-    const isActive = currentFaq.classList.toggle('active-faq');
-    currentIcon.innerHTML = isActive ? '&nbsp;<i class="bi-dash"></i>&nbsp;' : '&nbsp;<i class="bi-plus"></i>&nbsp;';
-    $(currentAnswer).slideToggle('slow');
+  const isActive = $currentFaq.toggleClass("active-faq").hasClass("active-faq");
+  $currentIcon.html(
+    isActive
+      ? '&nbsp;<i class="bi-dash"></i>&nbsp;'
+      : '&nbsp;<i class="bi-plus"></i>&nbsp;',
+  );
+  $currentAnswer.slideToggle("slow");
 }
 
 

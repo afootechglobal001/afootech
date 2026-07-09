@@ -326,6 +326,294 @@
                 </div>
             </div>
         </div>
+ 
+        <div class="main-content-div dash-main-content-div">
+            <div class="tables-content-div">
+                <div class="content-title">
+                    <div class="title">
+                        <i class="bi bi-people"></i>
+                        <p>Recent Pending Student Registrations</p>
+                    </div>
+                </div>
+
+                <div class="inner-table-content">
+                    <div class="table-div animated fadeIn">
+                        <table class="table" cellspacing="0" style="width:100%">
+                            <thead>
+                                <tr class="tb-col">
+                                    <th>SN</th>
+                                    <th>Student Info</th>
+                                    <th>Contact</th>
+                                    <th>Institution</th>
+                                    <th>Program</th>
+                                    <th>Level</th>
+                                    <th>Duration</th>
+                                    <th>Training Status</th>
+                                    <th>Training Start Date</th>
+                                    <th>Training End Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr class="tb-row">
+                                    <td>1</td>
+                                    <td class="clickable-td" onclick="_getForm({page:'studentProfile',url:trainingAdminPortalMiddlewareUrl});">
+                                        <div class="text-back-div">
+                                            <div class="image-div">
+                                                <img src="<?php echo $websiteUrl?>/all-images/images/avatar.jpg">
+                                            </div>
+
+                                            <div class="text-div">
+                                                <div class="first-class">
+                                                    John Emmanuel
+                                                </div>
+
+                                                <div class="second-class">
+                                                    SID00320260624110353
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-div">
+                                            <div>
+                                                EMMANUEL PAUL
+                                            </div>
+                                            <div>
+                                                seunemmanuel107@gmail.com
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-div">
+                                            <div>
+                                                Gateway ICT Polytechnic
+                                            </div>
+                                            <div>
+                                                Computer Science
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-div">
+                                            <div>SIWES</div>
+                                            <div>Backend Web Development</div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-div">
+                                            <div>
+                                                18012211071
+                                            </div>
+                                            <div>
+                                                ND 1
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        1 - 3 MONTHS
+                                    </td>
+
+                                    <td>
+                                        <div class="status-div PENDING">
+                                            PENDING
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        Not Started
+                                    </td>
+
+                                    <td>
+                                        Not Started
+                                    </td>
+
+                                    <td>
+                                        <button class="btn view-btn"
+                                            onclick="_getForm({page:'studentProfile',url:trainingAdminPortalMiddlewareUrl});">
+                                            REVIEW
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr class="tb-row">
+                                    <td>2</td>
+                                    <td class="clickable-td">
+                                        <div class="text-back-div">
+                                            <div class="image-div">
+                                                <img src="<?php echo $websiteUrl?>/all-images/images/avatar.jpg">
+                                            </div>
+
+                                            <div class="text-div">
+                                                <div class="first-class">
+                                                    Mary Johnson
+                                                </div>
+
+                                                <div class="second-class">
+                                                    SID00320260624110353
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-div">
+                                            <div>
+                                                EMMANUEL PAUL
+                                            </div>
+                                            <div>
+                                                seunemmanuel107@gmail.com
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-div">
+                                            <div>Gateway ICT Polytechnic</div>
+                                            <div>Software Engineering</div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-div">
+                                            <div>SIWES</div>
+                                            <div>Frontend Web Development</div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-div">
+                                            <div>
+                                                18012211071
+                                            </div>
+                                            <div>
+                                                ND 1
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        1 - 3 MONTHS
+                                    </td>
+
+                                    <td>
+                                        <div class="status-div PENDING">
+                                            PENDING
+                                        </div>
+                                    </td>
+                                    <td>
+                                        Not Started
+                                    </td>
+
+                                    <td>
+                                        Not Started
+                                    </td>
+                                    <td>
+                                        <button class="btn view-btn">
+                                            REVIEW
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr class="tb-row">
+                                    <td>1</td>
+                                    <td class="clickable-td" onclick="_getForm({page:'studentProfile',url:trainingAdminPortalMiddlewareUrl});">
+                                        <div class="text-back-div">
+                                            <div class="image-div">
+                                                <img src="<?php echo $websiteUrl?>/all-images/images/avatar.jpg">
+                                            </div>
+
+                                            <div class="text-div">
+                                                <div class="first-class">
+                                                    John Emmanuel
+                                                </div>
+
+                                                <div class="second-class">
+                                                    SID00320260624110353
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-div">
+                                            <div>
+                                                EMMANUEL PAUL
+                                            </div>
+                                            <div>
+                                                seunemmanuel107@gmail.com
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-div">
+                                            <div>
+                                                Gateway ICT Polytechnic
+                                            </div>
+                                            <div>
+                                                Computer Science
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-div">
+                                            <div>SIWES</div>
+                                            <div>Backend Web Development</div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="text-div">
+                                            <div>
+                                                18012211071
+                                            </div>
+                                            <div>
+                                                ND 1
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        1 - 3 MONTHS
+                                    </td>
+
+                                    <td>
+                                        <div class="status-div PENDING">
+                                            PENDING
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        Not Started
+                                    </td>
+
+                                    <td>
+                                        Not Started
+                                    </td>
+
+                                    <td>
+                                        <button class="btn view-btn"
+                                            onclick="_getForm({page:'studentProfile',url:trainingAdminPortalMiddlewareUrl});">
+                                            REVIEW
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div id="studentPaginationControls" class="pagination-div"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 <?php } ?>
 

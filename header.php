@@ -13,7 +13,7 @@
                 <ul>
                     <a href="<?php echo $websiteUrl ?>/training" title="SIWES/IT">
                     <li class="li">SIWES/IT</li></a>
-                    <a href="<?php echo $websiteUrl ?>" title="Frequently Asked Questions">
+                    <a href="<?php echo $websiteUrl ?>/faq" title="Frequently Asked Questions">
                     <li>FAQ</li></a>
                     <a href="<?php echo $websiteUrl ?>/contact-us" title="Contact Us">
                     <li>Contact Us</li></a>  
@@ -39,11 +39,11 @@
                 </a>
 
                 <li id="expand-li" class="<?php if (strstr($websiteAutoUrl, "$websiteUrl/services/")) {?> active <?php }?>">
-                    <a href="<?php echo $websiteUrl?>" title="Our Services">
+                    <a href="<?php echo $websiteUrl?>/services" title="Our Services">
                     <i class="bi-plus"></i> Our Services </a>
                     <ul class="animated fadeIn">
                         <div class="sub-nav-div">
-                            <a class="service-div" href="<?php echo $websiteUrl?>" title="Software Development And Training">                             
+                            <a class="service-div" href="<?php echo $websiteUrl?>/services/software-project-development" title="Software Development And Training">                             
                                 <div class="pix-div"><img src="<?php echo $websiteUrl?>/uploaded_files/services/software-development-project-ideas.webp" alt="Software Project Development"/></div>
                                 <li>Software Project Development</li> 
                             </a>                          
@@ -76,14 +76,14 @@
                     </ul> 
                 </li>
 
-                <li id="expand-li" class="training <?php if (strstr($websiteAutoUrl, "$websiteUrl/training")) {?> active <?php }?>">
-                    <a href="<?php echo $websiteUrl?>" title="Training">
-                    <i class="bi-plus"></i> Training </a>
+                <li id="expand-li" class="training <?php if (strstr($websiteAutoUrl, "$websiteUrl/courses")) {?> active <?php }?>">
+                    <a href="<?php echo $websiteUrl?>/courses" title="Courses">
+                    <i class="bi-plus"></i> Courses </a>
                     <ul class="animated fadeIn">
                         <div class="sub-nav-div training-sub-nav">
                             <div class="each-container">
-                                <a href="<?php echo $websiteUrl?>" title="Frontend Engineer">                             
-                                    <li>Frontend Engineer</li> 
+                                <a href="<?php echo $websiteUrl?>/courses/frontend-web-development" title="Frontend Web Development">                             
+                                    <li>Frontend Web Development</li> 
                                 </a>                          
                                 
                                 <a href="<?php echo $websiteUrl?>" title="Backend Engineer">   
@@ -121,13 +121,13 @@
                     </ul> 
                 </li>
 
-                <a href="<?php echo $websiteUrl?>" title="Portfolio">
+                <a href="<?php echo $websiteUrl?>/portfolio" title="Portfolio">
                     <li class="portfolio <?php if (strstr($websiteAutoUrl, "$websiteUrl/portfolio")) {?> active <?php }?>">
                         Portfolio
                     </li>
                 </a>
                 
-                <a href="<?php echo $websiteUrl?>" title="Blog">
+                <a href="<?php echo $websiteUrl?>/blog" title="Blog">
                     <li class="blog <?php if (strstr($websiteAutoUrl, "$websiteUrl/blog/")) {?> active <?php }?>">
                         Blog
                     </li>
