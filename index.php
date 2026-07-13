@@ -230,7 +230,7 @@
                             <span class="top-title">WHAT WE DO</span>
                             <h2>Boost Your Business With Our Diverse <span>#Services</span></h2>
                         </div>
-                        <a href="#">
+                        <a href="<?php echo $websiteUrl?>/services">
                             <button class="btn" title="Explore All Services">Explore All Services <i
                                     class="bi-arrow-right"></i></button></a>
                     </div>
@@ -340,7 +340,7 @@
                             <span class="top-title">OUR PORTFOLIOS</span>
                             <h2>Explore Our Creative And Innovative <span>#Portfolios</span></h2>
                         </div>
-                        <a href="#" title="Explore All Portfolios">
+                        <a href="<?php echo $websiteUrl?>/portfolio" title="Explore All Portfolios">
                             <button class="btn" title="Explore All Portfolios">Explore All Portfolios <i
                                     class="bi-arrow-right"></i></button></a>
                     </div>
@@ -572,12 +572,15 @@
                 <div class="main-pages-back-div">
                     <div class="title-div service-title-div" data-aos="fade-in" data-aos-duration="1200">
                         <div class="title-column">
-                            <span class="top-title">WHAT WE OFFER</span>
-                            <h2>Dive into Our Transformative and Pioneering <span>#Training</span></h2>
+                            <span class="top-title">FEATURED COURSES</span>
+                            <h2>Gain Practical Experience with Our <span>#IndustryFocusedCourses</span></h2>
                         </div>
-                        <a href="#">
-                            <button class="btn" title="Explore All Training">Explore All Training <i
-                                    class="bi-arrow-right"></i></button></a>
+
+                        <a href="<?php echo $websiteUrl?>/courses">
+                            <button class="btn" title="Explore All Courses">
+                                Explore All Courses <i class="bi-arrow-right"></i>
+                            </button>
+                        </a>
                     </div>
 
                     <div class="main-service-back-div">
@@ -590,16 +593,17 @@
                                         <div class="main-service-div">
                                             <div class="image-div">
                                                 <img src="<?php echo $websiteUrl?>/uploaded_files/training/frontend-engineer-training.jpg"
-                                                    alt="Frontend Engineer" />
+                                                    alt="Frontend Web Development" />
                                             </div>
                                             <div class="title">Training</div>
+                                            <a href="<?php echo $websiteUrl?>/courses/frontend-web-development">
                                             <div class="content-div">
-                                                <h3>Frontend Engineer</h3>
+                                                <h3>Frontend Web Development</h3>
                                                 <a href="<?php echo $websiteUrl?>" title="Apply Now">
                                                     <button class="btn">Apply Now <i
                                                             class="bi-arrow-right"></i></button>
                                                 </a>
-                                            </div>
+                                            </div></a>
                                         </div>
                                     </div>
 
@@ -818,6 +822,80 @@
             <script>
             _progressBar();
             </script>
+        </section>
+
+        <section class="body-div net-bg-br">
+            <div class="body-div-in">
+                <div class="faq-wrapper" data-aos="fade-in" data-aos-duration="1200">
+                    <div class="faq-content-div" data-aos="fade-up" data-aos-duration="1200">
+                        <div class="title-div">
+                            <div class="title-column">
+                                <span class="top-title">FAQ</span>
+                                <h2>Frequently Asked <span>Questions</span></h2>
+                            </div>
+                        </div>
+
+                        <div class="faq-toggle-back" id="indexFaqPageContent">
+                            <div class="faq-toggle" id="faq1">
+                                <div class="title-text" onclick="_collapse('faq1')">
+                                    <div class="quest-text-div">
+                                        <div class="icon-div"><i class="bi-question"></i></div>
+                                        <h3>What is AfooTECH Global?</h3>
+                                    </div>
+                                    <div class="expand-div" id="faq1num">
+                                        <i class="bi bi-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="answer-div" id="faq1answer" style="display: none;">
+                                    <p>AfooTECH Global is a software development company that provides training services, web development, mobile app development, AI, cybersecurity, networking, UI/UX design, graphics design, admissions, and technology solutions.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-toggle" id="faq2">
+                                <div class="title-text" onclick="_collapse('faq2')">
+                                    <div class="quest-text-div">
+                                        <div class="icon-div"><i class="bi-question"></i></div>
+                                        <h3>What services does AfooTECH Global offer?</h3>
+                                    </div>
+                                    <div class="expand-div" id="faq2num">
+                                        <i class="bi bi-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="answer-div" id="faq2answer" style="display: none;">
+                                    <p>AfooTECH Global offers a wide range of services, including training services, web development, mobile app development, AI, cybersecurity, networking, UI/UX design, graphics design, admissions, and technology solutions.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-toggle" id="faq3">
+                                <div class="title-text" onclick="_collapse('faq3')">
+                                    <div class="quest-text-div">
+                                        <div class="icon-div"><i class="bi-question"></i></div>
+                                        <h3>What is AfooTECH Global's mission?</h3>
+                                    </div>
+                                    <div class="expand-div" id="faq1num">
+                                        <i class="bi bi-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="answer-div" id="faq3answer" style="display: none;">
+                                    <p>AfooTECH Global's mission is to provide high-quality software development services to clients, helping them build and maintain successful software products.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="<?php echo $websiteUrl ?>/faq" title="Read More FAQ">
+                            <button class="btn" title="Read More FAQ">Read More <i
+                                    class="bi-arrow-right"></i></button></a>
+                    </div>
+
+                    <div class="image-div">
+                        <img src="<?php echo $websiteUrl ?>/all-images/body-pix/auth-slide-1.jpeg"
+                            alt="Frequently Asked Questions" />
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="body-div testimonial-body-div">
@@ -1162,7 +1240,7 @@
 
                             </div>
                             <div>
-                                <a href="<?php echo $websiteUrl?>" title="Learn More">
+                                <a href="<?php echo $websiteUrl?>/about" title="Learn More">
                                     <button class="btn" title="Learn More">Learn More <i
                                             class="bi-arrow-right"></i></button></a>
                             </div>
@@ -1327,7 +1405,7 @@
                             <span class="top-title">LATEST INSIGHTS</span>
                             <h2>Our Latest News And <span>#Articles</span></h2>
                         </div>
-                        <a href="" title="Explore All Blogs">
+                        <a href="<?php echo $websiteUrl?>/blog" title="Explore All Blogs">
                             <button class="btn" title="Explore All Blogs">Explore All Blogs <i
                                     class="bi-arrow-right"></i></button></a>
                     </div>

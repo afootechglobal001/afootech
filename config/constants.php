@@ -44,12 +44,27 @@ var userOsBrowser = "<?php echo $userOsBrowser;?>"; /// For User OS Browser //
 var userIpAddress = "<?php echo $userIpAddress;?>"; /// For User IP Address //
 var userDeviceId = "<?php echo $userDeviceId;?>"; /// For User Device Id //
 
-/// All Middlewares
+/// Site Middlewares
 var siteMiddlewareUrl = websiteUrl + '/config/code'; //// For Site Middleware url
+
+/// Training Middlewares
 var trainingMiddlewareUrl = websiteUrl + '/training/config/code'; //// For Training Middleware url
 var registerUrl = websiteUrl + '/training/register'; //// For Register Url
 var trainingUrl = websiteUrl + '/training'; //// For Training Url
+var trainingAdminMiddlewareUrl = websiteUrl + '/training/admin/config/code'; //// For Training Admin Middleware url
+var trainingAdminPortalUrl = websiteUrl + '/training/admin/portal'; //// For Training Admin Portal url
+var trainingAdminUrl = websiteUrl + '/training/admin'; //// For Training Admin Portal url
+var trainingAdminPortalMiddlewareUrl = websiteUrl + '/training/admin/portal/config/code'; //// For Training Admin Portal Middleware url
+
+/// Pssport Paths
 var passportPath=websiteUrl+'/uploaded_files/studentPassport'; /// For Passport Path ///
 var studentOtpVerificationUrl=websiteUrl+'/training/verify'; /// For OTP Verification Url ///
 var studentAcceptanceLetterUrl=websiteUrl+'/training/print-acceptance-letter'; /// For OTP Verification Url ///
+var tuitionFeePaymentVerificationUrl = websiteUrl + '/training/verify-payment'; //// For Tuition Fee Payment Verification Url
+var tutionFeePaymentPageUrl = websiteUrl + '/training/payment'; //// For Payment Page Url
+
+/// Site Admin Middlewares
+var adminPortalUrl = websiteUrl + '/admin/portal'; //// For Site Admin Portal url
+var adminMiddlewareUrl = websiteUrl + '/admin/config/code'; //// For Site Admin Middleware url
+var adminPortalMiddlewareUrl = websiteUrl + '/admin/portal/config/code'; //// For Site Admin Portal Middleware url
 </script>

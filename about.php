@@ -32,33 +32,36 @@
     <?php include 'header.php' ?>
 
     <section class="other-pages" data-aos="fade-in" data-aos-duration="900">
-        <video class="other-pages-video" autoplay muted loop playsinline>
-            <source src="<?php echo $websiteUrl ?>/all-images/body-pix/video.mp4" type="video/mp4">
-        </video>
-
         <div class="other-pages-back-div">
             <div class="nav-title">
                 <ul>
                     <a href="<?php echo $websiteUrl ?>">
-                        <li title="Home">Home <i class="bi-caret-right-fill"></i></li>
+                       <li title="Home">Home <span><i class="bi-caret-right-fill"></i></span></li>
                     </a>
                     <a href="<?php echo $websiteUrl ?>/about">
                         <li title="About Us">About Us</li>
                     </a>
                 </ul>
             </div>
-            <div class="text-content-div" data-aos="fade-in" data-aos-duration="900">
-                <h1 data-aos="fade-in" data-aos-duration="800">
-                    <span>About AfooTECH</span>
-                </h1>
+            
+            <div class="main-content-back-div">
+                <div class="text-content-div" data-aos="fade-in" data-aos-duration="900">
+                    <h1 data-aos="fade-in" data-aos-duration="800">
+                        About <span>AfooTECH</span></span>
+                    </h1>
 
-                <p>
-                    At AfooTECH Global, we build modern software solutions and provide quality ICT training designed
-                    to solve real-world challenges. From web and mobile applications to professional tech education,
-                    we are committed to driving innovation and digital growth.
-                </p>
+                    <p>
+                        At AfooTECH Global, we build modern software solutions and provide quality ICT training designed
+                        to solve real-world challenges. From web and mobile applications to professional tech education,
+                        we are committed to driving innovation and digital growth.
+                    </p>
 
-                <?php _otherPagesBtn($websiteUrl); ?>
+                    <?php _otherPagesBtn($websiteUrl); ?>
+                </div>
+
+                <div class="image-div">
+                    <img src="<?php echo $websiteUrl ?>/all-images/images/about.png" alt="<?php echo $appName ?> About Us">
+                </div>
             </div>
         </div>
     </section>
@@ -114,7 +117,7 @@
             <div class="body-div-in">
                 <div class="about-back-div">
                     <div class="about-div">
-                        <div class="about-content-div" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="about-content-div">
                             <div><span class="top-title">WHO WE ARE</span></div>
                             <h2>
                                 Empowering Digital Transformation Through <span>#Technology</span>

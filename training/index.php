@@ -101,10 +101,11 @@
 
                     <div class="btn-div">
                         <a href="<?php echo $websiteUrl ?>/training/register">
-                            <button class="btn" id="submitBtn" title="Proceed To Registration" onclick="">Proceed To
+                            <button class="btn reg-btn" id="submitBtn" title="Proceed To Registration" onclick="">Proceed To
                                 Registration<i class="bi-arrow-right"></i></button></a>
-                            <button class="btn right-btn" title="Print Acceptance Letter" onclick="_getForm({page: 'proceedAcceptanceLetterForm', url: trainingMiddlewareUrl})"><strong>Print Acceptance
+                            <button class="btn right-btn" title="Print Acceptance Letter" onclick="_getForm({page: 'proceedAcceptanceLetterForm', url: trainingMiddlewareUrl});"><strong>Print Acceptance
                                     Letter</strong> <i class="bi-arrow-right"></i></button>
+                            <button class="btn pay-btn" id="submitBtn" title="Pay Tuition Fee" onclick="_getForm({page: 'proceedPayTutionFee', url: trainingMiddlewareUrl});"><i class="bi bi-credit-card no-style"></i> Pay Tuition Fee <i class="bi-arrow-right"></i></button>
                     </div>
                 </div>
             </div>

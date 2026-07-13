@@ -31,9 +31,10 @@ function _getForm(options) {
 		url=''
     } = options;
 
-    // Allow overlay click only for cartForm
-    if (page === "cartForm") {
+    // Allow overlay click only for Gallery Form
+    if (page === "galleryDetails") {
       allowOverlayClose = true;
+      $('body').addClass('no-scroll');
     } else {
       allowOverlayClose = false;
     }
@@ -48,6 +49,10 @@ function _getForm(options) {
         cache: false,
         success: function (html) {
           $(target).html(html);
+
+          if (page === "galleryDetails") {
+            _initializeGallery();
+          }
         },
   });
 }
@@ -59,7 +64,8 @@ function _alertClose(layer=1){
 		'<div class="icon"><img src="'+ websiteUrl +'/all-images/images/loading.gif" width="20px" alt="Loading"/></div>' +
 		'<div class="text"><p>LOADING...</p></div>'+
 		'</div>';
-			$(layer === 1 ? '#get-form-more-div' : layer === 2  ? '#get-more-div-secondary' : '#get-more-third-layer').html(text).fadeOut(200);
+  $(layer === 1 ? '#get-form-more-div' : layer === 2 ? '#get-more-div-secondary' : '#get-more-third-layer').html(text).fadeOut(200);
+  $('body').removeClass('no-scroll');
 }
 
 $(document).on('click', '#get-form-more-div', function () {
@@ -442,4 +448,42 @@ function capitalizeFirstLetterOfEachWord(inputText) {
   }
   const result = words.join(" ");
   return result;
+}
+
+/// countdown function ///
+function _counDownOtp(timer) {
+    $("#resendOtpBtn").hide();
+    $("#resendCountdown").fadeIn(500);
+
+    const countdown = setInterval(() => {
+        if (timer > 0) {
+        timer--;
+
+        let minutes = Math.floor(timer / 60);
+        let seconds = timer % 60;
+
+        if (timer >= 60) {
+            // Show MM:SS when 1 min or more
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            $("#resendCountdown").html(
+            'Resend in <strong id="timer">' +
+                minutes +
+                ":" +
+                seconds +
+                "</strong> min",
+            );
+        } else {
+            // Show seconds only when below 1 minute
+            $("#resendCountdown").html(
+            'Resend in <strong id="timer">' + seconds + "</strong> sec",
+            );
+        }
+        } else {
+        clearInterval(countdown);
+        $("#resendCountdown").hide();
+        $("#resendOtpBtn").fadeIn(500);
+        }
+    }, 1000);
+
+    return () => clearInterval(countdown);
 }

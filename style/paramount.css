@@ -66,6 +66,7 @@ h6 {
 }
 
 p {
+  font-family: body-font;
   padding: 0px;
   margin: 0px;
 }
@@ -80,6 +81,10 @@ body {
   padding: 0px;
   font-family: body-font;
   font-size: 15px;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 a {
