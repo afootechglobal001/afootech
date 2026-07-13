@@ -14,16 +14,14 @@
     <!-- Open Graph -->
     <meta property="og:title"
         content="<?php echo $appName ?> | About Us - Leading Software Development & ICT Training Company in Nigeria" />
-    <meta property="og:image"
-        content="<?php echo $websiteUrl ?>/all-images/plugin-pix/afootech-banner.jpg" />
+    <meta property="og:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/afootech-banner.jpg" />
     <meta property="og:description"
         content="Discover AfooTECH Global, delivering innovative software solutions and industry-focused ICT training programs designed to empower individuals and businesses with modern technology skills." />
     <!-- Twitter -->
     <meta name="twitter:title"
         content="<?php echo $appName ?> | About Us - Leading Software Development & ICT Training Company in Nigeria" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image"
-        content="<?php echo $websiteUrl ?>/all-images/plugin-pix/afootech-banner.jpg" />
+    <meta name="twitter:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/afootech-banner.jpg" />
     <meta name="twitter:description"
         content="Meet AfooTECH Global — a software development and ICT training company helping businesses and students grow through technology, innovation, and practical skills." />
 </head>
@@ -32,67 +30,58 @@
     <?php include 'header.php' ?>
 
     <section class="other-pages" data-aos="fade-in" data-aos-duration="900">
-        <div class="other-pages-back-div">
-            <div class="nav-title">
-                <ul>
-                    <a href="<?php echo $websiteUrl ?>">
-                       <li title="Home">Home <span><i class="bi-caret-right-fill"></i></span></li>
-                    </a>
-                    <a href="<?php echo $websiteUrl ?>/about">
-                        <li title="About Us">About Us</li>
-                    </a>
-                </ul>
-            </div>
-            
-            <div class="main-content-back-div">
-                <div class="text-content-div" data-aos="fade-in" data-aos-duration="900">
-                    <h1 data-aos="fade-in" data-aos-duration="800">
-                        About <span>AfooTECH</span></span>
-                    </h1>
+        <?php
+        _otherPagesTitleContent([
+            'title' => 'About',
+            'highlight' => 'AfooTECH',
+            'description' => 'At AfooTECH Global, we build modern software solutions and provide quality ICT training designed to solve real-world challenges. From web and mobile applications to professional tech education, we are committed to driving innovation and digital growth.',
+            'image' => '/all-images/images/about.png',
+            'breadcrumbs' => [
+                [
+                    'title' => 'Home',
+                    'url' => $websiteUrl,
+                    'last' => false
+                ],
+                [
+                    'title' => 'About Us',
+                    'url' => $websiteUrl . '/about',
+                    'last' => true
+                ]
+            ]
+        ]);
 
-                    <p>
-                        At AfooTECH Global, we build modern software solutions and provide quality ICT training designed
-                        to solve real-world challenges. From web and mobile applications to professional tech education,
-                        we are committed to driving innovation and digital growth.
-                    </p>
-
-                    <?php _otherPagesBtn($websiteUrl); ?>
-                </div>
-
-                <div class="image-div">
-                    <img src="<?php echo $websiteUrl ?>/all-images/images/about.png" alt="<?php echo $appName ?> About Us">
-                </div>
-            </div>
-        </div>
+        ?>
     </section>
 
     <section class="others-pg-content-div">
         <section class="client-body-div">
             <div class="client-body-div-in">
                 <div class="logo-slider">
-                    <div class="box"><img src="<?php echo $websiteUrl?>/uploaded_files/clients/leaderstutors.png"
+                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/leaderstutors.png"
                             alt="Leaders Tutors Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl?>/uploaded_files/clients/1stclassic.png"
+                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/1stclassic.png"
                             alt="1Stclassic Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl?>/uploaded_files/clients/4-seasons.png"
+                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/4-seasons.png"
                             alt="4-seasons Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl?>/uploaded_files/clients/cityOne.png"
+                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/cityOne.png"
                             alt="cityOne Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl?>/uploaded_files/clients/valuehandlers.png"
+                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/valuehandlers.png"
                             alt="Valuehandlers Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl?>/uploaded_files/clients/agrohandlers.jpeg"
+                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/agrohandlers.jpeg"
                             alt="Agrohandlers Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl?>/uploaded_files/clients/myexamconnect.png"
+                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/myexamconnect.png"
                             alt="MyExamconnect Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl?>/uploaded_files/clients/cglconnectlogistscis.png"
+                    <div class="box"><img
+                            src="<?php echo $websiteUrl ?>/uploaded_files/clients/cglconnectlogistscis.png"
                             alt="Connect Global LogisticsLogo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl?>/uploaded_files/clients/advancedbreed.png"
+                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/advancedbreed.png"
                             alt="Advancedbreed Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl?>/uploaded_files/clients/compeer.png"
+                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/compeer.png"
                             alt="Compeer Medical College Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl?>/uploaded_files/clients/firstheritageculture.png"
+                    <div class="box"><img
+                            src="<?php echo $websiteUrl ?>/uploaded_files/clients/firstheritageculture.png"
                             alt="First Culture Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl?>/uploaded_files/clients/cyrus.png"
+                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/cyrus.png"
                             alt="Cyrus Johnson Logo"></div>
                 </div>
             </div>
@@ -127,21 +116,26 @@
                                 individuals with essential tech skills.
                             </p>
                             <p>
-                                We specialize in developing modern web applications, mobile solutions, and customized software
+                                We specialize in developing modern web applications, mobile solutions, and customized
+                                software
                                 systems that help organizations improve efficiency, productivity, and digital presence.
                             </p>
                             <p>
-                                Beyond software development, we provide hands-on ICT training programs designed to equip students
-                                and professionals with practical skills in programming, networking, UI/UX design, and other areas
+                                Beyond software development, we provide hands-on ICT training programs designed to equip
+                                students
+                                and professionals with practical skills in programming, networking, UI/UX design, and
+                                other areas
                                 of technology.
                             </p>
                             <p>
-                                At AfooTECH Global, we believe technology should be simple, accessible, and impactful. Our mission
-                                is to create innovative solutions and nurture the next generation of technology professionals.
+                                At AfooTECH Global, we believe technology should be simple, accessible, and impactful.
+                                Our mission
+                                is to create innovative solutions and nurture the next generation of technology
+                                professionals.
                             </p>
                         </div>
                         <div class="image-div" data-aos="fade-in" data-aos-duration="1200">
-                            <img src="<?php echo $websiteUrl?>/all-images/body-pix/about.png" alt="About Us" />
+                            <img src="<?php echo $websiteUrl ?>/all-images/body-pix/about.png" alt="About Us" />
                         </div>
                     </div>
                 </div>
@@ -210,7 +204,8 @@
                                     <div class="content">
                                         <h3>Expert Solutions</h3>
                                         <div class="divider"></div>
-                                        <p>We deliver high-quality software, web and mobile applications tailored to solve real business problems.</p>
+                                        <p>We deliver high-quality software, web and mobile applications tailored to
+                                            solve real business problems.</p>
                                     </div>
                                     <div class="number-badge">01</div>
                                 </div>
@@ -224,7 +219,8 @@
                                     <div class="content">
                                         <h3>Innovation Driven</h3>
                                         <div class="divider emerald"></div>
-                                        <p>We leverage modern technologies and creative thinking to build smart, scalable solutions.</p>
+                                        <p>We leverage modern technologies and creative thinking to build smart,
+                                            scalable solutions.</p>
                                     </div>
                                     <div class="number-badge emerald">02</div>
                                 </div>
@@ -238,7 +234,8 @@
                                     <div class="content">
                                         <h3>Practical Training</h3>
                                         <div class="divider purple"></div>
-                                        <p>Our ICT training programs are hands-on, industry-focused and designed to equip with job-ready skills.</p>
+                                        <p>Our ICT training programs are hands-on, industry-focused and designed to
+                                            equip with job-ready skills.</p>
                                     </div>
                                     <div class="number-badge purple">03</div>
                                 </div>
@@ -252,7 +249,8 @@
                                     <div class="content">
                                         <h3>Trusted Support</h3>
                                         <div class="divider orange"></div>
-                                        <p>We are committed to your success with reliable support, maintenance, and long-term partnership.</p>
+                                        <p>We are committed to your success with reliable support, maintenance, and
+                                            long-term partnership.</p>
                                     </div>
                                     <div class="number-badge orange">04</div>
                                 </div>
@@ -321,10 +319,10 @@
                     <div class="program-back-div" data-aos="fade-up" data-aos-duration="1000">
 
                         <div class="program-div">
-                            <a href="<?php echo $websiteUrl?>" title="Software Development And Training">
+                            <a href="<?php echo $websiteUrl ?>" title="Software Development And Training">
                                 <div class="inner-div">
                                     <div class="icon-div">
-                                        <img src="<?php echo $websiteUrl?>/all-images/images/project-development.png"
+                                        <img src="<?php echo $websiteUrl ?>/all-images/images/project-development.png"
                                             alt="Software project development" />
                                     </div>
 
@@ -336,10 +334,10 @@
                         </div>
 
                         <div class="program-div program-div-1">
-                            <a href="<?php echo $websiteUrl?>" title="Web Application Development">
+                            <a href="<?php echo $websiteUrl ?>" title="Web Application Development">
                                 <div class="inner-div">
                                     <div class="icon-div">
-                                        <img src="<?php echo $websiteUrl?>/all-images/images/application-development.png"
+                                        <img src="<?php echo $websiteUrl ?>/all-images/images/application-development.png"
                                             alt="Web application development" />
                                     </div>
 
@@ -351,10 +349,10 @@
                         </div>
 
                         <div class="program-div program-div-2">
-                            <a href="<?php echo $websiteUrl?>" title="Mobile Application Development">
+                            <a href="<?php echo $websiteUrl ?>" title="Mobile Application Development">
                                 <div class="inner-div">
                                     <div class="icon-div">
-                                        <img src="<?php echo $websiteUrl?>/all-images/images/app-development.png"
+                                        <img src="<?php echo $websiteUrl ?>/all-images/images/app-development.png"
                                             alt="Mobile application development" />
                                     </div>
 
@@ -366,10 +364,10 @@
                         </div>
 
                         <div class="program-div program-div-3">
-                            <a href="<?php echo $websiteUrl?>" title="Networking And Cyber Security">
+                            <a href="<?php echo $websiteUrl ?>" title="Networking And Cyber Security">
                                 <div class="inner-div">
                                     <div class="icon-div">
-                                        <img src="<?php echo $websiteUrl?>/all-images/images/security-system.png"
+                                        <img src="<?php echo $websiteUrl ?>/all-images/images/security-system.png"
                                             alt="Networking and security" />
                                     </div>
 
@@ -381,10 +379,10 @@
                         </div>
 
                         <div class="program-div program-div-4">
-                            <a href="<?php echo $websiteUrl?>" title="Website Search Engine Optimization (SEO)">
+                            <a href="<?php echo $websiteUrl ?>" title="Website Search Engine Optimization (SEO)">
                                 <div class="inner-div">
                                     <div class="icon-div">
-                                        <img src="<?php echo $websiteUrl?>/all-images/images/seo.png"
+                                        <img src="<?php echo $websiteUrl ?>/all-images/images/seo.png"
                                             alt="Website Search Engine Optimization (SEO)" />
                                     </div>
 
@@ -396,10 +394,10 @@
                         </div>
 
                         <div class="program-div program-div-5">
-                            <a href="<?php echo $websiteUrl?>" title="UIUX And Graphics Design">
+                            <a href="<?php echo $websiteUrl ?>" title="UIUX And Graphics Design">
                                 <div class="inner-div">
                                     <div class="icon-div">
-                                        <img src="<?php echo $websiteUrl?>/all-images/images/uiu-design.png"
+                                        <img src="<?php echo $websiteUrl ?>/all-images/images/uiu-design.png"
                                             alt="UIUX/graphics design training" />
                                     </div>
 
@@ -470,7 +468,7 @@
                                     </div>
                                     <div class="img-back-div">
                                         <div class="img-div">
-                                            <img src="<?php echo $websiteUrl?>/all-images/body-pix/multiple_img.png"
+                                            <img src="<?php echo $websiteUrl ?>/all-images/body-pix/multiple_img.png"
                                                 alt="Slide Image" />
                                         </div>
                                     </div>
@@ -484,7 +482,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <img src="<?php echo $websiteUrl?>/all-images/body-pix/status_image.png" alt="About Us" />
+                            <img src="<?php echo $websiteUrl ?>/all-images/body-pix/status_image.png" alt="About Us" />
                         </div>
                     </div>
                 </div>
@@ -505,7 +503,7 @@
                     <div class="team-back-div">
                         <div class="team-div" data-aos="fade-in" data-aos-duration="1000">
                             <div class="image-div">
-                                <img src="<?php echo $websiteUrl?>/uploaded_files/team/mike-afolabi.jpg"
+                                <img src="<?php echo $websiteUrl ?>/uploaded_files/team/mike-afolabi.jpg"
                                     alt="Mike Afolabi" />
                             </div>
                             <div class="icon-div">
@@ -539,7 +537,7 @@
 
                         <div class="team-div" data-aos="fade-in" data-aos-duration="1000">
                             <div class="image-div">
-                                <img src="<?php echo $websiteUrl?>/uploaded_files/team/victoria-afolabi.jpg"
+                                <img src="<?php echo $websiteUrl ?>/uploaded_files/team/victoria-afolabi.jpg"
                                     alt="victoria afolabi" />
                             </div>
                             <div class="icon-div">
@@ -572,7 +570,7 @@
 
                         <div class="team-div" data-aos="fade-in" data-aos-duration="1000">
                             <div class="image-div">
-                                <img src="<?php echo $websiteUrl?>/uploaded_files/team/emmanuel-paul.jpg"
+                                <img src="<?php echo $websiteUrl ?>/uploaded_files/team/emmanuel-paul.jpg"
                                     alt="Paul Emmanuel" />
                             </div>
                             <div class="icon-div">
@@ -605,7 +603,7 @@
 
                         <div class="team-div" data-aos="fade-in" data-aos-duration="1000">
                             <div class="image-div">
-                                <img src="<?php echo $websiteUrl?>/uploaded_files/team/abayomi-taiwo.jpg"
+                                <img src="<?php echo $websiteUrl ?>/uploaded_files/team/abayomi-taiwo.jpg"
                                     alt="Afolabi Abayomi Taiwo" />
                             </div>
                             <div class="icon-div">
@@ -647,7 +645,7 @@
                 <div class="main-pages-back-div">
                     <div class="testimonial-back-div">
                         <div class="image-left-div">
-                            <img src="<?php echo $websiteUrl?>/all-images/body-pix/testimonial-body.png"
+                            <img src="<?php echo $websiteUrl ?>/all-images/body-pix/testimonial-body.png"
                                 alt="Afootech Testimonial" />
                         </div>
 
@@ -671,7 +669,7 @@
                                                             possible."</p>
                                                         <div class="profile-div">
                                                             <div class="img-div">
-                                                                <img src="<?php echo $websiteUrl?>/uploaded_files/testimonies/semako.jpg"
+                                                                <img src="<?php echo $websiteUrl ?>/uploaded_files/testimonies/semako.jpg"
                                                                     alt="Semako Emmanuel" />
                                                             </div>
                                                             <div class="right-text">
@@ -697,7 +695,7 @@
                                                             program after my IT."</p>
                                                         <div class="profile-div">
                                                             <div class="img-div">
-                                                                <img src="<?php echo $websiteUrl?>/uploaded_files/testimonies/barry.jpg"
+                                                                <img src="<?php echo $websiteUrl ?>/uploaded_files/testimonies/barry.jpg"
                                                                     alt="Barry Job" />
                                                             </div>
                                                             <div class="right-text">
@@ -721,7 +719,7 @@
                                                             my work is greater"</p>
                                                         <div class="profile-div">
                                                             <div class="img-div">
-                                                                <img src="<?php echo $websiteUrl?>/uploaded_files/testimonies/oluwaseun.jpg"
+                                                                <img src="<?php echo $websiteUrl ?>/uploaded_files/testimonies/oluwaseun.jpg"
                                                                     alt="Oluwaseun Michael" />
                                                             </div>
                                                             <div class="right-text">
@@ -745,7 +743,7 @@
                                                             turning my passion into a successful career."</p>
                                                         <div class="profile-div">
                                                             <div class="img-div">
-                                                                <img src="<?php echo $websiteUrl?>/uploaded_files/testimonies/ayobami.jpg"
+                                                                <img src="<?php echo $websiteUrl ?>/uploaded_files/testimonies/ayobami.jpg"
                                                                     alt="Ayobami Samson" />
                                                             </div>
                                                             <div class="right-text">
@@ -768,7 +766,7 @@
                                                             you, Afootech Global!"</p>
                                                         <div class="profile-div">
                                                             <div class="img-div">
-                                                                <img src="<?php echo $websiteUrl?>/uploaded_files/testimonies/opeyemi.jpg"
+                                                                <img src="<?php echo $websiteUrl ?>/uploaded_files/testimonies/opeyemi.jpg"
                                                                     alt="Ogunleye Opeyemi" />
                                                             </div>
                                                             <div class="right-text">
@@ -794,7 +792,7 @@
                                                         </p>
                                                         <div class="profile-div">
                                                             <div class="img-div">
-                                                                <img src="<?php echo $websiteUrl?>/uploaded_files/testimonies/mike.jpg"
+                                                                <img src="<?php echo $websiteUrl ?>/uploaded_files/testimonies/mike.jpg"
                                                                     alt="Michael Candy" />
                                                             </div>
                                                             <div class="right-text">
@@ -819,7 +817,7 @@
                                                             am now living those dreams"</p>
                                                         <div class="profile-div">
                                                             <div class="img-div">
-                                                                <img src="<?php echo $websiteUrl?>/uploaded_files/testimonies/francis.jpg"
+                                                                <img src="<?php echo $websiteUrl ?>/uploaded_files/testimonies/francis.jpg"
                                                                     alt="Bamirin Francis" />
                                                             </div>
                                                             <div class="right-text">
@@ -844,7 +842,7 @@
                                                             goals in the near future."</p>
                                                         <div class="profile-div">
                                                             <div class="img-div">
-                                                                <img src="<?php echo $websiteUrl?>/uploaded_files/testimonies/orchid.jpg"
+                                                                <img src="<?php echo $websiteUrl ?>/uploaded_files/testimonies/orchid.jpg"
                                                                     alt="Awokoya Nurudeen Oluwatobiloba" />
                                                             </div>
                                                             <div class="right-text">
@@ -868,7 +866,7 @@
                                                             once again THANK YOU"</p>
                                                         <div class="profile-div">
                                                             <div class="img-div">
-                                                                <img src="<?php echo $websiteUrl?>/uploaded_files/testimonies/iyanu.jpg"
+                                                                <img src="<?php echo $websiteUrl ?>/uploaded_files/testimonies/iyanu.jpg"
                                                                     alt="Osindero Iyanu" />
                                                             </div>
                                                             <div class="right-text">
@@ -894,7 +892,7 @@
                                                             career."</p>
                                                         <div class="profile-div">
                                                             <div class="img-div">
-                                                                <img src="<?php echo $websiteUrl?>/uploaded_files/testimonies/blessing.jpg"
+                                                                <img src="<?php echo $websiteUrl ?>/uploaded_files/testimonies/blessing.jpg"
                                                                     alt="Paul Blessing" />
                                                             </div>
                                                             <div class="right-text">
