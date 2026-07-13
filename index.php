@@ -340,7 +340,7 @@
                             <span class="top-title">OUR PORTFOLIOS</span>
                             <h2>Explore Our Creative And Innovative <span>#Portfolios</span></h2>
                         </div>
-                        <a href="<?php echo $websiteUrl?>" title="Explore All Portfolios">
+                        <a href="<?php echo $websiteUrl?>/portfolio" title="Explore All Portfolios">
                             <button class="btn" title="Explore All Portfolios">Explore All Portfolios <i
                                     class="bi-arrow-right"></i></button></a>
                     </div>

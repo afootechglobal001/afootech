@@ -22,15 +22,11 @@
 <body>
     <?php include '../../header.php' ?>
     <section class="other-pages" data-aos="fade-in" data-aos-duration="900">
-        <video class="other-pages-video" autoplay muted loop playsinline>
-            <source src="<?php echo $websiteUrl ?>/all-images/body-pix/video.mp4" type="video/mp4">
-        </video>
-
         <div class="other-pages-back-div">
             <div class="nav-title">
                 <ul>
                     <a href="<?php echo $websiteUrl ?>">
-                        <li title="Home">Home <i class="bi-caret-right-fill"></i></li>
+                        <li title="Home">Home <span><i class="bi-caret-right-fill"></i></span></li>
                     </a>
                     <a href="<?php echo $websiteUrl ?>/services">
                         <li title="Services">Services <i class="bi-caret-right-fill"></i></li>
@@ -39,10 +35,12 @@
                 </ul>
             </div>
 
-            <div class="text-content-div">
-                <h1 id="pageTitle"><?php echo $pageTitle?></h1>
-                <p class="intro" id="seoDescription"><?php echo $seoDescription?></p>
-            </div>
+            <div class="main-content-back-div">
+                <div class="text-content-div">
+                    <h1 id="pageTitle"><?php echo $pageTitle?></h1>
+                    <p class="intro" id="seoDescription"><?php echo $seoDescription?></p>
+                </div>
+            </div> 
         </div>
     </section>
 

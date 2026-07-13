@@ -1,8 +1,8 @@
 <?php include '../config/constants.php'; ?>
-<?php include 'config/functions.php'; ?>
+<?php include '../config/functions.php'; ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http: //www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html id="other-page-header" lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <?php include '../meta.php' ?>
@@ -32,27 +32,33 @@
     <?php include '../header.php' ?>
     <section class="other-pages" data-aos="fade-in" data-aos-duration="900">
         <div class="other-pages-back-div">
-            <div class="top-title">
+            <div class="nav-title">
                 <ul>
                     <a href="<?php echo $websiteUrl ?>">
-                        <li title="Home">Home <i class="bi-caret-right-fill"></i></li>
+                        <li title="Home">Home <span><i class="bi-caret-right-fill"></i></span></li>
                     </a>
-                    <a href="<?php echo $websiteUrl ?>/gallery">
-                        <li title="Gallery">Gallery <i class="bi-caret-right-fill"></i></li>
+                    <a href="<?php echo $websiteUrl ?>/blog">
+                        <li title="Our Gallery">Our Gallery</li>
                     </a>
                 </ul>
             </div>
 
-            <div class="text-content-div" data-aos="fade-in" data-aos-duration="900">
-                <h1 data-aos="fade-in" data-aos-duration="800">
-                    <span>Our Gallery</span>
-                </h1>
+            <div class="main-content-back-div">
+                <div class="text-content-div" data-aos="fade-in" data-aos-duration="900">
+                    <h1 data-aos="fade-in" data-aos-duration="800">
+                        Our <span>Gallery</span>
+                    </h1>
 
-                <p>
-                    Explore moments from AfooTECH Global's software development projects, ICT training programs, coding bootcamps, AI and cybersecurity workshops, networking practicals, UI/UX design sessions, student achievements, technology events, and digital innovations.
-                </p>
+                    <p>
+                        Explore moments from AfooTECH Global's software development projects, ICT training programs, coding bootcamps, AI and cybersecurity workshops, networking practicals, UI/UX design sessions, student achievements, technology events, and digital innovations.
+                    </p>
 
-                <?php $callclass->_otherPagesBtn($websiteUrl); ?>
+                    <?php _otherPagesBtn($websiteUrl); ?>
+                </div>
+
+                <div class="image-div">
+                    <img src="<?php echo $websiteUrl ?>/all-images/images/about-right-image.png" alt="International Exam">
+                </div>
             </div>
         </div>
     </section>
@@ -73,50 +79,81 @@
                         <div class="div-in">
                             <h3>CATEGORY LIST</h3>
 
-                            <ul id="projectCategoryId">
-                                <script>
-                                    _fetchProjectCategoryList('PORTFOLIO', 'allProjectContainer', '');
-                                </script>
-
-                                <div class="content-loading-div">
-                                    <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
-                                </div>
-                            </ul>
-                        </div>
-
-                        <div class="div-in">
-                            <h3>PROJECT STAGES</h3>
-
-                            <ul id="projectStageId">
-                                <script>
-                                    _fetchProjectStageList('PORTFOLIO', 'allProjectContainer');
-                                </script>
-
-                                <div class="content-loading-div">
-                                    <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
-                                </div>
+                            <ul id="catId">
+                                <li>ICT Training</li>
+                                <li>AI & Automation</li>
+                                <li>Cybersecurity</li>
+                                <li>UI/UX Design</li>
+                                <li>Networking</li>
+                                <li>Web Development</li>
+                                <li>Software Development</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="left-div">
                         <div class="portfolio-back-div" id="allProjectContainer" data-aos="fade-up" data-aos-duration="900">
-                            <script>
-                                _getPageList({
-                                    pageCategory: "PORTFOLIO",
-                                    pageContainer: "allProjectContainer",
-                                })
-                            </script>
+                            <div class="portfolio-card" onclick="_getForm({page:'galleryDetails', url:siteMiddlewareUrl});">
+                                <div class="title ">Training</div>
+                                <div class="image-div">
+                                    <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/gallery_2.jpg" alt="Blog" />
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title" title="Frontend Development Class">Frontend Development Class</h3>
+                                    <div class="portfolio-meta">
+                                        <div class="location"><i class="bi bi-calendar3"></i> <span>May 15, 2026</span></div>
+                                        <div class="location"><i class="bi bi-images"></i> <span>10</span></div>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <div class="content-loading-div">
-                                <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
+                            <div class="portfolio-card">
+                                <div class="title ">Training</div>
+                                <div class="image-div">
+                                    <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/gallery_3.jpg" alt="Blog" />
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title" title="Frontend Development Class">Student Project Presentation</h3>
+                                    <div class="portfolio-meta">
+                                        <div class="location"><i class="bi bi-calendar3"></i> <span>May 25, 2026</span></div>
+                                        <div class="location"><i class="bi bi-images"></i> <span>15</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="portfolio-card">
+                                <div class="title ">Training</div>
+                                <div class="image-div">
+                                    <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/gallery_4.jpg" alt="Blog" />
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title" title="Frontend Development Class">UI/UX Design Session</h3>
+                                    <div class="portfolio-meta">
+                                        <div class="location"><i class="bi bi-calendar3"></i> <span>June 2, 2026</span></div>
+                                        <div class="location"><i class="bi bi-images"></i> <span>25</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="portfolio-card">
+                                <div class="title ">Training</div>
+                                <div class="image-div">
+                                    <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/gallery_2.jpg" alt="Blog" />
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title" title="Frontend Development Class">Frontend Development Class</h3>
+                                    <div class="portfolio-meta">
+                                        <div class="location"><i class="bi bi-calendar3"></i> <span>May 15, 2026</span></div>
+                                        <div class="location"><i class="bi bi-images"></i> <span>10</span></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <?php $callclass->_constructionProcessSection($websiteUrl, 'net-bg-tr'); ?>
+        
         <?php include '../footer.php' ?>
     </section>
 </body>

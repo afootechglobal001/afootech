@@ -31,9 +31,10 @@ function _getForm(options) {
 		url=''
     } = options;
 
-    // Allow overlay click only for cartForm
-    if (page === "cartForm") {
+    // Allow overlay click only for Gallery Form
+    if (page === "galleryDetails") {
       allowOverlayClose = true;
+      $('body').addClass('no-scroll');
     } else {
       allowOverlayClose = false;
     }
@@ -59,7 +60,8 @@ function _alertClose(layer=1){
 		'<div class="icon"><img src="'+ websiteUrl +'/all-images/images/loading.gif" width="20px" alt="Loading"/></div>' +
 		'<div class="text"><p>LOADING...</p></div>'+
 		'</div>';
-			$(layer === 1 ? '#get-form-more-div' : layer === 2  ? '#get-more-div-secondary' : '#get-more-third-layer').html(text).fadeOut(200);
+  $(layer === 1 ? '#get-form-more-div' : layer === 2 ? '#get-more-div-secondary' : '#get-more-third-layer').html(text).fadeOut(200);
+  $('body').removeClass('no-scroll');
 }
 
 $(document).on('click', '#get-form-more-div', function () {

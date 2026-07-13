@@ -17,7 +17,7 @@
                     <li>FAQ</li></a>
                     <a href="<?php echo $websiteUrl ?>/contact-us" title="Contact Us">
                     <li>Contact Us</li></a>  
-                    <a href="<?php echo $websiteUrl ?>" title="Gallery">
+                    <a href="<?php echo $websiteUrl ?>/gallery" title="Gallery">
                     <li>Gallery</li></a>                                
                 </ul>
             </div>

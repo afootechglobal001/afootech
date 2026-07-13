@@ -22,15 +22,11 @@
 <body>
     <?php include '../../header.php' ?>
     <section class="other-pages" data-aos="fade-in" data-aos-duration="900">
-        <video class="other-pages-video" autoplay muted loop playsinline>
-            <source src="<?php echo $websiteUrl ?>/all-images/body-pix/video.mp4" type="video/mp4">
-        </video>
-
         <div class="other-pages-back-div">
             <div class="nav-title">
                 <ul>
                     <a href="<?php echo $websiteUrl ?>">
-                        <li title="Home">Home <i class="bi-caret-right-fill"></i></li>
+                        <li title="Home"><i class="bi bi-house-check"></i> <span><i class="bi-caret-right-fill"></i></span></li>
                     </a>
                     <a href="<?php echo $websiteUrl ?>/blog">
                         <li title="Latest Insight & Article">Latest Insight & Article <i class="bi-caret-right-fill"></i></li>
@@ -39,22 +35,24 @@
                 </ul>
             </div>
 
-            <div class="text-content-div">
-                <h1 id="pageTitle"><?php echo $pageTitle?></h1>
-                <div class="count">
-                    <i class="bi-person"></i> By: 
-                    <span><strong id="createdByName">Hon. Emmanuel Paul</strong></span>
-                    &nbsp;|&nbsp;
-                    <i class="bi-calendar3"></i> Date: 
-                    <span><strong id="updatedTime">05 Jul 2026</strong></span>
-                    &nbsp;|&nbsp;
-                    <i class="bi-eye"></i> Views: 
-                    <span><strong id="viewCount">2,210</strong></span>
-                    &nbsp;|&nbsp;
-                    <i class="bi-clock"></i> Reading Time: 
-                    <span><strong id="pageContentRead">10 min</strong></span>
+            <div class="main-content-back-div">
+                <div class="text-content-div">
+                    <h1 id="pageTitle"><?php echo $pageTitle?></h1>
+                    <div class="count">
+                        <i class="bi-person"></i> By: 
+                        <span><strong id="createdByName">Hon. Emmanuel Paul</strong></span>
+                        &nbsp;|&nbsp;
+                        <i class="bi-calendar3"></i> Date: 
+                        <span><strong id="updatedTime">05 Jul 2026</strong></span>
+                        &nbsp;|&nbsp;
+                        <i class="bi-eye"></i> Views: 
+                        <span><strong id="viewCount">2,210</strong></span>
+                        &nbsp;|&nbsp;
+                        <i class="bi-clock"></i> Reading Time: 
+                        <span><strong id="pageContentRead">10 min</strong></span>
+                    </div>
+                    <p class="intro" id="seoDescription"><?php echo $seoDescription?></p>
                 </div>
-                <p class="intro" id="seoDescription"><?php echo $seoDescription?></p>
             </div>
         </div>
     </section>

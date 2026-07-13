@@ -119,7 +119,7 @@
                 <li onclick="_open_li('services')"><i class="bi-graph-up-arrow"></i> Our Services <i class="bi-plus"
                         id="side-expand"></i></li>
                 <div class="sub-li" id="services-sub-li">
-                    <a href="<?php echo $websiteUrl?>" title="Software Project Development">
+                    <a href="<?php echo $websiteUrl ?>/services/software-project-development">
                         <li>Software Project Development</li>
                     </a>
                     <a href="<?php echo $websiteUrl?>" title="Web Application Development">
@@ -141,11 +141,11 @@
             </div>
 
             <div class="div">
-                <li onclick="_open_li('training')"><i class="bi-graph-up-arrow"></i> Training <i class="bi-plus"
+                <li onclick="_open_li('courses')"><i class="bi bi-journal-code"></i> Courses <i class="bi-plus"
                         id="side-expand"></i></li>
-                <div class="sub-li" id="training-sub-li">
-                    <a href="<?php echo $websiteUrl?>" title="Frontend Engineer">
-                        <li>Frontend Engineer</li>
+                <div class="sub-li" id="courses-sub-li">
+                    <a href="<?php echo $websiteUrl?>/courses/frontend-web-development" title="Frontend Web Development">  
+                        <li>Frontend Web Development</li>
                     </a>
                     <a href="<?php echo $websiteUrl?>" title="Backend Engineer">
                         <li>Backend Engineer</li>
@@ -169,28 +169,35 @@
             </div>
 
             <div class="div">
-                <a href="<?php echo $websiteUrl;?>" title="Portfolio">
+                <a href="<?php echo $websiteUrl;?>/portfolio" title="Portfolio">
                     <li <?php if ($page=='blog') {?> id="active-li" <?php }?>><i class="bi-chat-dots-fill"></i>
                         Portfolio</li>
                 </a>
             </div>
 
             <div class="div">
-                <a href="<?php echo $websiteUrl;?>" title="Frequently Asked Questions">
+                <a href="<?php echo $websiteUrl;?>/blog" title="Blog">
+                    <li <?php if ($page=='blog') {?> id="active-li" <?php }?>><i class="bi bi-journals"></i>
+                        Blog</li>
+                </a>
+            </div>
+
+            <div class="div">
+                <a href="<?php echo $websiteUrl;?>/faq" title="Frequently Asked Questions">
                     <li <?php if ($page=='faq') {?> id="active-li" <?php }?>><i class="bi-patch-question"></i>
                         Frequently Asked Question</li>
                 </a>
             </div>
 
             <div class="div">
-                <a href="<?php echo $websiteUrl;?>" title="Contact Us">
+                <a href="<?php echo $websiteUrl;?>/contact-us" title="Contact Us">
                     <li <?php if ($page=='contact') {?> id="active-li" <?php }?>><i class="bi-telephone-inbound"></i>
                         Contact Us</li>
                 </a>
             </div>
 
             <div class="div">
-                <a href="<?php echo $websiteUrl;?>" title="Gallery">
+                <a href="<?php echo $websiteUrl;?>/gallery" title="Gallery">
                     <li <?php if ($page=='gallery') {?> id="active-li" <?php }?>><i class="bi-images"></i> Gallery</li>
                 </a>
             </div>

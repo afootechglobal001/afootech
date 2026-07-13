@@ -64,6 +64,45 @@ function _back_to_top(){
 	return false;
 }
 
+$(document).ready(function () {
+    $("#img1").addClass("active");
+});
+
+let currentIndex = 0;
+function _viewPreviewImage(divid) {
+    const images = $("#fetchPagePictures .each-img-div");
+    currentIndex = images.index($("#" + divid));
+    images.removeClass("active");
+    const current = $("#" + divid);
+    current.addClass("active");
+    const src = current.find("img").attr("src");
+
+    $("#galleryMainImage")
+        .stop(true, true)
+        .fadeOut(150, function () {
+            $(this).attr("src", src).fadeIn(150);
+        });
+
+    // Automatically scroll thumbnail into view
+    current[0].scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest"
+    });
+}
+
+function _navigateGallery(direction) {
+    const images = $("#fetchPagePictures .each-img-div");
+    currentIndex += direction;
+
+    if (currentIndex < 0) {
+        currentIndex = images.length - 1;
+    }
+    if (currentIndex >= images.length) {
+        currentIndex = 0;
+    }
+  	_viewPreviewImage(images.eq(currentIndex).attr("id"));
+}
 
 ///// for FAQs
 function _collapse(div_id) {
@@ -89,8 +128,6 @@ function _collapse(div_id) {
 }
 
 
-
-
 function _open_menu(){
 	$('.sidenavdiv, .sidenavdiv-in').animate({'margin-left':'0'},200);
 	$('.live-chat-back-div').animate({'margin-left':'-100%'},400);
@@ -109,47 +146,6 @@ function _close_side_nav(){
 function _open_li(ids){
 	$('#'+ids+'-sub-li').toggle('slow');
 }
-
-function alert_close(){
-	$('#get-more-div').html('').fadeOut(200);
-}
-
-function _actionAlert(message,status){
-	let text = '';
-	$('.all-alert-back-div').html(text).css('display', 'flex');
-	if(status==true){
-		text +=
-		'<div class="success-alert-div animated fadeInDown">' +
-			'<div class="icon"><i class="bi-check-all"></i></div>'+
-			'<div class="text"><p>'+message+'</p></div>'+
-		'</div>';
-	}else{
-		text +=
-		'<div class="failed-alert-div animated fadeInDown">' +
-			'<div class="icon"><i class="bi-exclamation-octagon-fill"></i></div>'+
-			'<div class="text"><p>'+message+'</p></div>'+
-		'</div>';
-	}
-	$('.all-alert-back-div').html(text).fadeIn(500).delay(3000).fadeOut(100);
-}
-
-
-function isNumber_Check(textID) {
-	var e = window.event;
-	var key = e.keyCode && e.which;
-  
-	if (!((key >= 48 && key <= 57) || key == 43 || key == 45)) {
-	  if (e.preventDefault) {
-		e.preventDefault();
-		$('#'+textID).val('');
-	  } else {
-		e.returnValue = false;
-	  }
-	} else {
-		$('#'+textID).val('');
-	}
-  }
-
 
 function _progressBar(){
 	document.addEventListener('DOMContentLoaded', () => {
@@ -188,4 +184,7 @@ function _nextContactPage(nextId, text) {
 	$("#nigeriaHideDiv, #usaHideDiv").hide();
 	$("#" + nextId).fadeIn(1000);
 }
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
