@@ -283,7 +283,7 @@
                     <ul>
                         <li class="active" title="My Profile" id="studentProfileDetails"
                             onclick="_getActiveStudentPage({divid:'studentProfileDetails', page: 'studentProfileDetails', url: trainingAdminPortalMiddlewareUrl});">
-                            <i class="bi-person-bounding-box"></i> Staff Profile</li>
+                            <i class="bi-person-bounding-box"></i> Student Profile</li>
                     </ul>
                 </div>
             </div>
@@ -304,103 +304,287 @@
 <?php } ?>
 
 <?php if ($page == 'studentProfileDetails') { ?>
-    <div class="user-in">
-        <div class="title">STAFF BASIC INFORMATION</div>
-
-        <div class="profile-segment-div">
-            <div class="text_field_container col-3" id="updateFullName_container">
-                <script>
-                textField({
-                    id: 'updateFullName',
-                    title: 'First Name',
-                });
-                </script>
+    <div class="main-content-div dash-main-content-div">
+        <div class="tables-content-div">
+            <div class="content-title">
+                <div class="title">
+                    <i class="bi bi-people"></i>
+                    <p>Bio Data Details</p>
+                </div>
             </div>
 
-            <div class="text_field_container col-3" id="updateMobileNumber_container">
-                <script>
-                textField({
-                    id: 'updateMobileNumber',
-                    title: 'Phone Number',
-                    type: 'tel',
-                });
-                </script>
-            </div>
+            <div class="inner-table-content colum-table-content">
+                <div class="text_field_container col-3" id="firstName_container">
+                    <script>
+                    textField({
+                        id: 'firstName',
+                        title: 'First Name',
+                    });
+                    </script>
+                </div>
 
-            <div class="text_field_container col-3" id="updateEmailAddress_container">
-                <script>
-                textField({
-                    id: 'updateEmailAddress',
-                    title: 'Email Address',
-                    type: 'email',
-                });
-                </script>
+                <div class="text_field_container col-3" id="lastName_container">
+                    <script>
+                    textField({
+                        id: 'lastName',
+                        title: 'Last Name',
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="emailAddress_container">
+                    <script>
+                    textField({
+                        id: 'emailAddress',
+                        title: 'Email Address',
+                        type: 'email',
+                    });
+                    </script>
+                </div> 
+
+                <div class="text_field_container col-3" id="phoneNumber_container">
+                    <script>
+                    textField({
+                        id: 'phoneNumber',
+                        title: 'Phone Number',
+                        type: 'tel',
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="registrationStatus_container">
+                    <script>
+                    textField({
+                        id: 'registrationStatus',
+                        title: 'Registration Status',
+                        readonly: true,
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="registrationDate_container">
+                    <script>
+                    textField({
+                        id: 'registrationDate',
+                        title: 'Registration Date',
+                        readonly: true,
+                    });
+                    </script>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="user-in">
-        <div class="title">STAFF ACCOUNT INFORMATION</div>
-        <div class="profile-segment-div">
-            <div class="text_field_container col-3" id="staffId_container">
-                <script>
-                textField({
-                    id: 'staffId',
-                    title: 'Staff ID',
-                    readonly: true
-                });
-                </script>
+    <div class="main-content-div dash-main-content-div">
+        <div class="tables-content-div">
+            <div class="content-title">
+                <div class="title">
+                    <i class="bi bi-people"></i>
+                    <p>Student Institution Details</p>
+                </div>
             </div>
 
-            <div class="text_field_container col-3" id="createdTime_container">
-                <script>
-                textField({
-                    id: 'createdTime',
-                    title: 'Date Of Registration',
-                    readonly: true
-                });
-                </script>
-            </div>
+            <div class="inner-table-content colum-table-content">
+                <div class="text_field_container col-3" id="studentId_container">
+                    <script>
+                    textField({
+                        id: 'studentId',
+                        title: 'Student ID',
+                        readonly: true,
+                    });
+                    </script>
+                </div>
 
-            <div class="text_field_container col-3" id="lastLogin_container">
-                <script>
-                textField({
-                    id: 'lastLogin',
-                    title: 'Last Login Date',
-                    readonly: true
-                });
-                </script>
+                <div class="text_field_container col-3" id="institutionClass_container">
+                    <script>
+                    selectField({
+                        id: 'institutionClass',
+                        title: 'Institution Class',
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="institutionName_container">
+                    <script>
+                    textField({
+                        id: 'institutionName',
+                        title: 'Institution Name',
+                    });
+                    </script>
+                </div> 
+
+                <div class="text_field_container col-3" id="departmentName_container">
+                    <script>
+                    textField({
+                        id: 'departmentName',
+                        title: 'Department',
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="levelId_container">
+                    <script>
+                    selectField({
+                        id: 'levelId',
+                        title: 'Student Level',
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="matricNumber_container">
+                    <script>
+                    textField({
+                        id: 'matricNumber',
+                        title: 'Matric Number',
+                        readonly: true,
+                    });
+                    </script>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="user-in">
-        <div class="title">ADMINISTRATIVE INFORMATION</div>
-
-        <div class="profile-segment-div">
-            <div class="text_field_container col-1" id="updateRoleId_container">
-                <script>
-                selectField({
-                    id: 'updateRoleId',
-                    title: 'Select Role',
-                });
-                //_getSelectRole('updateRoleId');
-                </script>
+    <div class="main-content-div dash-main-content-div">
+        <div class="tables-content-div">
+            <div class="content-title">
+                <div class="title">
+                    <i class="bi bi-people"></i>
+                    <p>Training Details</p>
+                </div>
             </div>
 
-            <div class="text_field_container col-1" id="updateStatusId_container">
-                <script>
-                selectField({
-                    id: 'updateStatusId',
-                    title: 'Select Status',
-                });
-                //_getSelectStatusId('updateStatusId', '1,2');
-                </script>
+            <div class="inner-table-content colum-table-content">
+                <div class="text_field_container col-3" id="program_container">
+                    <script>
+                    textField({
+                        id: 'program',
+                        title: 'Program',
+                        readonly: true,
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="courseId_container">
+                    <script>
+                    selectField({
+                        id: 'courseId',
+                        title: 'Course',
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="duration_container">
+                    <script>
+                    textField({
+                        id: 'duration',
+                        title: 'Training Duration',
+                    });
+                    </script>
+                </div> 
+
+                <div class="text_field_container col-3" id="trainingStatus_container">
+                    <script>
+                    selectField({
+                        id: 'trainingStatus',
+                        title: 'Training Status',
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="trainingStartDate_container">
+                    <script>
+                    textField({
+                        id: 'trainingStartDate',
+                        title: 'Training Start Date',
+                        type: 'date',
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="trainingEndDate_container">
+                    <script>
+                    textField({
+                        id: 'trainingEndDate',
+                        title: 'Training End Date',
+                        type: 'date',
+                    });
+                    </script>
+                </div>
             </div>
         </div>
-        <div class="btn-div">
-            <button class="btn" title="UPDATE PROFILE" id="updateBtn" onclick=""> UPDATE PROFILE <i
-                    class="bi-check"></i></button>
-        </div>
+    </div>
+
+    <div class="main-content-div dash-main-content-div">
+        <div class="tables-content-div">
+            <div class="content-title">
+                <div class="title">
+                    <i class="bi bi-credit-card"></i>
+                    <p>Payment Details</p>
+                </div>
+            </div>
+
+            <div class="inner-table-content colum-table-content">
+                <div class="text_field_container col-3" id="transactionId_container">
+                    <script>
+                    textField({
+                        id: 'transactionId',
+                        title: 'Transaction ID',
+                        readonly: true,
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="amount_container">
+                    <script>
+                    textField({
+                        id: 'amount',
+                        title: 'Amount',
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="paymentPurpose_container">
+                    <script>
+                    textField({
+                        id: 'paymentPurpose',
+                        title: 'Payment Purpose',
+                    });
+                    </script>
+                </div> 
+
+                <div class="text_field_container col-3" id="paymentMethod_container">
+                    <script>
+                    textField({
+                        id: 'paymentMethod',
+                        title: 'Payment Method',
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="paymentStatus_container">
+                    <script>
+                    textField({
+                        id: 'paymentStatus',
+                        title: 'Payment Status',
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="paymentDate_container">
+                    <script>
+                    textField({
+                        id: 'paymentDate',
+                        title: 'Payment Date',
+                        readonly: true,
+                    });
+                    </script>
+                </div>
+            </div>
+        </div>   
+    </div>
+
+    <div class="form-bottom-btn-div">
+        <button class="btn" title="ACTIVATE STUDENT" id="activateBtn" onclick=""> ACTIVATE STUDENT <i
+                class="bi-check"></i></button>
     </div>
 <?php } ?>

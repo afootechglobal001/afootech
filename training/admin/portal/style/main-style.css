@@ -2507,9 +2507,9 @@ main {
 /*-----------table component---------------------------------------------------------------------------------------*/
 .tables-content-div {
 	background-color: var(--bg-white);
-	border-radius: 7px;
+	border-radius: 10px;
 	width: 100%;
-	min-height: 200px;
+	min-height: 100px;
 	border: 1px solid rgba(215, 215, 215, .6);
 }
 
@@ -4035,7 +4035,7 @@ main {
     width: 100%;
     min-height: 50px;
 	padding: 20px 0px;
-	background: url(../../../all-images/images/title.png) center no-repeat;
+	background: url(../../../../all-images/images/title.png) center no-repeat;
 	background-size: cover;
 	display: flex;
 	align-items: center;
@@ -4347,27 +4347,35 @@ main {
 	gap: 20px;
 }
 
-.user-profile-div .profile-content-div .field-back-div .user-in .col-1{  
-	width: 49%;
-}
-
-.user-profile-div .profile-content-div .field-back-div .user-in .col-2{  
-	width: 99.5%;
-}
-
-.user-profile-div .profile-content-div .field-back-div .user-in .col-3{  
-	width: 32.00%;
-}
-
-.user-profile-div .profile-content-div .field-back-div .user-in .btn-div{
+.colum-table-content{
+	width: calc(100% - 20px) !important;
+	padding: 12px 10px !important;
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
-	margin-top: 30px;
-	background: none;
+	flex-wrap: wrap;
+	gap: 12px;
 }
 
-.user-profile-div .profile-content-div .field-back-div .user-in .btn-div .btn {
+.colum-table-content .col-1{  
+	width: 50%;
+}
+
+.colum-table-content .col-2{  
+	width: 100%;
+}
+
+.colum-table-content .col-3{  
+	width: calc(33.4% - 10px) !important;
+}
+
+.form-bottom-btn-div{
+	display: flex;
+	align-self: flex-end;
+	justify-self: flex-end;
+	margin-top: 10px;
+}
+
+.form-bottom-btn-div .btn {
 	border: none;
 	height: 50px;
 	font-size: 14px;
@@ -4392,7 +4400,7 @@ main {
 	white-space: nowrap;
 }
 
-.user-profile-div .profile-content-div .field-back-div .user-in .btn-div .btn:hover {
+.form-bottom-btn-div .btn:hover {
 	background-size: 200% 100%;
 	background-position: right;
   	transform: scale(1.05); /* subtle hover grow */

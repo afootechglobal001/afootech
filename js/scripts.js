@@ -18,8 +18,10 @@ function _call_carousel(cnt) {
 
 
 $(window).scroll(function () {
-    var scrollheight = $(window).scrollTop();
-    if (scrollheight >= 100) {
+	const scrollHeight = $(window).scrollTop();
+	const windowWidth = $(window).width();
+
+    if (scrollHeight >= 100) {
         $("header").addClass("fixed").removeClass("absolute");
         $(".header-div-in").addClass("border");
         $("#back2Top").fadeIn(1000);
@@ -28,6 +30,31 @@ $(window).scroll(function () {
         $(".header-div-in").removeClass("border");
         $("#back2Top").fadeOut(1000);
     }
+
+	if (windowWidth <= 870) {
+		$(".sticky-div").css({
+		position: "relative",
+		top: "0",
+		height: "auto",
+		overflow: "visible",
+		});
+	} else {
+		if (scrollHeight >= 700) {
+		$(".sticky-div").css({
+			position: "sticky",
+			top: "140px",
+			"min-height": "280px",
+			overflow: "auto",
+		});
+		} else {
+		$(".sticky-div").css({
+			position: "relative",
+			top: "0",
+			height: "auto",
+			overflow: "auto",
+		});
+		}
+	}
 });
   
 
@@ -37,34 +64,68 @@ function _back_to_top(){
 	return false;
 }
 
+$(document).ready(function () {
+    $("#img1").addClass("active");
+});
 
-function _collapse(div_id) {
-    // Get the currently clicked FAQ element
-    const currentFaq = document.getElementById(div_id);
-    const currentIcon = document.getElementById(div_id + "num");
-    const currentAnswer = document.getElementById(div_id + "answer");
+let currentIndex = 0;
+function _viewPreviewImage(divid) {
+    const images = $("#fetchPagePictures .each-img-div");
+    currentIndex = images.index($("#" + divid));
+    images.removeClass("active");
+    const current = $("#" + divid);
+    current.addClass("active");
+    const src = current.find("img").attr("src");
 
-    // Get all FAQ elements
-    const allFaqs = document.querySelectorAll('.faq-toggle');
+    $("#galleryMainImage")
+        .stop(true, true)
+        .fadeOut(150, function () {
+            $(this).attr("src", src).fadeIn(150);
+        });
 
-    allFaqs.forEach(faq => {
-        // Close all other FAQs
-        if (faq.id !== div_id) {
-            const icon = document.getElementById(faq.id + "num");
-            const answer = document.getElementById(faq.id + "answer");
-            faq.classList.remove('active-faq');
-            icon.innerHTML = '&nbsp;<i class="bi-plus"></i>&nbsp;';
-            $(answer).slideUp('slow');
-        }
+    // Automatically scroll thumbnail into view
+    current[0].scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest"
     });
-
-    // Toggle the current FAQ
-    const isActive = currentFaq.classList.toggle('active-faq');
-    currentIcon.innerHTML = isActive ? '&nbsp;<i class="bi-dash"></i>&nbsp;' : '&nbsp;<i class="bi-plus"></i>&nbsp;';
-    $(currentAnswer).slideToggle('slow');
 }
 
+function _navigateGallery(direction) {
+    const images = $("#fetchPagePictures .each-img-div");
+    currentIndex += direction;
 
+    if (currentIndex < 0) {
+        currentIndex = images.length - 1;
+    }
+    if (currentIndex >= images.length) {
+        currentIndex = 0;
+    }
+  	_viewPreviewImage(images.eq(currentIndex).attr("id"));
+}
+
+///// for FAQs
+function _collapse(div_id) {
+  const $currentFaq = $("#" + div_id);
+  const $currentIcon = $("#" + div_id + "num");
+  const $currentAnswer = $("#" + div_id + "answer");
+
+  $(".faq-toggle.active-faq").each(function () {
+    if (this.id !== div_id) {
+      $(this).removeClass("active-faq");
+      $(this).find(".expand-div").html('&nbsp;<i class="bi-plus"></i>&nbsp;');
+      $(this).find(".answer-div").slideUp("slow");
+    }
+  });
+
+  const isActive = $currentFaq.toggleClass("active-faq").hasClass("active-faq");
+  $currentIcon.html(
+    isActive
+      ? '&nbsp;<i class="bi-dash"></i>&nbsp;'
+      : '&nbsp;<i class="bi-plus"></i>&nbsp;',
+  );
+  $currentAnswer.slideToggle("slow");
+}
 
 
 function _open_menu(){
@@ -85,47 +146,6 @@ function _close_side_nav(){
 function _open_li(ids){
 	$('#'+ids+'-sub-li').toggle('slow');
 }
-
-function alert_close(){
-	$('#get-more-div').html('').fadeOut(200);
-}
-
-function _actionAlert(message,status){
-	let text = '';
-	$('.all-alert-back-div').html(text).css('display', 'flex');
-	if(status==true){
-		text +=
-		'<div class="success-alert-div animated fadeInDown">' +
-			'<div class="icon"><i class="bi-check-all"></i></div>'+
-			'<div class="text"><p>'+message+'</p></div>'+
-		'</div>';
-	}else{
-		text +=
-		'<div class="failed-alert-div animated fadeInDown">' +
-			'<div class="icon"><i class="bi-exclamation-octagon-fill"></i></div>'+
-			'<div class="text"><p>'+message+'</p></div>'+
-		'</div>';
-	}
-	$('.all-alert-back-div').html(text).fadeIn(500).delay(3000).fadeOut(100);
-}
-
-
-function isNumber_Check(textID) {
-	var e = window.event;
-	var key = e.keyCode && e.which;
-  
-	if (!((key >= 48 && key <= 57) || key == 43 || key == 45)) {
-	  if (e.preventDefault) {
-		e.preventDefault();
-		$('#'+textID).val('');
-	  } else {
-		e.returnValue = false;
-	  }
-	} else {
-		$('#'+textID).val('');
-	}
-  }
-
 
 function _progressBar(){
 	document.addEventListener('DOMContentLoaded', () => {
@@ -164,4 +184,7 @@ function _nextContactPage(nextId, text) {
 	$("#nigeriaHideDiv, #usaHideDiv").hide();
 	$("#" + nextId).fadeIn(1000);
 }
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
