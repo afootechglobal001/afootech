@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="image-div">
-                    <img src="<?php echo $websiteUrl ?>/all-images/images/about-right-image.png" alt="International Exam">
+                    <img src="<?php echo $websiteUrl ?>/all-images/images/blog.png" alt="<?php echo $appName ?> Services">
                 </div>
             </div> 
         </div>

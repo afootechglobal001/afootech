@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="image-div">
-                    <img src="<?php echo $websiteUrl ?>/all-images/images/about-right-image.png" alt="International Exam">
+                    <img src="<?php echo $websiteUrl ?>/all-images/images/about.png" alt="<?php echo $appName ?> About Us">
                 </div>
             </div>
         </div>
