@@ -49,6 +49,10 @@ function _getForm(options) {
         cache: false,
         success: function (html) {
           $(target).html(html);
+
+          if (page === "galleryDetails") {
+            _initializeGallery();
+          }
         },
   });
 }

@@ -64,10 +64,6 @@ function _back_to_top(){
 	return false;
 }
 
-$(document).ready(function () {
-    $("#img1").addClass("active");
-});
-
 let currentIndex = 0;
 function _viewPreviewImage(divid) {
     const images = $("#fetchPagePictures .each-img-div");
@@ -102,6 +98,12 @@ function _navigateGallery(direction) {
         currentIndex = 0;
     }
   	_viewPreviewImage(images.eq(currentIndex).attr("id"));
+}
+
+function _initializeGallery() {
+    const firstImage = $("#fetchPagePictures .each-img-div:first");
+    if (!firstImage.length) return;
+    _viewPreviewImage(firstImage.attr("id"));
 }
 
 ///// for FAQs
