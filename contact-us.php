@@ -36,7 +36,7 @@
             _otherPagesTitleContent([
                 'title' => 'Contact',
                 'highlight' => 'Us',
-                'description' => 'Have a project idea, need a technology solution, or want to improve your digital skills? Get in touch with <strong><?php echo $appName ?></strong>. Our team is ready to assist you with software development, ICT training, web solutions, and other technology services tailored to your needs..',
+                'description' => 'Have a project idea, need a technology solution, or want to improve your digital skills? Get in touch with AfooTECH Global. Our team is ready to assist you with software development, ICT training, web solutions, and other technology services tailored to your needs..',
                 'image' => '/all-images/images/about.png',
                 'breadcrumbs' => [
                     [

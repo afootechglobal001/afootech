@@ -3199,7 +3199,7 @@ header .header-div-in .right-nav-div .mobile-btn:hover{
   }
 }
 
-@media all and (max-width: 430px) {
+@media all and (max-width: 500px) {
   .other-pages .other-pages-back-div .main-content-back-div .text-content-div .other-pages-btn-div {
     display: flex;
     flex-direction: column;
