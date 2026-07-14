@@ -31,36 +31,26 @@
 <body>
     <?php include '../header.php' ?>
     <section class="other-pages" data-aos="fade-in" data-aos-duration="900">
-        <div class="other-pages-back-div">
-            <div class="nav-title">
-                <ul>
-                    <a href="<?php echo $websiteUrl ?>">
-                        <li title="Home">Home <span><i class="bi-caret-right-fill"></i></span></li>
-                    </a>
-                    <a href="<?php echo $websiteUrl ?>/blog">
-                        <li title="Our Gallery">Our Gallery</li>
-                    </a>
-                </ul>
-            </div>
-
-            <div class="main-content-back-div">
-                <div class="text-content-div" data-aos="fade-in" data-aos-duration="900">
-                    <h1 data-aos="fade-in" data-aos-duration="800">
-                        Our <span>Gallery</span>
-                    </h1>
-
-                    <p>
-                        Explore moments from AfooTECH Global's software development projects, ICT training programs, coding bootcamps, AI and cybersecurity workshops, networking practicals, UI/UX design sessions, student achievements, technology events, and digital innovations.
-                    </p>
-
-                    <?php _otherPagesBtn($websiteUrl); ?>
-                </div>
-
-                <div class="image-div">
-                    <img src="<?php echo $websiteUrl ?>/all-images/images/about-right-image.png" alt="International Exam">
-                </div>
-            </div>
-        </div>
+        <?php
+            _otherPagesTitleContent([
+                'title' => 'Our',
+                'highlight' => 'Gallery',
+                'description' => 'Explore moments from AfooTECH Global software development projects, ICT training programs, coding bootcamps, AI and cybersecurity workshops, networking practicals, UI/UX design sessions, student achievements, technology events, and digital innovations.',
+                'image' => '/all-images/images/other-pg-image.png',
+                'breadcrumbs' => [
+                    [
+                        'title' => 'Home',
+                        'url' => $websiteUrl,
+                        'last' => false
+                    ],
+                    [
+                        'title' => 'Our Gallery',
+                        'url' => $websiteUrl . '/gallery',
+                        'last' => true
+                    ]
+                ]
+            ]);
+        ?>
     </section>
 
     <section class="others-pg-content-div">

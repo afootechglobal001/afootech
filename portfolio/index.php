@@ -31,34 +31,26 @@
 <body>
     <?php include '../header.php' ?>
     <section class="other-pages" data-aos="fade-in" data-aos-duration="900">
-        <div class="other-pages-back-div">
-            <div class="nav-title">
-                <ul>
-                    <a href="<?php echo $websiteUrl ?>">
-                        <li title="Home">Home <span><i class="bi-caret-right-fill"></i></span></li>
-                    </a>
-                    <a href="<?php echo $websiteUrl ?>/portfolio">
-                        <li title="Our Portfolio">Our Portfolio</li>
-                    </a>
-                </ul>
-            </div>
-
-            <div class="main-content-back-div">
-                <div class="text-content-div" data-aos="fade-in" data-aos-duration="900">
-                    <h1 data-aos="fade-in" data-aos-duration="800">
-                        Our <span>Portfolio</span>
-                    </h1>
-                    <p>
-                        Our portfolio highlights innovative solutions we've built for businesses, organizations, and individuals. From custom software and responsive websites to mobile applications, AI-powered systems, cybersecurity solutions, and creative digital designs, every project demonstrates our dedication to excellence, innovation, and client success.
-                    </p>
-                    <?php _otherPagesBtn($websiteUrl); ?>
-                </div>
-
-                <div class="image-div">
-                    <img src="<?php echo $websiteUrl ?>/all-images/images/about-right-image.png" alt="International Exam">
-                </div>
-            </div>
-        </div>
+        <?php
+            _otherPagesTitleContent([
+                'title' => 'Our',
+                'highlight' => 'Portfolio',
+                'description' => 'Our portfolio highlights innovative solutions we have built for businesses, organizations, and individuals. From custom software and responsive websites to mobile applications, AI-powered systems, cybersecurity solutions, and creative digital designs, every project demonstrates our dedication to excellence, innovation, and client success.',
+                'image' => '/all-images/images/other-pg-image.png',
+                'breadcrumbs' => [
+                    [
+                        'title' => 'Home',
+                        'url' => $websiteUrl,
+                        'last' => false
+                    ],
+                    [
+                        'title' => 'Our Portfolio',
+                        'url' => $websiteUrl . '/portfolio',
+                        'last' => true
+                    ]
+                ]
+            ]);
+        ?>
     </section>
 
     <section class="other-pages-main-section">

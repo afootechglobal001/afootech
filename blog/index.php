@@ -31,36 +31,26 @@
 <body>
     <?php include '../header.php' ?>
     <section class="other-pages" data-aos="fade-in" data-aos-duration="900">
-        <div class="other-pages-back-div">
-            <div class="nav-title">
-                <ul>
-                    <a href="<?php echo $websiteUrl ?>">
-                        <li title="Home"><i class="bi bi-house-check"></i> <span><i class="bi-caret-right-fill"></i></span></li>
-                    </a>
-                    <a href="<?php echo $websiteUrl ?>/blog">
-                        <li title="Latest Insight & Article">Latest Insight & Article</li>
-                    </a>
-                </ul>
-            </div>
-
-            <div class="main-content-back-div">
-                <div class="text-content-div" data-aos="fade-in" data-aos-duration="900">
-                    <h1 data-aos="fade-in" data-aos-duration="800">
-                        Latest <span>Insight & Article</span>
-                    </h1>
-
-                    <p>
-                        Stay updated with the latest technology insights, software development tutorials, programming tips, cybersecurity updates, AI innovations, web development guides, mobile app development, and ICT training resources from AfooTECH Global.
-                    </p>
-
-                    <?php _otherPagesBtn($websiteUrl); ?>
-                </div>
-
-                <div class="image-div">
-                    <img src="<?php echo $websiteUrl ?>/all-images/images/about-right-image.png" alt="International Exam">
-                </div>
-            </div>
-        </div>
+        <?php
+            _otherPagesTitleContent([
+                'title' => 'Latest',
+                'highlight' => 'Insight & Article',
+                'description' => 'Stay updated with the latest technology insights, software development tutorials, programming tips, cybersecurity updates, AI innovations, web development guides, mobile app development, and ICT training resources from AfooTECH Global.',
+                'image' => '/all-images/images/about.png',
+                'breadcrumbs' => [
+                    [
+                        'title' => 'Home',
+                        'url' => $websiteUrl,
+                        'last' => false
+                    ],
+                    [
+                        'title' => 'Latest Insight & Article',
+                        'url' => $websiteUrl . '/blog',
+                        'last' => true
+                    ]
+                ]
+            ]);
+        ?>
     </section>
 
     <section class="other-pages-main-section">

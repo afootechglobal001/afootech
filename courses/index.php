@@ -31,36 +31,26 @@
 <body>
     <?php include '../header.php' ?>
     <section class="other-pages" data-aos="fade-in" data-aos-duration="900">
-        <div class="other-pages-back-div">
-            <div class="nav-title">
-                <ul>
-                    <a href="<?php echo $websiteUrl ?>">
-                        <li title="Home">Home <span><i class="bi-caret-right-fill"></i></span></li>
-                    </a>
-                    <a href="<?php echo $websiteUrl ?>/courses">
-                        <li title="Our Featured Courses">Our Featured Courses</li>
-                    </a>
-                </ul>
-            </div>
-
-            <div class="main-content-back-div">
-                <div class="text-content-div" data-aos="fade-in" data-aos-duration="900">
-                    <h1 data-aos="fade-in" data-aos-duration="800">
-                        Our <span>Featured Courses</span>
-                    </h1>
-
-                    <p>
-                        AfooTECH Global offers a range of courses to meet the needs of our clients. From web development to mobile app development, AI solutions, cybersecurity, networking, UI/UX design, graphics design, and hands-on ICT training, we have you covered.
-                    </p>
-
-                    <?php _otherPagesBtn($websiteUrl); ?>
-                </div>
-
-                <div class="image-div">
-                    <img src="<?php echo $websiteUrl ?>/all-images/images/about-right-image.png" alt="International Exam">
-                </div>
-            </div>  
-        </div>
+        <?php
+            _otherPagesTitleContent([
+                'title' => 'Our',
+                'highlight' => 'Featured Courses',
+                'description' => 'AfooTECH Global offers a range of courses to meet the needs of our clients. From web development to mobile app development, AI solutions, cybersecurity, networking, UI/UX design, graphics design, and hands-on ICT training, we have you covered.',
+                'image' => '/all-images/images/about.png',
+                'breadcrumbs' => [
+                    [
+                        'title' => 'Home',
+                        'url' => $websiteUrl,
+                        'last' => false
+                    ],
+                    [
+                        'title' => 'Our Featured Courses',
+                        'url' => $websiteUrl . '/courses',
+                        'last' => true
+                    ]
+                ]
+            ]);
+        ?>
     </section>
 
     <section class="other-pages-main-section">

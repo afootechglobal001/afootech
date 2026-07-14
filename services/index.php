@@ -31,39 +31,31 @@
 <body>
     <?php include '../header.php' ?>
     <section class="other-pages" data-aos="fade-in" data-aos-duration="900">
-        <div class="other-pages-back-div">
-            <div class="nav-title">
-                <ul>
-                    <a href="<?php echo $websiteUrl ?>">
-                      <li title="Home">Home <span><i class="bi-caret-right-fill"></i></span></li>
-                    </a>
-                    <a href="<?php echo $websiteUrl ?>/services">
-                        <li title="Our Services">Our Services</li>
-                    </a>
-                </ul>
-            </div>
-
-            <div class="main-content-back-div">
-                <div class="text-content-div" data-aos="fade-in" data-aos-duration="900">
-                    <h1 data-aos="fade-in" data-aos-duration="800">
-                        Our <span>Services</span>
-                    </h1>
-
-                    <p>
-                        AfooTECH Global offers a range of services to meet the needs of our clients. From web development to mobile app development, AI solutions, cybersecurity, networking, UI/UX design, graphics design, and hands-on ICT training, we have you covered.
-                    </p>
-
-                    <?php _otherPagesBtn($websiteUrl); ?>
-                </div>
-
-                <div class="image-div">
-                    <img src="<?php echo $websiteUrl ?>/all-images/images/blog.png" alt="<?php echo $appName ?> Services">
-                </div>
-            </div> 
-        </div>
+        <?php
+            _otherPagesTitleContent([
+                'title' => 'Our',
+                'highlight' => 'Services',
+                'description' => 'AfooTECH Global offers a range of services to meet the needs of our clients. From web development to mobile app development, AI solutions, cybersecurity, networking, UI/UX design, graphics design, and hands-on ICT training, we have you covered.',
+                'image' => '/all-images/images/other-pg-image.png',
+                'breadcrumbs' => [
+                    [
+                        'title' => 'Home',
+                        'url' => $websiteUrl,
+                        'last' => false
+                    ],
+                    [
+                        'title' => 'Our Services',
+                        'url' => $websiteUrl . '/services',
+                        'last' => true
+                    ]
+                ]
+            ]);
+        ?>
     </section>
 
     <section class="other-pages-main-section">
+        <?php _clientCarousel(); ?>
+        
         <section class="body-div net-bg-br">
             <div class="body-div-in">
                 <div class="main-pages-back-div">
