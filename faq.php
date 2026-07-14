@@ -32,32 +32,26 @@
     <?php include 'header.php' ?>
 
     <section class="other-pages" data-aos="fade-in" data-aos-duration="900">
-        <div class="other-pages-back-div">
-            <div class="nav-title">
-                <ul>
-                    <a href="<?php echo $websiteUrl ?>">
-                        <li title="Home">Home <span><i class="bi-caret-right-fill"></i></span></li>
-                    </a>
-                    <a href="<?php echo $websiteUrl ?>/faq">
-                        <li title="Frequently Asked Questions">Frequently Asked Questions</li>
-                    </a>
-                </ul>
-            </div>
-
-            <div class="main-content-back-div">
-                <div class="text-content-div" data-aos="fade-in" data-aos-duration="900">
-                    <h1 data-aos="fade-in" data-aos-duration="800">Frequently <span>Asked Questions</span></h1>
-                    <p>
-                        Find answers to common questions about AfooTECH Global's software development services, ICT training programs, web and mobile app development, AI, cybersecurity, networking, UI/UX design, graphics design, admissions, and technology solutions.
-                    </p>
-                    <?php _otherPagesBtn($websiteUrl); ?>
-                </div>
-
-                <div class="image-div">
-                    <img src="<?php echo $websiteUrl ?>/all-images/images/other-pg-image.png" alt="<?php echo $appName ?> Frequently Asked Question">
-                </div>
-            </div>  
-        </div>
+        <?php
+            _otherPagesTitleContent([
+                'title' => 'Frequently',
+                'highlight' => 'Asked Questions',
+                'description' => 'Find answers to common questions about AfooTECH Global software development services, ICT training programs, web and mobile app development, AI, cybersecurity, networking, UI/UX design, graphics design, admissions, and technology solutions.',
+                'image' => '/all-images/images/other-pg-image.png',
+                'breadcrumbs' => [
+                    [
+                        'title' => 'Home',
+                        'url' => $websiteUrl,
+                        'last' => false
+                    ],
+                    [
+                        'title' => 'Frequently Asked Questions',
+                        'url' => $websiteUrl . '/faq',
+                        'last' => true
+                    ]
+                ]
+            ]);
+        ?>
     </section>
 
     <section class="other-pages-main-section">

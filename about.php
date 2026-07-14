@@ -31,76 +31,29 @@
 
     <section class="other-pages" data-aos="fade-in" data-aos-duration="900">
         <?php
-        _otherPagesTitleContent([
-            'title' => 'About',
-            'highlight' => 'AfooTECH',
-            'description' => 'At AfooTECH Global, we build modern software solutions and provide quality ICT training designed to solve real-world challenges. From web and mobile applications to professional tech education, we are committed to driving innovation and digital growth.',
-            'image' => '/all-images/images/about.png',
-            'breadcrumbs' => [
-                [
-                    'title' => 'Home',
-                    'url' => $websiteUrl,
-                    'last' => false
-                ],
-                [
-                    'title' => 'About Us',
-                    'url' => $websiteUrl . '/about',
-                    'last' => true
+            _otherPagesTitleContent([
+                'title' => 'About',
+                'highlight' => 'AfooTECH',
+                'description' => 'At AfooTECH Global, we build modern software solutions and provide quality ICT training designed to solve real-world challenges. From web and mobile applications to professional tech education, we are committed to driving innovation and digital growth.',
+                'image' => '/all-images/images/about.png',
+                'breadcrumbs' => [
+                    [
+                        'title' => 'Home',
+                        'url' => $websiteUrl,
+                        'last' => false
+                    ],
+                    [
+                        'title' => 'About Us',
+                        'url' => $websiteUrl . '/about',
+                        'last' => true
+                    ]
                 ]
-            ]
-        ]);
-
+            ]);
         ?>
     </section>
 
     <section class="others-pg-content-div">
-        <section class="client-body-div">
-            <div class="client-body-div-in">
-                <div class="logo-slider">
-                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/leaderstutors.png"
-                            alt="Leaders Tutors Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/1stclassic.png"
-                            alt="1Stclassic Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/4-seasons.png"
-                            alt="4-seasons Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/cityOne.png"
-                            alt="cityOne Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/valuehandlers.png"
-                            alt="Valuehandlers Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/agrohandlers.jpeg"
-                            alt="Agrohandlers Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/myexamconnect.png"
-                            alt="MyExamconnect Logo"></div>
-                    <div class="box"><img
-                            src="<?php echo $websiteUrl ?>/uploaded_files/clients/cglconnectlogistscis.png"
-                            alt="Connect Global LogisticsLogo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/advancedbreed.png"
-                            alt="Advancedbreed Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/compeer.png"
-                            alt="Compeer Medical College Logo"></div>
-                    <div class="box"><img
-                            src="<?php echo $websiteUrl ?>/uploaded_files/clients/firstheritageculture.png"
-                            alt="First Culture Logo"></div>
-                    <div class="box"><img src="<?php echo $websiteUrl ?>/uploaded_files/clients/cyrus.png"
-                            alt="Cyrus Johnson Logo"></div>
-                </div>
-            </div>
-            <script>
-            $('.logo-slider').slick({
-                slidesToShow: 5,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 0,
-                speed: 3000,
-                infinite: true,
-                cssEase: 'linear',
-                arrows: false,
-                pauseOnHover: false,
-                pauseOnFocus: false,
-                variableWidth: true
-            });
-            </script>
-        </section>
+        <?php _clientCarousel(); ?>
 
         <section class="body-div light-body">
             <div class="body-div-in">
