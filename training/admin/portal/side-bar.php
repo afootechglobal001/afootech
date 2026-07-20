@@ -24,8 +24,8 @@
                     <span>Students</span>
                 </div>
 
-                <div class="nav-div" title="Report" id="ReportPage"
-                    onclick="_getActivePage({page:'ReportPage', divid:'ReportPage'});">
+                <div class="nav-div" title="Report" id="reportPage"
+                    onclick="_getActivePage({page:'reportPage', divid:'reportPage'});">
                     <i class="bi bi-graph-up-arrow"></i>
                     <span>Report</span>
                 </div>

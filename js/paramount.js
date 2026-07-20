@@ -39,6 +39,20 @@ function _getForm(options) {
       allowOverlayClose = false;
     }
 
+    if (layer===1 && page!=="revenueBreakdown") {
+      // Save the current form
+      sessionStorage.setItem(
+        "currentDashboardForm",
+        JSON.stringify({
+          page,
+          id,
+          layer,
+          action,
+          url,
+        })
+      );
+    }
+
     const target = layer === 1 ? '#get-form-more-div' : layer === 2  ? '#get-more-div-secondary' : '#get-more-third-layer';
     $(target).css({ 'display': 'flex', 'justify-content': 'center', 'align-items': 'center' }).fadeIn(500);
     const dataString = "action=" + action + "&page=" + page + "&id=" + id + "&pageCategory=" + pageCategory + "&modalLayer=" + layer;
@@ -66,6 +80,10 @@ function _alertClose(layer=1){
 		'</div>';
   $(layer === 1 ? '#get-form-more-div' : layer === 2 ? '#get-more-div-secondary' : '#get-more-third-layer').html(text).fadeOut(200);
   $('body').removeClass('no-scroll');
+
+  if (layer ===1) {
+    sessionStorage.removeItem("currentDashboardForm");
+  }
 }
 
 $(document).on('click', '#get-form-more-div', function () {

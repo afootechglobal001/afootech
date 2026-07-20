@@ -1,5 +1,5 @@
 <?php include '../../../../config/constants.php';?>
-<script src="<?php echo $websiteUrl?>/admin/portal/js/session_validation.js"></script>
+<!-- <script src="<?php echo $websiteUrl?>/admin/portal/js/session_validation.js"></script> -->
 
 <?php
 $action=$_POST['action'];
@@ -15,6 +15,7 @@ switch ($action){
 		require_once('student-content.php');
 		require_once('settings-content.php');
 		require_once('role-content.php');
+		require_once('account-report/account-report-content.php');
 	break;
 
 	case 'get_form':
@@ -27,6 +28,7 @@ switch ($action){
 		require_once('student-content.php');
 		require_once('settings-content.php');
 		require_once('role-content.php');
+		require_once('account-report/account-report-content.php');
 	break;
 }
 ?>
