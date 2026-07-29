@@ -377,103 +377,126 @@
 
 <!-- For Staffs Modal Pages -->
 <?php if ($page == 'staffProfileDetails') { ?>
-    <div class="user-in">
-        <div class="title">STAFF BASIC INFORMATION</div>
-
-        <div class="profile-segment-div">
-            <div class="text_field_container col-3" id="updateFullName_container">
-                <script>
-                textField({
-                    id: 'updateFullName',
-                    title: 'First Name',
-                });
-                </script>
+    <div class="main-content-div dash-main-content-div">
+        <div class="tables-content-div">
+            <div class="content-title">
+                <div class="title">
+                    <i class="bi bi-people"></i>
+                    <p>Staff Basic Information</p>
+                </div>
             </div>
 
-            <div class="text_field_container col-3" id="updateMobileNumber_container">
-                <script>
-                textField({
-                    id: 'updateMobileNumber',
-                    title: 'Phone Number',
-                    type: 'tel',
-                });
-                </script>
-            </div>
+            <div class="inner-table-content colum-table-content">
+                <div class="text_field_container col-3" id="fullName_container">
+                    <script>
+                    textField({
+                        id: 'fullName',
+                        title: 'Full Name',
+                    });
+                    </script>
+                </div>
 
-            <div class="text_field_container col-3" id="updateEmailAddress_container">
-                <script>
-                textField({
-                    id: 'updateEmailAddress',
-                    title: 'Email Address',
-                    type: 'email',
-                });
-                </script>
-            </div>
-        </div>
-    </div>
+                <div class="text_field_container col-3" id="emailAddress_container">
+                    <script>
+                    textField({
+                        id: 'emailAddress',
+                        title: 'Email Address',
+                        type: 'email',
+                    });
+                    </script>
+                </div> 
 
-    <div class="user-in">
-        <div class="title">STAFF ACCOUNT INFORMATION</div>
-        <div class="profile-segment-div">
-            <div class="text_field_container col-3" id="staffId_container">
-                <script>
-                textField({
-                    id: 'staffId',
-                    title: 'Staff ID',
-                    readonly: true
-                });
-                </script>
-            </div>
-
-            <div class="text_field_container col-3" id="createdTime_container">
-                <script>
-                textField({
-                    id: 'createdTime',
-                    title: 'Date Of Registration',
-                    readonly: true
-                });
-                </script>
-            </div>
-
-            <div class="text_field_container col-3" id="lastLogin_container">
-                <script>
-                textField({
-                    id: 'lastLogin',
-                    title: 'Last Login Date',
-                    readonly: true
-                });
-                </script>
+                <div class="text_field_container col-3" id="phoneNumber_container">
+                    <script>
+                    textField({
+                        id: 'phoneNumber',
+                        title: 'Phone Number',
+                        type: 'tel',
+                    });
+                    </script>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="user-in">
-        <div class="title">ADMINISTRATIVE INFORMATION</div>
-
-        <div class="profile-segment-div">
-            <div class="text_field_container col-1" id="updateRoleId_container">
-                <script>
-                selectField({
-                    id: 'updateRoleId',
-                    title: 'Select Role',
-                });
-                //_getSelectRole('updateRoleId');
-                </script>
+    <div class="main-content-div dash-main-content-div">
+        <div class="tables-content-div">
+            <div class="content-title">
+                <div class="title">
+                    <i class="bi bi-people"></i>
+                    <p>Staff Account Information</p>
+                </div>
             </div>
 
-            <div class="text_field_container col-1" id="updateStatusId_container">
-                <script>
-                selectField({
-                    id: 'updateStatusId',
-                    title: 'Select Status',
-                });
-                //_getSelectStatusId('updateStatusId', '1,2');
-                </script>
+            <div class="inner-table-content colum-table-content">
+                <div class="text_field_container col-3" id="staffId_container">
+                    <script>
+                    textField({
+                        id: 'staffId',
+                        title: 'Staff ID',
+                        readonly: true
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="createdTime_container">
+                    <script>
+                    textField({
+                        id: 'createdTime',
+                        title: 'Date Of Registration',
+                        readonly: true
+                    });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-3" id="lastLogin_container">
+                    <script>
+                    textField({
+                        id: 'lastLogin',
+                        title: 'Last Login Date',
+                        readonly: true
+                    });
+                    </script>
+                </div>
             </div>
         </div>
-        <div class="btn-div">
-            <button class="btn" title="UPDATE PROFILE" id="updateBtn" onclick=""> UPDATE PROFILE <i
+    </div>
+
+    <div class="main-content-div dash-main-content-div">
+        <div class="tables-content-div">
+            <div class="content-title">
+                <div class="title">
+                    <i class="bi bi-people"></i>
+                    <p>Administrative Information</p>
+                </div>
+            </div>
+
+            <div class="inner-table-content colum-table-content">
+                <div class="text_field_container col-1" id="updateRoleId_container">
+                    <script>
+                    selectField({
+                        id: 'updateRoleId',
+                        title: 'Select Role',
+                    });
+                    //_getSelectRole('updateRoleId');
+                    </script>
+                </div>
+
+                <div class="text_field_container col-1" id="updateStatusId_container">
+                    <script>
+                    selectField({
+                        id: 'updateStatusId',
+                        title: 'Select Status',
+                    });
+                    //_getSelectStatusId('updateStatusId', '1,2');
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-bottom-btn-div">
+        <button class="btn" title="UPDATE PROFILE" id="updateBtn" onclick=""> UPDATE PROFILE <i
                     class="bi-check"></i></button>
-        </div>
     </div>
 <?php } ?>

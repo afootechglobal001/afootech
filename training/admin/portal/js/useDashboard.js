@@ -14,7 +14,7 @@ function _getActiveLink(divid) {
 
 function _removeClass() {
   $(
-    "#dashboard, #topDashboard, #adminPage, #studentPage, #ReportPage, #settingsPage",
+    "#dashboard, #topDashboard, #adminPage, #studentPage, #reportPage, #settingsPage",
   ).removeClass("active-li");
 }
 

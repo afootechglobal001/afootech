@@ -19,6 +19,9 @@
                     page: savedPage, 
                     divid: savedPage
                 });
+
+                let savedForm = sessionStorage.getItem("currentDashboardForm") ?? '';
+                _getForm(JSON.parse(savedForm));
             });
         </script>
     </main>

@@ -28,3 +28,4 @@
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/useDashboard.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/useStaff.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/useStudent.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
+<script src="<?php echo $websiteUrl?>/training/admin/portal/js/account-report/useAccountReport.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
