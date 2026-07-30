@@ -15,6 +15,21 @@
         <?php _leftSideSection($websiteUrl, $appName); ?>
 
         <div class="login-card-div">
+            <script>
+                $(document).ready(function () {
+                    saveAcceesKeySession = JSON.parse(localStorage.getItem("saveAcceesKeySession"));
+                    if (!saveAcceesKeySession) {
+                       window.location.replace(trainingAdminUrl);
+                        return;
+                    }
+
+                    window.history.pushState(null, "", window.location.href);
+                    window.addEventListener("popstate", function () {
+                        window.location.replace(trainingAdminUrl);
+                    });
+                });
+	        </script>
+
             <div class="form-section" data-aos="fade-in" data-aos-duration="1200">
                 <a href="<?php echo $websiteUrl ?>">
                 <div class="logo-div">

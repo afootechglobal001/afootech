@@ -1,18 +1,22 @@
 class Paginator {
-  constructor(
+constructor(
     data,
     renderTableFn,
     paginationContainerId,
     tableBodyId,
     itemsPerPage = 10
-  ) {
+) {
     this.data = data;
     this.renderTableFn = renderTableFn;
+
+    this.paginationContainerId = paginationContainerId;   // <-- add this
+
     this.paginationContainer = document.getElementById(paginationContainerId);
     this.tableBody = document.getElementById(tableBodyId);
+
     this.itemsPerPage = itemsPerPage;
     this.currentPage = 1;
-  }
+}
 
   renderPage() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
@@ -92,8 +96,8 @@ class Paginator {
   }
 
   getHandlerName() {
-    return `__paginatorHandlers['${this.tableBody.id}'].changePage`;
-  }
+    return `__paginatorHandlers['${this.paginationContainerId}'].changePage`;
+}
 }
 
 // Global object to store multiple paginator instances

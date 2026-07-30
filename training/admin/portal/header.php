@@ -23,8 +23,12 @@
                 <div class="right-icon-div no-border" title="Click To View Profile" onclick="_toggleProfileDiv()">
                     <div class="profile-div">
                         <div class="info-div">
-                            <div class="name"><strong id="loginHeaderName">Hon. Emmanuel Paul</strong></div>
-                            <div class="role" id="loginRoleName">SUPER ADMIN</div>
+                            <div class="name"><strong id="loginHeaderName"><script>
+                                        $("#loginHeaderName").html(capitalizeFirstLetterOfEachWord(staffLoginData?.firstName + " " + staffLoginData?.lastName));
+                                    </script></strong></div>
+                            <div class="role" id="loginRoleName"><script>
+                                    $("#loginRoleName").html(staffLoginData?.roleData?.roleName);
+                                </script></div>
                         </div>
 
                         <div class="img-div" id="profilePix">
@@ -37,17 +41,25 @@
                     <div class="toggle-in">
                         <div class="toggle-title">
                             <div class="dp" id="loginProfileName">
-                                HE
+                                <script>
+                                    $("#loginProfileName").html(getFirstLettersOfEachWord(staffLoginData?.firstName + " " + staffLoginData?.lastName));
+                                </script>
                             </div>
                             <div class="text">
                                 <h2 id="loginUserFullname">
-                                    Hon. Emmanuel Paul
+                                    <script>
+                                        $("#loginUserFullname").html(capitalizeFirstLetterOfEachWord(staffLoginData?.firstName + " " + staffLoginData?.lastName));
+                                    </script>
                                 </h2>
                                 <p id="loginUserEmail">
-                                    emmanuelpaul@uarconstruction.com
+                                    <script>
+                                        $("#loginUserEmail").html(staffLoginData?.emailAddress);
+                                    </script>
                                 </p>
-                                <p id="loginUserPhone">
-                                    +2348034567890
+                                <p id="loginUserPhone"></p>
+                                    <script>
+                                        $("#loginUserPhone").html(staffLoginData?.phoneNumber);
+                                    </script>
                                 </p>
                             </div>
                         </div>
@@ -59,12 +71,16 @@
                             <li title="Administrators" onclick="_getActivePage({page:'adminPage', divid:'adminPage'});">
                                 <i class="bi bi-people"></i> Administrators
                             </li>
-                            <li title="Services" onclick="_getActivePage({page:'servicePage', divid:'servicePage'});">
-                                <i class="bi bi-stack"></i> Services
+                            <li title="Students" onclick="_getActivePage({page:'studentPage', divid:'studentPage'});">
+                                <i class="bi bi-people"></i> Students
                             </li>
-                            <li title="Portfolio"
-                                onclick="_getActivePage({page:'portfolioPage', divid:'portfolioPage'});">
-                                <i class="bi bi-images"></i> Portfolio
+                            <li title="Report"
+                                onclick="_getActivePage({page:'reportPage', divid:'reportPage'});">
+                                <i class="bi bi-graph-up-arrow"></i> Report
+                            </li>
+                            <li title="Settings"
+                                onclick="_getActivePage({page:'settingsPage', divid:'settingsPage'});">
+                                <i class="bi bi-gear"></i> Settings
                             </li>
                             <li class="logOut" title="Log-Out" onclick="_confirmLogOut();">
                                 <i class="bi bi-power"></i> Log-Out

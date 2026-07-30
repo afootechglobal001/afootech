@@ -30,42 +30,67 @@ function _nextLoginPage(props) {
   _getPage({ page: page, url: trainingAdminMiddlewareUrl });
 }
 
-/// countdown function ///
-function _counDownOtp(timer) {
-  $("#resendOtpBtn").hide();
-  $("#resendCountdown").fadeIn(500);
+////// ADMIN LOGIN FUNCTION ////////
+function _confirmLogin(){
+	try {
+		////////get all needed values////////////
+		let issueCount = 0;
+		const userName = $('#userName').val().trim();
+		const password = $("#password").val().trim();
 
-  const countdown = setInterval(() => {
-    if (timer > 0) {
-      timer--;
+		///// empty field validation//////////
+		issueCount += _validateEmptyValue("userName", "EMAIL ADDRESS");
+    issueCount += _validateEmail("userName", "EMAIL ADDRESS");
+		issueCount += _validateEmptyValue("password", "PASSWORD");
 
-      let minutes = Math.floor(timer / 60);
-      let seconds = timer % 60;
+		if (issueCount > 0) return;
 
-      if (timer >= 60) {
-        // Show MM:SS when 1 min or more
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        $("#resendCountdown").html(
-          'Resend in <strong id="timer">' +
-            minutes +
-            ":" +
-            seconds +
-            "</strong> min",
-        );
-      } else {
-        // Show seconds only when below 1 minute
-        $("#resendCountdown").html(
-          'Resend in <strong id="timer">' + seconds + "</strong> sec",
-        );
-      }
+		// Gather form data
+		const formData = {
+			userName,
+			password,
+		};
+
+		////// confirm action////
+		_proceedLoginCallback(formData);
+	} catch (error) {
+		console.error("Error:", error);
+		_callCatchError(() => _confirmLogin());
+	}
+}
+
+//// //// ADMIN LOGIN CALLBACK FUNCTION ////////
+function _proceedLoginCallback(formData) {
+	///// get btn text/////
+	const btnText = $("#submitBtn").html();
+	_btnDisable("submitBtn", btnText, true);
+	
+	//// call endpoint //////
+	_callRawEndPoints({
+		url: `admin/auth/login`,
+		formData,
+	})
+    .then((response) => {
+		sessionStorage.setItem("staffLoginData", JSON.stringify(response?.data));
+		_actionAlert(response?.message, true);
+		window.location.href = trainingAdminPortalUrl;
+  })
+	.catch((error) => {
+		console.error("Error:", error);
+		if (error.status==0) {
+      _callAjaxError(() => _proceedLoginCallback(formData), error.message); // retry if needed
+      _btnDisable("submitBtn", btnText, false);
     } else {
-      clearInterval(countdown);
-      $("#resendCountdown").hide();
-      $("#resendOtpBtn").fadeIn(500);
+      _showCustomConfirm({
+        title: "Unable to Login!",
+        message: error.message,
+        alertType: "error",
+        trueActionBtnText: "OK",
+        closeOnOverlayClick: true,
+      });
+      _btnDisable("submitBtn", btnText, false);
     }
-  }, 1000);
-
-  return () => clearInterval(countdown);
+	});
 }
 
 //// Proceed Reset Password ///
@@ -113,7 +138,7 @@ function _proceedResetPasswordCallback(formData, isResendOtp) {
       _showLoader("Resending OTP... Please wait...");
     }
 
-     //// call endpoint //////
+   //// call endpoint //////
   _callRawEndPoints({
     url: `admin/auth/reset-password`,
     formData,
@@ -127,7 +152,8 @@ function _proceedResetPasswordCallback(formData, isResendOtp) {
           JSON.stringify(data)
         );
         _showLoader("OTP Sent Successfully!. Please wait...");
-        window.location.href = userVerificationUrl;
+        window.location.href = adminUserVerificationUrl;
+        _hideLoader();
       } else {
         _hideLoader();
         _actionAlert(response.message, true);
@@ -227,7 +253,7 @@ function _proceedOtpVerificationCallback(formData) {
       
       // Remove OTP Session
       localStorage.removeItem("staffResetPasswordSession");
-      window.location.replace(completeResetPasswordUrl);
+      window.location.replace(trainingAdminCompleteResetPasswordUrl);
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -318,7 +344,7 @@ function _completeResetPasswordCallback(formData) {
         localStorage.removeItem("saveAcceesKeySession");
         _showCustomConfirm({
           callback: () => {
-            window.location.href = adminUrl;
+            window.location.href = trainingAdminUrl;
           },
           title: "Success!",
           message: response.message,
