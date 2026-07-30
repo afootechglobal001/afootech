@@ -26,7 +26,7 @@
 
             <div class="inner-table-content">
                 <div class="user-managment-back-div" data-aos="fade-in" data-aos-duration="1500">
-                    <div class="user-managment-list" onclick="_getPage({page: 'userConfiguration', url: adminPortalMiddlewareUrl});">
+                    <div class="user-managment-list" onclick="_getPage({page: 'userConfiguration', url: trainingAdminPortalMiddlewareUrl});">
                         <div class="inner-div">
                             <div class="icon-div"><img src="<?php echo $websiteUrl ?>/all-images/images/authorization.png" alt="User Role Configurations" /></div>
                             <div class="text-div">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <div class="user-managment-list" onclick="_getForm({page: 'systemSettings', url: adminPortalMiddlewareUrl});">
+                    <div class="user-managment-list" onclick="_getForm({page: 'systemSettings', url: trainingAdminPortalMiddlewareUrl});">
                         <div class="inner-div">
                             <div class="icon-div"><img src="<?php echo $websiteUrl ?>/all-images/images/blog.png" alt="Blog Category Configurations" /></div>
                             <div class="text-div">
@@ -46,7 +46,7 @@
                         </div>
                     </div>
 
-                    <div class="user-managment-list" onclick="_getForm({page: 'changePassword', url: adminPortalMiddlewareUrl});">
+                    <div class="user-managment-list" onclick="_getForm({page: 'changePassword', url: trainingAdminPortalMiddlewareUrl});">
                         <div class="inner-div">
                             <div class="icon-div"><img src="<?php echo $websiteUrl ?>/all-images/images/status.png" alt="User Status Configurations" /></div>
                             <div class="text-div">

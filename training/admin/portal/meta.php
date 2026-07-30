@@ -12,9 +12,15 @@
 <link href="<?php echo $websiteUrl?>/training/admin/portal/style/main-style.css?v=<?php echo $codeVersion?>" type="text/css"rel="stylesheet" />
 <link href="<?php echo $websiteUrl?>/training/admin/portal/style/nav-style.css?v=<?php echo $codeVersion?>" type="text/css"rel="stylesheet" />
 <link href="<?php echo $websiteUrl?>/training/admin/portal/style/jquery.datetimepicker.css" type="text/css"rel="stylesheet"/>
-<link href="<?php echo $websiteUrl?>/style/tablePagenator.css?v=<?php echo $codeVersion?>" type="text/css" rel="stylesheet" />
+<link href="<?php echo $websiteUrl?>/style/tablePaginator.css?v=<?php echo $codeVersion?>" type="text/css" rel="stylesheet" />
 
 <script src="<?php echo $websiteUrl?>/js/jquery-v3.6.1.min.js"></script>
+<script>
+    let staffLoginData = JSON.parse(sessionStorage.getItem("staffLoginData"));
+    const loginStaffId = staffLoginData.staffId;
+    const loginAccessKey = staffLoginData.accessKey;
+    const loginRoleId = staffLoginData.roleId;
+</script>
 
 <script src="<?php echo $websiteUrl?>/js/paramount.js?v=<?php echo $codeVersion?>"></script>
 <script src="<?php echo $websiteUrl?>/js/textfield-selectfield.js?v=<?php echo $codeVersion?>"></script>
@@ -28,4 +34,5 @@
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/useDashboard.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/useStaff.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/useStudent.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
+<script src="<?php echo $websiteUrl?>/training/admin/portal/js/useRole.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/account-report/useAccountReport.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>

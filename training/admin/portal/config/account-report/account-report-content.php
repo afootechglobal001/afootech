@@ -13,7 +13,7 @@
 
     <div class="btn-div">
         <div class="search-div">
-            <input type="text" onkeyup="_filtersStaffs(this.value);" placeholder="Search Report Here...">
+            <input type="text" onkeyup="" placeholder="Search Report Here...">
             <i class="bi bi-search"></i>
         </div>
     </div>
@@ -27,7 +27,6 @@
                     onclick="_getActiveReportNav({divid:'filterByDate', page: 'filterByDate', url: trainingAdminPortalMiddlewareUrl});">
                     <i class="bi-calendar2-check"></i> Date Range
                 </li>
-                <!-- <li title="Filter Revenue By Session/Term" id="filterBySession" onclick="_getActiveReportNav({divid:'filterBySession', page: 'filterBySession', url: adminPortalLocalUrl});"><i class="bi-filter"></i> Session/Term</li> -->
             </ul>
         </div>
 
@@ -47,88 +46,99 @@
 <!-- Filter By Date Revenue Pages -->
 <?php if ($page == 'filterByDate') { ?>
 <div class="chart-div-notifications report-chart-div">
-    <div class="text"><i class="bi-graph-up-arrow"></i> Showing Matrix for </div>
+    <div class="text-wrapper">
+        <div class="text"><i class="bi-graph-up-arrow"></i> Showing Matrix for </div>
 
-    <div class="text text-right" onclick="select_search()">
-        <span id="srch-text">Last 30 Days</span>
-        <div class="icon-div"><i class="bi-caret-down"></i></div>
+        <div class="text text-right" onclick="select_search()">
+            <span id="srch-text">Last 30 Days</span>
+            <div class="icon-div"><i class="bi-caret-down"></i></div>
 
-        <div class="srch-select alert-srch-select">
-            <div id="srch-today" onclick="_fetchReportRevenueFiltering('srch-today', 'Today');">Today
+            <div class="srch-select alert-srch-select">
+                <div id="srch-today" onclick="_fetchReportRevenueFiltering('srch-today', 'Today');">Today
+                </div>
+                <div id="srch-week" onclick="_fetchReportRevenueFiltering('srch-week', 'This Week');">This
+                    Week</div>
+                <div id="srch-7" onclick="_fetchReportRevenueFiltering('srch-7', 'Last 7 Days');">Last 7 Days
+                </div>
+                <div id="srch-month" onclick="_fetchReportRevenueFiltering('srch-month', 'This Month');">This
+                    Month</div>
+                <div id="srch-30" onclick="_fetchReportRevenueFiltering('srch-30', 'Last 30 Days');">Last 30 Days
+                </div>
+                <div id="srch-90" onclick="_fetchReportRevenueFiltering('srch-90', 'Last 90 Days');">Last 90 Days
+                </div>
+                <div id="srch-year" onclick="_fetchReportRevenueFiltering('srch-year', 'This Year');">This
+                    Year</div>
+                <div id="srch-1year" onclick="_fetchReportRevenueFiltering('srch-1year', 'Last 1 Year');">Last 1
+                    Year</div>
+                <div onclick="srch_custom('Custom Search')">Custom Search</div>
             </div>
-            <div id="srch-week" onclick="_fetchReportRevenueFiltering('srch-week', 'This Week');">This
-                Week</div>
-            <div id="srch-7" onclick="_fetchReportRevenueFiltering('srch-7', 'Last 7 Days');">Last 7 Days
-            </div>
-            <div id="srch-month" onclick="_fetchReportRevenueFiltering('srch-month', 'This Month');">This
-                Month</div>
-            <div id="srch-30" onclick="_fetchReportRevenueFiltering('srch-30', 'Last 30 Days');">Last 30 Days
-            </div>
-            <div id="srch-90" onclick="_fetchReportRevenueFiltering('srch-90', 'Last 90 Days');">Last 90 Days
-            </div>
-            <div id="srch-year" onclick="_fetchReportRevenueFiltering('srch-year', 'This Year');">This
-                Year</div>
-            <div id="srch-1year" onclick="_fetchReportRevenueFiltering('srch-1year', 'Last 1 Year');">Last 1
-                Year</div>
-            <div onclick="srch_custom('Custom Search')">Custom Search</div>
         </div>
-    </div>
 
-    <div class="text">
-        <div class="custom-srch-div">
-            <div class="custom-srch-div-in">
-                <div class="text_field_container dash_field_container">
-                    <input class="text_field bar_cust_text_field" type="text" id="datepickers-from" placeholder="" />
-                    <div class="placeholder bar_cust_placeholder"><i class="bi-calendar3"></i> From
+        <div class="text">
+            <div class="custom-srch-div">
+                <div class="custom-srch-div-in">
+                    <div class="text_field_container dash_field_container">
+                        <input class="text_field bar_cust_text_field" type="text" id="datepickers-from"
+                            placeholder="" />
+                        <div class="placeholder bar_cust_placeholder"><i class="bi-calendar3"></i> From
+                        </div>
+                        <div class="issueText" id="issue_from"></div>
                     </div>
-                    <div class="issueText" id="issue_from"></div>
-                </div>
 
-                <div class="text_field_container dash_field_container">
-                    <input class="text_field bar_cust_text_field" type="text" id="datepickers-to" placeholder="" />
-                    <div class="placeholder bar_cust_placeholder"><i class="bi-calendar3"></i> To </div>
-                    <div class="issueText" id="issue_to"></div>
+                    <div class="text_field_container dash_field_container">
+                        <input class="text_field bar_cust_text_field" type="text" id="datepickers-to" placeholder="" />
+                        <div class="placeholder bar_cust_placeholder"><i class="bi-calendar3"></i> To </div>
+                        <div class="issueText" id="issue_to"></div>
+                    </div>
+                    <button type="button" class="btn" id="applyCustomSearchBtn"
+                        onclick="_fetchCustomReportRevenueFiltering();">Apply</button>
                 </div>
-                <button type="button" class="btn" id="applyCustomSearchBtn"
-                    onclick="_fetchCustomReportRevenueFiltering();">Apply</button>
             </div>
         </div>
+
+        <script language="javascript">
+        $('#datepickers-from').datetimepicker({
+            lang: 'en',
+            timepicker: false,
+            format: 'Y-m-d',
+            formatDate: 'Y-M-d',
+        });
+
+        $('#datepickers-to').datetimepicker({
+            lang: 'en',
+            timepicker: false,
+            format: 'Y-m-d',
+            formatDate: 'Y-M-d',
+        });
+        </script>
     </div>
 
-    <script language="javascript">
-    $('#datepickers-from').datetimepicker({
-        lang: 'en',
-        timepicker: false,
-        format: 'Y-m-d',
-        formatDate: 'Y-M-d',
-    });
-
-    $('#datepickers-to').datetimepicker({
-        lang: 'en',
-        timepicker: false,
-        format: 'Y-m-d',
-        formatDate: 'Y-M-d',
-    });
-    </script>
+    <div class="revenue-date">
+        <i class="bi-info-circle"></i> Revenue report between <strong id="dateFrom">Loading...</strong> and <strong
+            id="dateTo">Loading...</strong>
+    </div>
 </div>
 
 <div class="fetch-report-back-div">
-    <div class="alert alert-success top-alert-div">
-        <div class="div">
-            <i class="bi-info-circle"></i> Revenue report between <span id="dateFrom">June 21 2026</span> and <span
-                id="dateTo">July 20 2026</span>
-        </div>
-
-        <div class="div">
-            Total Revenue: <span class="balance" id="totalRevenue"><s>N</s>800.00</span>
-        </div>
-    </div>
-
     <div class="report-dashbaord-wrapper animated fadeIn">
         <div class="dashboard-statistics-wrapper">
             <div class="left-dashbaord-container">
                 <div class="statistics-chart-back-div">
                     <div class="report-statistics-back-div">
+                        <div class="report-statistics-div" id="branch" title="Revenue from All Channels">
+                            <div class="statistics-inner-div">
+                                <div class="icon-div active">
+                                    <i class="bi bi-cash-stack"></i>
+                                </div>
+
+                                <div class="report-statistics-text">
+                                    <p>Total Revenue</p>
+                                    <span>Revenue from All Channels</span>
+                                    <h2 id="totalRevenue"><s>N</s>0.00</h2>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="report-statistics-div" id="branch" title="Credit Card">
                             <div class="statistics-inner-div">
                                 <div class="icon-div secondary">
@@ -138,7 +148,7 @@
                                 <div class="report-statistics-text">
                                     <p>Credit Card Revenue</p>
                                     <span>Total Amount Paid via Credit Card</span>
-                                    <h2 id="sumCreditCardPayments"><s>N</s>200,000.00</h2>
+                                    <h2 id="sumCreditCardPayments"><s>N</s>0.00</h2>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +162,7 @@
                                 <div class="report-statistics-text">
                                     <p>Bank Transfer Revenue</p>
                                     <span>Total Amount Paid via Bank Transfer</span>
-                                    <h2 id="sumBankTransferPayments"><s>N</s>400,000.00</h2>
+                                    <h2 id="sumBankTransferPayments"><s>N</s>0.00</h2>
                                 </div>
                             </div>
                         </div>
@@ -166,21 +176,49 @@
                                 <div class="report-statistics-text">
                                     <p>Credit Card Transactions</p>
                                     <span>Number of Card Payments</span>
-                                    <h2 id="countCreditCardPayments">6</h2>
+                                    <h2 id="countCreditCardPayments">0</h2>
                                 </div>
                             </div>
                         </div>
 
                         <div class="report-statistics-div" title="Bank Transfer Transactions">
                             <div class="statistics-inner-div">
-                                <div class="icon-div primary">
+                                <div class="icon-div active">
                                     <i class="bi bi-bank"></i>
                                 </div>
 
                                 <div class="report-statistics-text">
                                     <p>Bank Transfer Transactions</p>
                                     <span>Number of Bank Transfer Payments</span>
-                                    <h2 id="countBankTransferPayments">17</h2>
+                                    <h2 id="countBankTransferPayments">0</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="report-statistics-div" title="Paystack Charges">
+                            <div class="statistics-inner-div">
+                                <div class="icon-div danger">
+                                    <i class="bi bi-receipt-cutoff"></i>
+                                </div>
+
+                                <div class="report-statistics-text">
+                                    <p>Paystack Charges</p>
+                                    <span>Total Transaction Charges</span>
+                                    <h2 id="sumPaystackCharges"><s>N</s>0.00</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="report-statistics-div" title="Paystack Remittance">
+                            <div class="statistics-inner-div">
+                                <div class="icon-div primary">
+                                    <i class="bi bi-arrow-left-right"></i>
+                                </div>
+
+                                <div class="report-statistics-text">
+                                    <p>Paystack Remittance</p>
+                                    <span>Total Amount Remitted</span>
+                                    <h2 id="sumPaystackRemittance"><s>N</s>0.00</h2>
                                 </div>
                             </div>
                         </div>
@@ -199,93 +237,20 @@
                                 </tr>
                             </thead>
 
-                            <tbody id="pageContent">
-                                <tr class="tb-row">
-                                    <td>1</td>
-                                    <td class="clickable-td" title="Click to view payment breakdown"
-                                        onclick="_getForm({ page: 'revenueBreakdown', id: '2026-07-16', url: trainingAdminPortalMiddlewareUrl});">
-                                        <div class="text-back-div">
-                                            <div class="icon-div">
-                                                <i class="bi bi-calendar-check-fill"></i>
-                                            </div>
-                                            2026-07-16
-                                        </div>
-                                    </td>
-                                    <td class="SUCCESSFULSTATUS"><s>N</s>20,000.00</td>
-                                    <td class="PENDINGSTATUS"><s>N</s>0.00</td>
-                                    <td class="CANCLLEDSTATUS"><s>N</s>0.00</td>
-                                    <td><button class="btn view-btn" title="Click to view payment breakdown"
-                                            onclick="_getForm({ page: 'revenueBreakdown', id: '2026-07-16', url: trainingAdminPortalMiddlewareUrl});">VIEW
-                                            DETAILS <i class="bi bi-eye"></i></button></td>
-                                </tr>
-
-                                <tr class="tb-row">
-                                    <td>2</td>
-                                    <td class="clickable-td" title="Click to view payment breakdown"
-                                        onclick="_getForm({ page: 'revenueBreakdown', id: '2026-07-16', url: trainingAdminPortalMiddlewareUrl});">
-                                        <div class="text-back-div">
-                                            <div class="icon-div">
-                                                <i class="bi bi-calendar-check-fill"></i>
-                                            </div>
-                                            2026-07-17
-                                        </div>
-                                    </td>
-                                    <td class="SUCCESSFULSTATUS"><s>N</s>10,000.00</td>
-                                    <td class="PENDINGSTATUS"><s>N</s>0.00</td>
-                                    <td class="CANCLLEDSTATUS"><s>N</s>0.00</td>
-                                    <td><button class="btn view-btn" title="Click to view payment breakdown"
-                                            onclick="_getForm({ page: 'revenueBreakdown', id: '2026-07-16', url: trainingAdminPortalMiddlewareUrl});">VIEW
-                                            DETAILS <i class="bi bi-eye"></i></button></td>
-                                </tr>
-
-                                <tr class="tb-row">
-                                    <td>3</td>
-                                    <td class="clickable-td" title="Click to view payment breakdown"
-                                        onclick="_getForm({ page: 'revenueBreakdown', id: '2026-07-16', url: trainingAdminPortalMiddlewareUrl});">
-                                        <div class="text-back-div">
-                                            <div class="icon-div">
-                                                <i class="bi bi-calendar-check-fill"></i>
-                                            </div>
-                                            2026-07-18
-                                        </div>
-                                    </td>
-                                    <td class="SUCCESSFULSTATUS"><s>N</s>800.00</td>
-                                    <td class="PENDINGSTATUS"><s>N</s>0.00</td>
-                                    <td class="CANCLLEDSTATUS"><s>N</s>0.00</td>
-                                    <td><button class="btn view-btn" title="Click to view payment breakdown"
-                                            onclick="_getForm({ page: 'revenueBreakdown', id: '2026-07-16', url: trainingAdminPortalMiddlewareUrl});">VIEW
-                                            DETAILS <i class="bi bi-eye"></i></button></td>
-                                </tr>
-
-                                <tr class="tb-row">
-                                    <td>4</td>
-                                    <td class="clickable-td" title="Click to view payment breakdown"
-                                        onclick="_getForm({ page: 'revenueBreakdown', id: '2026-07-16', url: trainingAdminPortalMiddlewareUrl});">
-                                        <div class="text-back-div">
-                                            <div class="icon-div">
-                                                <i class="bi bi-calendar-check-fill"></i>
-                                            </div>
-                                            2026-07-19
-                                        </div>
-                                    </td>
-                                    <td class="SUCCESSFULSTATUS"><s>N</s>800.00</td>
-                                    <td class="PENDINGSTATUS"><s>N</s>0.00</td>
-                                    <td class="CANCLLEDSTATUS"><s>N</s>0.00</td>
-                                    <td><button class="btn view-btn" title="Click to view payment breakdown"
-                                            onclick="_getForm({ page: 'revenueBreakdown', id: '2026-07-16', url: trainingAdminPortalMiddlewareUrl});">VIEW
-                                            DETAILS <i class="bi bi-eye"></i></button></td>
-                                </tr>
+                            <tbody id="acoountReportPageContent">
 
                                 <!-- CONTENT GOES HERE -->
-                                <!-- <tr>
-                                        <td colspan="20">
-                                            <div class="content-loading-div">
-                                                <img src="<?php echo $websiteUrl ?>/images/spinner.gif" alt="Loading" />
-                                            </div>
-                                        </td>
-                                    </tr> -->
+                                <tr>
+                                    <td colspan="20">
+                                        <div class="content-loading-div">
+                                            <img src="<?php echo $websiteUrl ?>/images/spinner.gif" alt="Loading" />
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
+                        <!-- Pagination -->
+                        <div id="acoountReportPageContentPaginationControls" class="pagination-div"></div>
                     </div>
                 </div>
             </div>
@@ -303,24 +268,24 @@
                             title: {
                                 text: "" /*My Performance*/
                             },
-                            data: [{
-                                type: "doughnut",
-                                innerRadius: 30,
-                                showInLegend: "False",
-                                legendText: "{label}",
-                                indexLabel: "{label} ({y})",
-                                yValueFormatString: "#,##0.#" % "",
-                                indexLabelFontSize: 9,
-                                dataPoints: [{
-                                        label: "Credit Card",
-                                        y: 10000
-                                    },
-                                    {
-                                        label: "Bank Transfer",
-                                        y: 10000
-                                    },
-                                ]
-                            }]
+                            // data: [{
+                            //     type: "doughnut",
+                            //     innerRadius: 30,
+                            //     showInLegend: "False",
+                            //     legendText: "{label}",
+                            //     indexLabel: "{label} ({y})",
+                            //     yValueFormatString: "#,##0.#" % "",
+                            //     indexLabelFontSize: 9,
+                            //     dataPoints: [{
+                            //             label: "Credit Card",
+                            //             y: 10000
+                            //         },
+                            //         {
+                            //             label: "Bank Transfer",
+                            //             y: 10000
+                            //         },
+                            //     ]
+                            // }]
                         };
                         $("#chartContainer1").CanvasJSChart(options);
                         </script>
@@ -339,23 +304,23 @@
                             title: {
                                 text: "" /*My Performance*/
                             },
-                            data: [{
-                                type: "pie",
-                                startAngle: 45,
-                                showInLegend: "False",
-                                legendText: "{label}",
-                                indexLabel: "{label} ({y})",
-                                yValueFormatString: "#,##0.#" % "",
-                                dataPoints: [{
-                                        label: "Debit/Credit Card",
-                                        y: 3
-                                    },
-                                    {
-                                        label: "Bank Transfer",
-                                        y: 11
-                                    },
-                                ]
-                            }]
+                            // data: [{
+                            //     type: "pie",
+                            //     startAngle: 45,
+                            //     showInLegend: "False",
+                            //     legendText: "{label}",
+                            //     indexLabel: "{label} ({y})",
+                            //     yValueFormatString: "#,##0.#" % "",
+                            //     dataPoints: [{
+                            //             label: "Debit/Credit Card",
+                            //             y: 3
+                            //         },
+                            //         {
+                            //             label: "Bank Transfer",
+                            //             y: 11
+                            //         },
+                            //     ]
+                            // }]
                         };
                         $("#chartContainer2").CanvasJSChart(options);
                         </script>
@@ -365,6 +330,12 @@
         </div>
     </div>
 </div>
+
+    <script>
+        $(document).ready(function() {
+            _fetchReportRevenueFiltering('srch-30', 'Last 30 Days');
+        });
+    </script>
 <?php } ?>
 
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -689,7 +660,7 @@
                                         <div>Student ID:</div>
                                         <div>
                                             <span id="userId">
-                                               SID01320260702105153
+                                                SID01320260702105153
                                             </span>
                                         </div>
                                     </div>
@@ -711,7 +682,7 @@
                                         <div>Institution Name:</div>
                                         <div>
                                             <span id="emailAddress">
-                                               GATEWAY ICT POLYTECHNIC
+                                                GATEWAY ICT POLYTECHNIC
                                             </span>
                                         </div>
                                     </div>
@@ -935,7 +906,7 @@
                                     <div class="alert-list">
                                         <div>Payment Purpose:</div>
                                         <div><span id="paymentMethodName">
-                                                	FORM FEE
+                                                FORM FEE
                                             </span></div>
                                     </div>
                                 </div>
@@ -944,7 +915,7 @@
                                     <div class="alert-list">
                                         <div>Payment Method:</div>
                                         <div><span id="paymentMethodName">
-                                                 CREDIT/DEBIT CARD
+                                                CREDIT/DEBIT CARD
                                             </span></div>
                                     </div>
                                 </div>
@@ -962,7 +933,7 @@
                                     <div class="alert-list">
                                         <div>Date Initiated:</div>
                                         <div><span id="createdTime">
-                                               2026-07-02 10:52:03
+                                                2026-07-02 10:52:03
                                             </span></div>
                                     </div>
                                 </div>
@@ -971,7 +942,7 @@
                                     <div class="alert-list">
                                         <div>Date Confirmed:</div>
                                         <div><span id="payDate">
-                                               2026-07-02 10:52:03
+                                                2026-07-02 10:52:03
                                             </span></div>
                                     </div>
                                 </div>
@@ -996,8 +967,8 @@
                                 <div class="alert-list-back-div">
                                     <div class="alert-list">
                                         <div>Total Amount:</div>
-                                            <div>
-                                                <span class="total-amount"><s>N</s>200,000.00
+                                        <div>
+                                            <span class="total-amount"><s>N</s>200,000.00
                                             </span>
                                         </div>
                                     </div>

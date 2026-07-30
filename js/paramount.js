@@ -459,6 +459,32 @@ function _formatDate(newDate) {
   return `${getOrdinal(day)} ${month}, ${year}`;
 }
 
+function _formatShortDate(dateTime) {
+  if (!dateTime) return "";
+
+  const d = new Date(dateTime.replace(" ", "T"));
+
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+function _formatTime(dateTime) {
+    if (!dateTime) return "";
+
+    // Tell JS this is UTC
+    const utcDate = new Date(dateTime.replace(" ", "T") + "Z");
+
+    return utcDate.toLocaleTimeString("en-NG", {
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+    }).toUpperCase();
+}
+
 function capitalizeFirstLetterOfEachWord(inputText) {
   const words = inputText.toLowerCase().split(" ");
   for (let i = 0; i < words.length; i++) {
@@ -466,6 +492,21 @@ function capitalizeFirstLetterOfEachWord(inputText) {
   }
   const result = words.join(" ");
   return result;
+}
+
+function _userRoleCheck(){
+	$('.switch input').on('change', function () {
+		const label = $(this).next().next(); // Grab the toggle-label span
+		label.text($(this).prop('checked') ? 'Yes' : 'No');
+	});
+}
+
+function getFirstLettersOfEachWord(str) {
+  return str
+    .split(" ") // split by spaces
+    .filter((word) => word) // remove empty strings (in case of double spaces)
+    .map((word) => word[0].toUpperCase()) // take first letter and uppercase it
+    .join(""); // join into a single string
 }
 
 /// countdown function ///
@@ -504,4 +545,39 @@ function _counDownOtp(timer) {
     }, 1000);
 
     return () => clearInterval(countdown);
+}
+function _showEmptyState(props) {
+  const {
+    container = "",
+    message = "Something went wrong",
+    colspan = null,
+    button = "",
+    paginationContainer = ""
+  } = props;
+
+  let content = `
+    <div class="empty-state-div">
+      <div class="icon">
+        <img src="${websiteUrl}/all-images/images/no-record.png" alt="Warning" />
+      </div>
+      <p>${message}</p>
+      ${button ? `<div>${button}</div>` : ""}
+    </div>
+  `;
+
+  if (colspan) {
+    content = `
+      <tr>
+        <td colspan="${colspan}">
+          ${content}
+        </td>
+      </tr>
+    `;
+  }
+
+  $(`#${container}`).html(content);
+
+  if (paginationContainer) {
+    $(`#${paginationContainer}`).empty().hide();
+  }
 }

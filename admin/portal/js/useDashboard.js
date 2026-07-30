@@ -105,26 +105,25 @@ function _getSelectStatusId(fieldId, statusIds) {
 		//// call endpoint //////
 		_callFetchEndPoints({
 			url: `preset-data/fetch-status?statusId=${statusIds}`,
-      accessKey: true,
 		})
-        .then((response) => {
-            $("#searchList_" + fieldId).html("");
-			for (let i = 0; i < response.data.length; i++) {
-				const id = response.data[i].statusId;
-        const value = response.data[i].statusName;
-                
-				$("#searchList_" + fieldId).append(`
-          <li onclick="
-            _clickOption(
-              'searchList_${fieldId}',
-              '${id}',
-              '${value}'
-            );
-          ">
-            ${value}
-          </li>
-        `);
-			}				
+      .then((response) => {
+          $("#searchList_" + fieldId).html("");
+        for (let i = 0; i < response.data.length; i++) {
+          const id = response.data[i].statusId;
+          const value = response.data[i].statusName;
+                  
+          $("#searchList_" + fieldId).append(`
+            <li onclick="
+              _clickOption(
+                'searchList_${fieldId}',
+                '${id}',
+                '${value}'
+              );
+            ">
+              ${value}
+            </li>
+          `);
+        }				
 		})
 		.catch((error) => {
 			console.error("Error:", error);

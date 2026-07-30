@@ -13,12 +13,3 @@ function _getStudentPagesActiveLink(divid) {
   $("#studentProfileDetails").removeClass("active");
   $("#" + divid).addClass("active");
 }
-
-function _filtersStaffs(value) {
-  $("#staffContent .tb-row").each(function () {
-    var text = $(this).text();
-    text.toLowerCase().indexOf(value.toLowerCase()) > -1
-      ? $(this).show()
-      : $(this).hide();
-  });
-}

@@ -17,3 +17,12 @@
 <script src="<?php echo $websiteUrl?>/js/aos.js"></script>
 
 <script src="<?php echo $websiteUrl?>/training/admin/js/useAdmin.js?v=<?php echo $codeVersion?>"></script>
+<script>
+    let staffLoginData = JSON.parse(sessionStorage.getItem("staffLoginData"));
+
+    if (staffLoginData){
+        window.parent.location.href = trainingAdminPortalUrl;
+    } else {
+        sessionStorage.setItem("staffLoginData", JSON.stringify(''));
+    }
+</script>

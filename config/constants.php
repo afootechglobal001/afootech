@@ -52,9 +52,11 @@ var trainingMiddlewareUrl = websiteUrl + '/training/config/code'; //// For Train
 var registerUrl = websiteUrl + '/training/register'; //// For Register Url
 var trainingUrl = websiteUrl + '/training'; //// For Training Url
 var trainingAdminMiddlewareUrl = websiteUrl + '/training/admin/config/code'; //// For Training Admin Middleware url
-var trainingAdminPortalUrl = websiteUrl + '/training/admin/portal'; //// For Training Admin Portal url
 var trainingAdminUrl = websiteUrl + '/training/admin'; //// For Training Admin Portal url
+var trainingAdminPortalUrl = websiteUrl + '/training/admin/portal'; //// For Training Admin Portal url
 var trainingAdminPortalMiddlewareUrl = websiteUrl + '/training/admin/portal/config/code'; //// For Training Admin Portal Middleware url
+var adminUserVerificationUrl = websiteUrl + '/training/admin/user-verification'; //// For Training Admin User Verification url
+var trainingAdminCompleteResetPasswordUrl = websiteUrl + '/training/admin/complete-reset-password'; /// For Complete Reset Password Url //
 
 /// Pssport Paths
 var passportPath=websiteUrl+'/uploaded_files/studentPassport'; /// For Passport Path ///

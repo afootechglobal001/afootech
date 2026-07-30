@@ -12,7 +12,7 @@
 
         <div class="btn-div">
             <div class="search-div">
-                <input type="text" onkeyup="_filtersStaffs(this.value);" placeholder="Search Staff Here...">
+                <input type="text" onkeyup="" placeholder="Search Staff Here...">
                 <i class="bi bi-search"></i>
             </div>
             <button class="btn" title="ADD NEW STAFF" onclick="_getForm({page: 'staffReg', url: adminPortalMiddlewareUrl});">

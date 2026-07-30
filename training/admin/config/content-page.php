@@ -4,10 +4,10 @@
 		<p>Sign in to access the <?php echo $appName ?> Training Admin Portal and manage student records, operations, and company resources.</p>
 
 		<div class="inner-form" id="viewLogin">
-			<div class="text_field_container" id="emailAddress_container">
+			<div class="text_field_container" id="userName_container">
 				<script>
 					textField({
-						id: 'emailAddress',
+						id: 'userName',
 						title: 'Email Address'
 					});
 				</script>
@@ -35,7 +35,7 @@
 			</div>
 
 			<div class="btn-div">
-				<button class="btn" id="submitBtn" title="Log In" onclick="window.location.href = trainingAdminPortalUrl;">Log In <i class="bi-arrow-right"></i></button>
+				<button class="btn" id="submitBtn" title="Log In" onclick="_confirmLogin();">Log In <i class="bi-arrow-right"></i></button>
 			</div>
 		</div>
     </div>
@@ -68,6 +68,19 @@
 <?php }?>
 
 <?php if($page=='otpPage'){?>
+	<script>
+		$(document).ready(function () {
+			let staffResetPasswordSession = JSON.parse(localStorage.getItem("staffResetPasswordSession"));
+			if (!staffResetPasswordSession) {
+				window.location.href = trainingAdminUrl;
+				return;
+			}
+
+			$("#fullName").html(staffResetPasswordSession?.fullName);
+			$("#userEmailAddress").html(staffResetPasswordSession?.emailAddress);
+		});
+	</script>
+
 	<div class="form-div" data-aos="fade-in" data-aos-duration="1200">
 		<h1> Reset Password <span>OTP!</span></h1>
 		<div class="alert alert-success form-alert-div"> <i class="bi-person"></i> Hi, <span id="fullName"></span>,	
@@ -98,7 +111,7 @@
             	<button class="btn" id="verifyBtn" title="Proceed" onclick="_proceedOtpVerification();">Proceed <i class="bi-arrow-right"></i></button>
 			</div>
 			<div class="reset-password">
-                Already have an account? <span onclick="window.location.href = adminUrl;">Login Here</span>
+                Already have an account? <span onclick="window.location.href = trainingAdminUrl;">Login Here</span>
             </div>
         </div>
     </div>
