@@ -134,6 +134,7 @@ function _fetchCustomReportRevenueFiltering() {
   _reportRevenueFiltering(dateFrom, dateTo);
 }
 
+/// Render Account Report Revenue Filtering ///
 function _reportRevenueFiltering(dateFrom, dateTo) {
   $("#get-form-more-div")
     .css({
@@ -251,7 +252,6 @@ function _reportRevenueFiltering(dateFrom, dateTo) {
   	}
 }
 
-
 /// Render Account Table Data ///
 function _renderAccountTableData(data, start) {
   return data
@@ -336,5 +336,408 @@ function _initFetchAccountReportTableData(response) {
   );
 
   __paginatorHandlers["acoountReportPageContentPaginationControls"] = paginator;
+  paginator.renderPage();
+}
+
+/// Load Payments by Status ///
+// function _loadPaymentsByStatus(statusId, newpayDate) {
+//   try {
+//     //// call endpoint //////
+//     _callFetchEndPoints({
+//       url: `admin/account-reports/fetch-revenue-by-date?statusId=${statusId}&date=${newpayDate}`,
+//       accessKey: true,
+//     })
+//     .then((response) => {
+//       if (response?.data && response?.data.length > 0) {
+//         _initFetchStatusReportTableData(response);
+//         $('#date').html(response?.date);
+//         if (statusId === '5' && response?.data.length > 0) {
+//           $('output').show();
+//           $('#totalAmount').html("<s>N</s>" + thousandSeperator(response?.totalAmount));
+//         } else {
+//           $('output').hide();
+//         }
+//       } else {
+//         _showEmptyState({
+//           container: "acoountStatusReportPageContent",
+//           message: "No payment records found!",
+//           colspan: 20,
+//           paginationContainer: "acoountStatusReportContentPaginationControls",
+//         });
+//       }
+//     })
+//     .catch((error) => {
+//       _staffValidationCheck(error.response);
+//       console.error("Error:", error);
+//       if (error.status==0) {
+//         _alertClose();
+//           _showEmptyState({
+//           container: "acoountStatusReportPageContent",
+//           message: "Check your internet connection and try again",
+//           colspan: 20,
+//           paginationContainer: "acoountStatusReportContentPaginationControls",
+//         });
+//       }
+//     });
+//   } catch (error) {
+//     _alertClose();
+//     console.error("Error:", error);
+//     _callCatchError(() => _loadPaymentsByStatus(statusId, newpayDate));
+//   }
+// }
+
+function _loadPaymentsByStatus(statusId, newpayDate) {
+  try {
+
+    // COMMENT THIS FOR NOW
+    /*
+    _callFetchEndPoints({
+      url: `admin/account-reports/fetch-revenue-by-date?statusId=${statusId}&date=${newpayDate}`,
+      accessKey: true,
+    })
+    */
+
+    // DUMMY RESPONSE
+    const response = {
+      response: 200,
+      success: true,
+      message: "REVENUE FETCHED SUCCESSFULLY",
+      date: "August 10, 2026",
+      totalAmount: "4000.00",
+      data: [
+        {
+          paymentId: "PAY001",
+          phoneNumber: "07050903886",
+          email: "seunemmanuel107@gmail.com",
+          amountPaid: "800.00",
+          payDate: "2026-08-10",
+          studentData: {
+            studentId: "SID00320260624110353",
+            firstName: "John",
+            lastName: "Emmanuel",
+            passport: "default.jpg"
+          },
+          institutionData: {
+            institutionName: "Gateway ICT Polytechnic",
+            departmentName: "Computer Science"
+          },
+          programData: {
+            programName: "SIWES",
+            courseName: "Backend Web Development"
+          },
+          levelData: {
+            matricNumber: "18012211071",
+            levelName: "ND I"
+          },
+          statusData: {
+            statusId: "5",
+            statusName: "SUCCESSFUL"
+          }
+        },
+        {
+          paymentId: "PAY002",
+          phoneNumber: "08034567890",
+          email: "maryjohnson@gmail.com",
+          amountPaid: "800.00",
+          payDate: "2026-08-10",
+
+          studentData: {
+            studentId: "SID00320260624110354",
+            firstName: "Mary",
+            lastName: "Johnson",
+            passport: "default.jpg"
+          },
+
+          institutionData: {
+            institutionName: "Federal Polytechnic Offa",
+            departmentName: "Computer Science"
+          },
+
+          programData: {
+            programName: "Industrial Training",
+            courseName: "Frontend Development"
+          },
+
+          levelData: {
+            matricNumber: "OFFA/CSC/2024/102",
+            levelName: "ND II"
+          },
+
+          statusData: {
+            statusId: "5",
+            statusName: "SUCCESSFUL"
+          }
+        },
+        {
+          paymentId: "PAY003",
+          phoneNumber: "08123456789",
+          email: "davidadebayo@gmail.com",
+          amountPaid: "800.00",
+          payDate: "2026-08-10",
+
+          studentData: {
+            studentId: "SID00320260624110355",
+            firstName: "David",
+            lastName: "Adebayo",
+            passport: "default.jpg"
+          },
+
+          institutionData: {
+            institutionName: "Lagos State University",
+            departmentName: "Software Engineering"
+          },
+
+          programData: {
+            programName: "SIWES",
+            courseName: "Full Stack Development"
+          },
+
+          levelData: {
+            matricNumber: "LASU/SE/2023/115",
+            levelName: "300 Level"
+          },
+
+          statusData: {
+            statusId: "5",
+            statusName: "SUCCESSFUL"
+          }
+        },
+        {
+          paymentId: "PAY004",
+          phoneNumber: "08098765432",
+          email: "blessingrabiu@gmail.com",
+          amountPaid: "800.00",
+          payDate: "2026-08-10",
+
+          studentData: {
+            studentId: "SID00320260624110356",
+            firstName: "Blessing",
+            lastName: "Rabiu",
+            passport: "default.jpg"
+          },
+
+          institutionData: {
+            institutionName: "Kwara State Polytechnic",
+            departmentName: "Computer Science"
+          },
+
+          programData: {
+            programName: "Industrial Training",
+            courseName: "Mobile App Development"
+          },
+
+          levelData: {
+            matricNumber: "KWP/CSC/2024/221",
+            levelName: "ND II"
+          },
+
+          statusData: {
+            statusId: "5",
+            statusName: "SUCCESSFUL"
+          }
+        },
+        {
+          paymentId: "PAY005",
+          phoneNumber: "07011223344",
+          email: "samuelyakubu@gmail.com",
+          amountPaid: "800.00",
+          payDate: "2026-08-10",
+
+          studentData: {
+            studentId: "SID00320260624110357",
+            firstName: "Samuel",
+            lastName: "Yakubu",
+            passport: "default.jpg"
+          },
+
+          institutionData: {
+            institutionName: "University of Ilorin",
+            departmentName: "Computer Science"
+          },
+
+          programData: {
+            programName: "SIWES",
+            courseName: "Cybersecurity"
+          },
+
+          levelData: {
+            matricNumber: "UIL/CSC/2023/089",
+            levelName: "300 Level"
+          },
+
+          statusData: {
+            statusId: "3",
+            statusName: "PENDING"
+          }
+        }
+      ]
+    };
+
+    if (response?.data && response?.data.length > 0) {
+      _initFetchStatusReportTableData(response);
+      $('#date').html(response?.date);
+      if (statusId === '5') {
+        $('output').show();
+        $('#totalAmount').html("<s>N</s>" + thousandSeperator(response.totalAmount));
+      } else {
+        $('output').hide();
+      }
+    } else {
+      _showEmptyState({
+        container: "acoountStatusReportPageContent",
+        message: "No payment records found!",
+        colspan: 20,
+        paginationContainer: "acoountStatusReportContentPaginationControls",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+/// Render Status Report Table Data ///
+function _renderStatusReportTableData(data, start) {
+  return data.map((item, i) => {
+    const no = start + i + 1;
+    const studentData = item.studentData || {};
+    const institutionData = item.institutionData || {};
+    const programData = item.programData || {};
+    const levelData = item.levelData || {};
+    const statusData = item.statusData || {};
+    const studentId = studentData.studentId || "";
+    const passport = studentData.passport || "default.jpg";
+    const fullname = `${studentData.firstName || ""} ${studentData.lastName || ""}`.trim();
+    const phoneNumber = item.phoneNumber || "";
+    const email = item.email || "";
+    const institutionName = institutionData.institutionName || "";
+    const departmentName = institutionData.departmentName || "";
+    const programName = programData.programName || "";
+    const courseName = programData.courseName || "";
+    const matricNumber = levelData.matricNumber || "";
+    const levelName = levelData.levelName || "";
+    const amountPaid = item.amountPaid || "0";
+    const payDate = item.payDate || "";
+    const statusId = statusData.statusId || "";
+    const statusName = statusData.statusName || "";
+    const paymentId = item.paymentId || "";
+
+    $('#revenueAlert').removeClass('alert-success alert-failed');
+      if (statusName === 'SUCCESSFUL') {
+        $('#revenueAlert').addClass('alert-success');
+      } else {
+        $('#revenueAlert').addClass('alert-failed');
+    }
+
+    if (statusId === '3') {
+      $('#actionHeader').show();
+    } else {
+      $('#actionHeader').hide();
+    }
+    
+    let buttonHtml = '';
+
+    if (statusId === '3') {
+      buttonHtml = `
+        <td>
+          <div class="btn-div">
+            <button class="confirm-btn"
+              id="confirmBtn_${paymentId}"
+              title="Click to confirm payment"
+              onclick="_paymentConfirmation('success', '${paymentId}', '${paymentId}');">
+              <i class="bi-check-circle"></i>
+            </button>
+
+            <button class="confirm-btn cancel-btn"
+              id="cancelBtn_${paymentId}"
+              title="Click to cancel payment"
+              onclick="_paymentConfirmation('cancel', '${paymentId}', '${paymentId}');">
+              <i class="bi-x-circle"></i>
+            </button>
+          </div>
+        </td>
+      `;
+    }
+    
+    return `
+      <tr class="tb-row">
+        <td>${no}</td>
+        <td>
+          <div class="text-back-div">
+            <div class="image-div general-passport">
+              <img src="${passportPath}/${passport}" alt="${fullname}" />
+            </div>
+
+            <div class="text-div">
+              <div class="first-class">${fullname}</div>
+              <div class="second-class">${studentId}</div>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div class="text-div">
+            <div>${phoneNumber}</div>
+            <div>${email}</div>
+          </div>
+        </td>
+
+        <td>
+          <div class="text-div">
+            <div>${institutionName}</div>
+            <div>${departmentName}</div>
+          </div>
+        </td>
+
+        <td>
+          <div class="text-div">
+            <div>${programName}</div>
+            <div>${courseName}</div>
+          </div>
+        </td>
+
+        <td>
+          <div class="text-div">
+            <div>${matricNumber}</div>
+            <div>${levelName}</div>
+          </div>
+        </td>
+        <td><s>N</s>${thousandSeperator(amountPaid)}</td>
+        <td>
+          <div class="status-div ${statusName}">
+            ${statusName}
+          </div>
+        </td>
+        <td>${payDate}</td>
+        <td>
+          <div class="btn-div">
+            <button class="btn view-btn"
+              title="Click to view payment breakdown"
+              onclick="_getForm({
+              page:'paymentBreakDownForm',
+              id:'${paymentId}',
+              layer:2,
+              url:trainingAdminPortalMiddlewareUrl
+            });">
+              VIEW DETAILS
+            </button>
+          </div>
+        </td>
+        ${buttonHtml}
+      </tr>
+    `;
+  }).join("");
+}
+
+/// Initialize Fetch Status Report Table Data ///
+function _initFetchStatusReportTableData(response) {
+  const paginator = new Paginator(
+    response.data || [],
+    _renderStatusReportTableData,
+    "acoountStatusReportContentPaginationControls",
+    "acoountStatusReportPageContent",
+    10
+  );
+
+  __paginatorHandlers["acoountStatusReportContentPaginationControls"] = paginator;
   paginator.renderPage();
 }

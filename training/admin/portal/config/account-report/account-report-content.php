@@ -402,666 +402,685 @@
 
 <!-- ///// Success Page //// -->
 <?php if ($page == 'successfulPage') { ?>
-<div id="revenueAlert" class="alert top-alert-div report-alert animated fadeIn">
-    <div>
-        <i class="bi-graph-up-arrow"></i>
-        Successful Transactions On <span id="date"></span>
-        <output style="display:none;">
-            -- Total Revenue:
-            <span class="balance" id="totalAmount"></span>
-        </output>
+    <div id="revenueAlert" class="alert top-alert-div report-alert animated fadeIn">
+        <div>
+            <i class="bi-graph-up-arrow"></i>
+            Successful Transactions On <span id="date"></span>
+            <output style="display:none;">
+                -- Total Revenue:
+                <span class="balance" id="totalAmount"></span>
+            </output>
+        </div>
+
+        <div class="btn-container">
+            <button class="btn"><i class="bi-printer"></i> PRINT</button>
+            <button class="btn"><i class="bi-file-earmark-excel"></i> EXPORT</button>
+        </div>
     </div>
 
-    <div class="btn-container">
-        <button class="btn"><i class="bi-printer"></i> PRINT</button>
-        <button class="btn"><i class="bi-file-earmark-excel"></i> EXPORT</button>
-    </div>
-</div>
+    <div class="table-div animated fadeIn">
+        <table class="table" cellspacing="0" style="width:100%">
+            <thead>
+                <tr class="tb-col">
+                    <th>sn</th>
+                    <th>Student Info</th>
+                    <th>Contact</th>
+                    <th>Institution</th>
+                    <th>Program</th>
+                    <th>Level</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>View</th>
+                    <th id="actionHeader" style="display:none;">Action</th>
+                </tr>
+            </thead>
 
-<div class="table-div animated fadeIn">
-    <table class="table" cellspacing="0" style="width:100%">
-        <thead>
-            <tr class="tb-col">
-                <th>sn</th>
-                <th>Student Info</th>
-                <th>Contact</th>
-                <th>Institution</th>
-                <th>Program</th>
-                <th>Level</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th>View</th>
-            </tr>
-        </thead>
+            <tbody id="acoountStatusReportPageContent">
+                <!-- <tr class="tb-row">
+                    <td>1</td>
 
-        <tbody id="pageContent">
+                    <td class="clickable-td" title="Click to view student details"
+                        onclick="_fetchEachBranchStudents('${branchId}','${departmentId}','${classId}','${armId}','${studentId}','');">
 
-            <tr class="tb-row">
-                <td>1</td>
+                        <div class="text-back-div">
+                            <div class="image-div general-passport">
+                                <img src="${studentPixPath}/${passport}" alt="John Emmanuel" />
+                            </div>
 
-                <td class="clickable-td" title="Click to view student details"
-                    onclick="_fetchEachBranchStudents('${branchId}','${departmentId}','${classId}','${armId}','${studentId}','');">
-
-                    <div class="text-back-div">
-                        <div class="image-div general-passport">
-                            <img src="${studentPixPath}/${passport}" alt="John Emmanuel" />
+                            <div class="text-div">
+                                <div class="first-class">John Emmanuel</div>
+                                <div class="second-class">SID00320260624110353</div>
+                            </div>
                         </div>
+                    </td>
 
+                    <td>
                         <div class="text-div">
-                            <div class="first-class">John Emmanuel</div>
-                            <div class="second-class">SID00320260624110353</div>
+                            <div>
+                                07050903886
+                            </div>
+                            <div>
+                                seunemmanuel107@gmail.com
+                            </div>
                         </div>
-                    </div>
-                </td>
+                    </td>
 
-                <td>
-                    <div class="text-div">
-                        <div>
-                            07050903886
+                    <td>
+                        <div class="text-div">
+                            <div>
+                                Gateway ICT Polytechnic
+                            </div>
+                            <div>
+                                Computer Science
+                            </div>
                         </div>
-                        <div>
-                            seunemmanuel107@gmail.com
+                    </td>
+
+                    <td>
+                        <div class="text-div">
+                            <div>SIWES</div>
+                            <div>Backend Web Development</div>
                         </div>
-                    </div>
-                </td>
+                    </td>
 
-                <td>
-                    <div class="text-div">
-                        <div>
-                            Gateway ICT Polytechnic
+                    <td>
+                        <div class="text-div">
+                            <div>
+                                18012211071
+                            </div>
+                            <div>
+                                ND 1
+                            </div>
                         </div>
-                        <div>
-                            Computer Science
+                    </td>
+
+                    <td><s>N</s>800.00</td>
+
+                    <td>
+                        <div class="status-div SUCCESSFUL">
+                            SUCCESSFUL
                         </div>
-                    </div>
-                </td>
+                    </td>
 
-                <td>
-                    <div class="text-div">
-                        <div>SIWES</div>
-                        <div>Backend Web Development</div>
-                    </div>
-                </td>
-
-                <td>
-                    <div class="text-div">
-                        <div>
-                            18012211071
+                    <td>2026-07-16</td>
+                    <td><button class="btn view-btn" title="Click to view payment breakdown"
+                            onclick="_getForm({ page: 'paymentBreakDownForm', id: '2026-07-16', layer:2, url: trainingAdminPortalMiddlewareUrl});">VIEW
+                            DETAILS</button></td>
+                </tr> -->
+                <script>
+                    $(document).ready(function() {
+                        const newpayDate = "<?php echo $id; ?>";
+                        _loadPaymentsByStatus('5', newpayDate);
+                    });
+                </script>
+                
+                <tr>
+                    <td colspan="20">
+                        <div class="content-loading-div">
+                            <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
                         </div>
-                        <div>
-                            ND 1
-                        </div>
-                    </div>
-                </td>
-
-                <td><s>N</s>800.00</td>
-
-                <td>
-                    <div class="status-div SUCCESSFUL">
-                        SUCCESSFUL
-                    </div>
-                </td>
-
-                <td>2026-07-16</td>
-                <td><button class="btn view-btn" title="Click to view payment breakdown"
-                        onclick="_getForm({ page: 'paymentBreakDownForm', id: '2026-07-16', layer:2, url: trainingAdminPortalMiddlewareUrl});">VIEW
-                        DETAILS</button></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Pagination -->
+        <div id="acoountStatusReportContentPaginationControls" class="pagination-div"></div>
+    </div>
 <?php } ?>
 
 <!-- ///// Pending Page //// -->
 <?php if ($page == 'pendingPage') { ?>
-<div id="revenueAlert" class="alert top-alert-div animated fadeIn">
-    <div>
-        <i class="bi-graph-up-arrow"></i>
-        Pending Transactions On <span id="date"></span>
-        <output style="display:none;">
-            -- Total Revenue:
-            <span class="balance" id="totalAmount"></span>
-        </output>
+    <div id="revenueAlert" class="alert top-alert-div animated fadeIn">
+        <div>
+            <i class="bi-graph-up-arrow"></i>
+            Pending Transactions On <span id="date"></span>
+            <output style="display:none;">
+                -- Total Revenue:
+                <span class="balance" id="totalAmount"></span>
+            </output>
+        </div>
+
+        <div class="btn-container">
+            <button class="btn"><i class="bi-printer"></i> PRINT</button>
+            <button class="btn"><i class="bi-file-earmark-excel"></i> EXPORT</button>
+        </div>
     </div>
 
-    <div class="btn-container">
-        <button class="btn"><i class="bi-printer"></i> PRINT</button>
-        <button class="btn"><i class="bi-file-earmark-excel"></i> EXPORT</button>
+    <div class="table-div animated fadeIn">
+        <table class="table" cellspacing="0" style="width:100%">
+            <thead>
+                <tr class="tb-col">
+                    <th>sn</th>
+                    <th>Student Info</th>
+                    <th>Contact</th>
+                    <th>Institution</th>
+                    <th>Program</th>
+                    <th>Level</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>View</th>
+                    <th id="actionHeader" style="display:none;">Action</th> 
+                    </tr>
+            </thead>
+
+            <tbody id="acoountStatusReportPageContent">
+                <script>
+                    $(document).ready(function() {
+                        const newpayDate = "<?php echo $id; ?>";
+                        _loadPaymentsByStatus('5', newpayDate);
+                    });
+                </script>
+                
+                <tr>
+                    <td colspan="20">
+                        <div class="content-loading-div">
+                            <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
-
-<div class="table-div animated fadeIn">
-    <table class="table" cellspacing="0" style="width:100%">
-        <thead>
-            <tr class="tb-col">
-                <th>sn</th>
-                <th>Student Info</th>
-                <th>Parent Info</th>
-                <th>Branch</th>
-                <th>Session/Term</th>
-                <th>Class</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th>View</th>
-            </tr>
-        </thead>
-
-        <tbody id="pageContent">
-            <script>
-            $(document).ready(function() {
-                const newpayDate = "<?php echo $id; ?>";
-                _loadPaymentsByStatus('3', newpayDate);
-            });
-            </script>
-            <tr>
-                <td colspan="20">
-                    <div class="content-loading-div">
-                        <img src="<?php echo $websiteUrl ?>/images/spinner.gif" alt="Loading" />
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
 <?php } ?>
 
 <!-- ///// Cancel Page //// -->
 <?php if ($page == 'cancelledPage') { ?>
-<div id="revenueAlert" class="alert top-alert-div animated fadeIn">
-    <div>
-        <i class="bi-graph-up-arrow"></i>
-        Cancelled Transactions On <span id="date"></span>
-        <output style="display:none;">
-            -- Total Revenue:
-            <span class="balance" id="totalAmount"></span>
-        </output>
+    <div id="revenueAlert" class="alert top-alert-div animated fadeIn">
+        <div>
+            <i class="bi-graph-up-arrow"></i>
+            Cancelled Transactions On <span id="date"></span>
+            <output style="display:none;">
+                -- Total Revenue:
+                <span class="balance" id="totalAmount"></span>
+            </output>
+        </div>
+
+        <div class="btn-container">
+            <button class="btn"><i class="bi-printer"></i> PRINT</button>
+            <button class="btn"><i class="bi-file-earmark-excel"></i> EXPORT</button>
+        </div>
     </div>
 
-    <div class="btn-container">
-        <button class="btn"><i class="bi-printer"></i> PRINT</button>
-        <button class="btn"><i class="bi-file-earmark-excel"></i> EXPORT</button>
+    <div class="table-div animated fadeIn">
+        <table class="table" cellspacing="0" style="width:100%">
+            <thead>
+                <tr class="tb-col">
+                    <th>sn</th>
+                    <th>Student Info</th>
+                    <th>Contact</th>
+                    <th>Institution</th>
+                    <th>Program</th>
+                    <th>Level</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>View</th>
+                    <th id="actionHeader" style="display:none;">Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="acoountStatusReportPageContent">
+                <script>
+                    $(document).ready(function() {
+                        const newpayDate = "<?php echo $id; ?>";
+                        _loadPaymentsByStatus('5', newpayDate);
+                    });
+                </script>
+                
+                <tr>
+                    <td colspan="20">
+                        <div class="content-loading-div">
+                            <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
-
-<div class="table-div animated fadeIn">
-    <table class="table" cellspacing="0" style="width:100%">
-        <thead>
-            <tr class="tb-col">
-                <th>sn</th>
-                <th>Student Info</th>
-                <th>Parent Info</th>
-                <th>Branch</th>
-                <th>Session/Term</th>
-                <th>Class</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th>View</th>
-            </tr>
-        </thead>
-
-        <tbody id="pageContent">
-            <script>
-            $(document).ready(function() {
-                const newpayDate = "<?php echo $id; ?>";
-                _loadPaymentsByStatus('4', newpayDate);
-            });
-            </script>
-            <tr>
-                <td colspan="20">
-                    <div class="content-loading-div">
-                        <img src="<?php echo $websiteUrl ?>/images/spinner.gif" alt="Loading" />
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
 <?php } ?>
 
 <?php if ($page == 'paymentBreakDownForm') { ?>
-<section class="slide-form-div" data-aos="fade-left" data-aos-duration="900">
-    <div class="form-title-div">
-        <div class="title-div">
-            <div class="icon-div"><i class="bi bi-credit-card"></i></div>
-            <h3>TRANSACTION DETAILS</h3>
+    <section class="slide-form-div" data-aos="fade-left" data-aos-duration="900">
+        <div class="form-title-div">
+            <div class="title-div">
+                <div class="icon-div"><i class="bi bi-credit-card"></i></div>
+                <h3>TRANSACTION DETAILS</h3>
+            </div>
+            <div class="btn-div">
+                <button class="btn" title="Close" onclick="_alertClose(<?php echo $modalLayer ?>);">
+                    <i class="bi bi-x-lg"></i> Close
+                </button>
+            </div>
         </div>
-        <div class="btn-div">
-            <button class="btn" title="Close" onclick="_alertClose(<?php echo $modalLayer ?>);">
-                <i class="bi bi-x-lg"></i> Close
+        <!-- /////////// Title ////////////////////////////// -->
+        <div class="container-back-div">
+            <div class="form-notification">
+                <p>This section provides a complete breakdown of your transaction, including payment status, amount paid,
+                    and transaction reference.</p>
+            </div>
+
+            <!--  ////////////////////////////////////////////////////////////////////////////////-->
+            <div class="form-container">
+                <div class="main-content-div form-main-content">
+                    <div class="tables-content-div form-content-div">
+                        <div class="content-title">
+                            <div class="title">
+                                <i class="bi bi-people"></i>
+                                <p>Student Institution Details</p>
+                            </div>
+                        </div>
+
+                        <div class="form-text">
+                            <div class="alert alert-success form-alert">
+                                <div class="alert-list-div">
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Student ID:</div>
+                                            <div>
+                                                <span id="userId">
+                                                    SID01320260702105153
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Institution Class:</div>
+                                            <div>
+                                                <span id="fullName">
+                                                    POLYTECHNIC/MONOTECHNIC
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Institution Name:</div>
+                                            <div>
+                                                <span id="emailAddress">
+                                                    GATEWAY ICT POLYTECHNIC
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Department:</div>
+                                            <div>
+                                                <span id="phoneNumber">
+                                                    COMPUTER SCIENCE
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Student Level:</div>
+                                            <div>
+                                                <span id="phoneNumber">
+                                                    ND 1
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Matric Number:</div>
+                                            <div>
+                                                <span id="phoneNumber">
+                                                    18012211071
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-content-div form-main-content">
+                    <div class="tables-content-div form-content-div">
+                        <div class="content-title">
+                            <div class="title">
+                                <i class="bi bi-people"></i>
+                                <p>Student Details</p>
+                            </div>
+                        </div>
+
+                        <div class="form-text">
+                            <div class="alert alert-success form-alert">
+                                <div class="alert-list-div">
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Full Name:</div>
+                                            <div>
+                                                <span id="userId">
+                                                    PAUL EMMANUEL
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Email Address:</div>
+                                            <div>
+                                                <span id="fullName">
+                                                    paulemmanue40@gmail.com
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Phone Number:</div>
+                                            <div>
+                                                <span id="phoneNumber">
+                                                    07050903886
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Registration Status:</div>
+                                            <div>
+                                                <span id="phoneNumber">
+                                                    ACTIVE
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Registration Date:</div>
+                                            <div>
+                                                <span id="phoneNumber">
+                                                    2026-07-02 10:52:03
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-content-div form-main-content">
+                    <div class="tables-content-div form-content-div">
+                        <div class="content-title">
+                            <div class="title">
+                                <i class="bi bi-people"></i>
+                                <p>Training Details</p>
+                            </div>
+                        </div>
+
+                        <div class="form-text">
+                            <div class="alert alert-success form-alert">
+                                <div class="alert-list-div">
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Program:</div>
+                                            <div>
+                                                <span id="userId">
+                                                    SIWES
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Course:</div>
+                                            <div>
+                                                <span id="fullName">
+                                                    BACKEND WEB DEVELOPMENT
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Training Duration:</div>
+                                            <div>
+                                                <span id="phoneNumber">
+                                                    1 - 3 MONTHS
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Training Status:</div>
+                                            <div>
+                                                <span id="phoneNumber">
+                                                    PENDING
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Training Start Date:</div>
+                                            <div>
+                                                <span id="phoneNumber">
+                                                    Not Started
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Training End Date:</div>
+                                            <div>
+                                                <span id="phoneNumber">
+                                                    Not Started
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-content-div form-main-content">
+                    <div class="tables-content-div form-content-div">
+                        <div class="content-title">
+                            <div class="title">
+                                <i class="bi bi-credit-card"></i>
+                                <p>Payment Details</p>
+                            </div>
+                        </div>
+
+                        <div class="form-text">
+                            <div class="alert alert-success form-alert">
+                                <div class="alert-list-div">
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Payment Id:</div>
+                                            <div><span id="paymentId">
+                                                    PAY01920260702105153
+                                                </span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Payment Purpose:</div>
+                                            <div><span id="paymentMethodName">
+                                                    FORM FEE
+                                                </span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Payment Method:</div>
+                                            <div><span id="paymentMethodName">
+                                                    CREDIT/DEBIT CARD
+                                                </span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Status:</div>
+                                            <div><span id="statusName">
+                                                    SUCCESSFUL
+                                                </span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Date Initiated:</div>
+                                            <div><span id="createdTime">
+                                                    2026-07-02 10:52:03
+                                                </span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Date Confirmed:</div>
+                                            <div><span id="payDate">
+                                                    2026-07-02 10:52:03
+                                                </span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-content-div form-main-content">
+                    <div class="tables-content-div form-content-div">
+                        <div class="content-title">
+                            <div class="title">
+                                <i class="bi bi-credit-card"></i>
+                                <p>Total</p>
+                            </div>
+                        </div>
+
+                        <div class="form-text">
+                            <div class="alert alert-success form-alert">
+                                <div class="alert-list-div">
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Total Amount:</div>
+                                            <div>
+                                                <span class="total-amount"><s>N</s>200,000.00
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-content-div form-main-content">
+                    <div class="tables-content-div form-content-div">
+                        <div class="content-title">
+                            <div class="title">
+                                <i class="bi bi-credit-card"></i>
+                                <p>Paystack Details</p>
+                            </div>
+                        </div>
+
+                        <div class="form-text">
+                            <div class="alert alert-success form-alert">
+                                <div class="alert-list-div">
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Paystack ID:</div>
+                                            <div><span id="paymentId">
+                                                    PAY01920260702105153
+                                                </span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Paystack Charges:</div>
+                                            <div><span id="paymentId">
+                                                    N3.00
+                                                </span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert-list-back-div">
+                                        <div class="alert-list">
+                                            <div>Paystack Remittance:</div>
+                                            <div><span class="total-amount"><s>N</s>3.00
+                                                </span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php } ?>
+
+<?php if ($page == 'resendRecieptSelectForm') { ?>
+    <div class="caption-div animated zoomIn">
+        <div class="title-div">
+            <div class="title"><i class="bi-folder-symlink-fill"></i> RESEND PAYMENT RECIEPT</div>
+            <button class="close-btn" onclick="_alertClose(<?php echo $modalLayer ?>);" title="Close"><i
+                    class="bi-x-lg"></i></button>
+        </div>
+
+        <div class="div-in animated fadeIn">
+            <div class="alert alert-success form-alert"> <i class="bi-person"></i> Hello, You’re about to continue with this
+                operation.
+                Please provide the required <span>Name</span>, and <span>Email</span>, to proceed.
+            </div>
+
+            <div class="text_field_container" id="parentFullname_container">
+                <script>
+                textField({
+                    id: 'parentFullname',
+                    title: 'Reciever Name'
+                });
+                </script>
+            </div>
+
+            <div class="text_field_container" id="recieptParentEmail_container">
+                <script>
+                textField({
+                    id: 'recieptParentEmail',
+                    title: 'Reciever Email'
+                });
+                </script>
+            </div>
+
+            <button class="btn" id="proceedBtn" title="Resend Reciept" onclick="_resendPaymentReciept();">RESEND <i
+                    class="bi-reply-all"></i>
             </button>
         </div>
     </div>
-    <!-- /////////// Title ////////////////////////////// -->
-    <div class="container-back-div">
-        <div class="form-notification">
-            <p>This section provides a complete breakdown of your transaction, including payment status, amount paid,
-                and transaction reference.</p>
-        </div>
-
-        <!--  ////////////////////////////////////////////////////////////////////////////////-->
-        <div class="form-container">
-            <div class="main-content-div form-main-content">
-                <div class="tables-content-div form-content-div">
-                    <div class="content-title">
-                        <div class="title">
-                            <i class="bi bi-people"></i>
-                            <p>Student Institution Details</p>
-                        </div>
-                    </div>
-
-                    <div class="form-text">
-                        <div class="alert alert-success form-alert">
-                            <div class="alert-list-div">
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Student ID:</div>
-                                        <div>
-                                            <span id="userId">
-                                                SID01320260702105153
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Institution Class:</div>
-                                        <div>
-                                            <span id="fullName">
-                                                POLYTECHNIC/MONOTECHNIC
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Institution Name:</div>
-                                        <div>
-                                            <span id="emailAddress">
-                                                GATEWAY ICT POLYTECHNIC
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Department:</div>
-                                        <div>
-                                            <span id="phoneNumber">
-                                                COMPUTER SCIENCE
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Student Level:</div>
-                                        <div>
-                                            <span id="phoneNumber">
-                                                ND 1
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Matric Number:</div>
-                                        <div>
-                                            <span id="phoneNumber">
-                                                18012211071
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="main-content-div form-main-content">
-                <div class="tables-content-div form-content-div">
-                    <div class="content-title">
-                        <div class="title">
-                            <i class="bi bi-people"></i>
-                            <p>Student Details</p>
-                        </div>
-                    </div>
-
-                    <div class="form-text">
-                        <div class="alert alert-success form-alert">
-                            <div class="alert-list-div">
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Full Name:</div>
-                                        <div>
-                                            <span id="userId">
-                                                PAUL EMMANUEL
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Email Address:</div>
-                                        <div>
-                                            <span id="fullName">
-                                                paulemmanue40@gmail.com
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Phone Number:</div>
-                                        <div>
-                                            <span id="phoneNumber">
-                                                07050903886
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Registration Status:</div>
-                                        <div>
-                                            <span id="phoneNumber">
-                                                ACTIVE
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Registration Date:</div>
-                                        <div>
-                                            <span id="phoneNumber">
-                                                2026-07-02 10:52:03
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="main-content-div form-main-content">
-                <div class="tables-content-div form-content-div">
-                    <div class="content-title">
-                        <div class="title">
-                            <i class="bi bi-people"></i>
-                            <p>Training Details</p>
-                        </div>
-                    </div>
-
-                    <div class="form-text">
-                        <div class="alert alert-success form-alert">
-                            <div class="alert-list-div">
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Program:</div>
-                                        <div>
-                                            <span id="userId">
-                                                SIWES
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Course:</div>
-                                        <div>
-                                            <span id="fullName">
-                                                BACKEND WEB DEVELOPMENT
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Training Duration:</div>
-                                        <div>
-                                            <span id="phoneNumber">
-                                                1 - 3 MONTHS
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Training Status:</div>
-                                        <div>
-                                            <span id="phoneNumber">
-                                                PENDING
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Training Start Date:</div>
-                                        <div>
-                                            <span id="phoneNumber">
-                                                Not Started
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Training End Date:</div>
-                                        <div>
-                                            <span id="phoneNumber">
-                                                Not Started
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="main-content-div form-main-content">
-                <div class="tables-content-div form-content-div">
-                    <div class="content-title">
-                        <div class="title">
-                            <i class="bi bi-credit-card"></i>
-                            <p>Payment Details</p>
-                        </div>
-                    </div>
-
-                    <div class="form-text">
-                        <div class="alert alert-success form-alert">
-                            <div class="alert-list-div">
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Payment Id:</div>
-                                        <div><span id="paymentId">
-                                                PAY01920260702105153
-                                            </span></div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Payment Purpose:</div>
-                                        <div><span id="paymentMethodName">
-                                                FORM FEE
-                                            </span></div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Payment Method:</div>
-                                        <div><span id="paymentMethodName">
-                                                CREDIT/DEBIT CARD
-                                            </span></div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Status:</div>
-                                        <div><span id="statusName">
-                                                SUCCESSFUL
-                                            </span></div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Date Initiated:</div>
-                                        <div><span id="createdTime">
-                                                2026-07-02 10:52:03
-                                            </span></div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Date Confirmed:</div>
-                                        <div><span id="payDate">
-                                                2026-07-02 10:52:03
-                                            </span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="main-content-div form-main-content">
-                <div class="tables-content-div form-content-div">
-                    <div class="content-title">
-                        <div class="title">
-                            <i class="bi bi-credit-card"></i>
-                            <p>Total</p>
-                        </div>
-                    </div>
-
-                    <div class="form-text">
-                        <div class="alert alert-success form-alert">
-                            <div class="alert-list-div">
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Total Amount:</div>
-                                        <div>
-                                            <span class="total-amount"><s>N</s>200,000.00
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="main-content-div form-main-content">
-                <div class="tables-content-div form-content-div">
-                    <div class="content-title">
-                        <div class="title">
-                            <i class="bi bi-credit-card"></i>
-                            <p>Paystack Details</p>
-                        </div>
-                    </div>
-
-                    <div class="form-text">
-                        <div class="alert alert-success form-alert">
-                            <div class="alert-list-div">
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Paystack ID:</div>
-                                        <div><span id="paymentId">
-                                                PAY01920260702105153
-                                            </span></div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Paystack Charges:</div>
-                                        <div><span id="paymentId">
-                                                N3.00
-                                            </span></div>
-                                    </div>
-                                </div>
-
-                                <div class="alert-list-back-div">
-                                    <div class="alert-list">
-                                        <div>Paystack Remittance:</div>
-                                        <div><span class="total-amount"><s>N</s>3.00
-                                            </span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<?php } ?>
-
-
-<?php if ($page == 'resendRecieptSelectForm') { ?>
-<div class="caption-div animated zoomIn">
-    <div class="title-div">
-        <div class="title"><i class="bi-folder-symlink-fill"></i> RESEND PAYMENT RECIEPT</div>
-        <button class="close-btn" onclick="_alertClose(<?php echo $modalLayer ?>);" title="Close"><i
-                class="bi-x-lg"></i></button>
-    </div>
-
-    <div class="div-in animated fadeIn">
-        <div class="alert alert-success form-alert"> <i class="bi-person"></i> Hello, You’re about to continue with this
-            operation.
-            Please provide the required <span>Name</span>, and <span>Email</span>, to proceed.
-        </div>
-
-        <div class="text_field_container" id="parentFullname_container">
-            <script>
-            textField({
-                id: 'parentFullname',
-                title: 'Reciever Name'
-            });
-            </script>
-        </div>
-
-        <div class="text_field_container" id="recieptParentEmail_container">
-            <script>
-            textField({
-                id: 'recieptParentEmail',
-                title: 'Reciever Email'
-            });
-            </script>
-        </div>
-
-        <button class="btn" id="proceedBtn" title="Resend Reciept" onclick="_resendPaymentReciept();">RESEND <i
-                class="bi-reply-all"></i>
-        </button>
-    </div>
-</div>
 <?php } ?>

@@ -3328,6 +3328,21 @@ main {
 	font-size: 9px;
 }
 
+.table-div .table .tb-row .btn-div .confirm-btn{
+	min-width: 45px;
+	padding: 9px 20px;
+	font-size: 14px;
+	border: none;
+	cursor: pointer;
+	border-radius: 20px;
+	background: var(--active-color);
+	color: var(--text-white);
+}
+
+.table-div .table .tb-row .btn-div .cancel-btn{
+	background: var(--close-color);
+}
+
 
 .page-summ-exam-div {
   gap: 0px;
