@@ -574,16 +574,25 @@ a {
   background: rgba(231, 76, 60, 0.05);
 }
 
+.alert .btn-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .alert .btn {
   height: 30px;
-  margin: -5px 0px;
-  padding: 0px 10px;
+  padding: 0px 15px;
   border: none;
-  border-radius: 5px;
-  background: #2daae1;
-  color: #fff;
+  border-radius: 15px;
+  background: var(--primary-color);
+  color: var(--text-white);
   font-size: 11px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   font-family: sub-title-font;
   transition: all ease 0.2s;
 }
