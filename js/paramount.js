@@ -5,11 +5,12 @@ function _getPage(options) {
         page = '',
 		action='get_page',
 		url='',
-		pageContainer='page-content'
+    pageContainer = 'page-content',
+    id = "",
     } = options;
 
 		$("#"+pageContainer).html('<div class="ajax-loader"><img src="'+ websiteUrl +'/all-images/images/spinner.gif"/></div>').css({'display': 'flex','flex-direction': 'column','gap': '20px','align-items': 'center','align-items': 'center'}).fadeIn(500);
-		const dataString = "action=" + action + "&page=" + page;
+		const dataString = "action=" + action + "&page=" + page + "&id=" + id;
 		$.ajax({
 			type: "POST",
 			url: url,

@@ -283,7 +283,7 @@ function _renderAccountTableData(data, start) {
               onclick="_getForm({
                 page: 'revenueBreakdown',
                 id: '${newpayDate}',
-                url: adminPortalLocalUrl
+                url: trainingAdminPortalMiddlewareUrl
               });">
 
             <div class="text-back-div">
@@ -340,318 +340,92 @@ function _initFetchAccountReportTableData(response) {
 }
 
 /// Load Payments by Status ///
-// function _loadPaymentsByStatus(statusId, newpayDate) {
-//   try {
-//     //// call endpoint //////
-//     _callFetchEndPoints({
-//       url: `admin/account-reports/fetch-revenue-by-date?statusId=${statusId}&date=${newpayDate}`,
-//       accessKey: true,
-//     })
-//     .then((response) => {
-//       if (response?.data && response?.data.length > 0) {
-//         _initFetchStatusReportTableData(response);
-//         $('#date').html(response?.date);
-//         if (statusId === '5' && response?.data.length > 0) {
-//           $('output').show();
-//           $('#totalAmount').html("<s>N</s>" + thousandSeperator(response?.totalAmount));
-//         } else {
-//           $('output').hide();
-//         }
-//       } else {
-//         _showEmptyState({
-//           container: "acoountStatusReportPageContent",
-//           message: "No payment records found!",
-//           colspan: 20,
-//           paginationContainer: "acoountStatusReportContentPaginationControls",
-//         });
-//       }
-//     })
-//     .catch((error) => {
-//       _staffValidationCheck(error.response);
-//       console.error("Error:", error);
-//       if (error.status==0) {
-//         _alertClose();
-//           _showEmptyState({
-//           container: "acoountStatusReportPageContent",
-//           message: "Check your internet connection and try again",
-//           colspan: 20,
-//           paginationContainer: "acoountStatusReportContentPaginationControls",
-//         });
-//       }
-//     });
-//   } catch (error) {
-//     _alertClose();
-//     console.error("Error:", error);
-//     _callCatchError(() => _loadPaymentsByStatus(statusId, newpayDate));
-//   }
-// }
-
-function _loadPaymentsByStatus(statusId, newpayDate) {
+function _loadPaymentsByStatus(newpayDate, statusId) {
   try {
-
-    // COMMENT THIS FOR NOW
-    /*
+    //// call endpoint //////
     _callFetchEndPoints({
-      url: `admin/account-reports/fetch-revenue-by-date?statusId=${statusId}&date=${newpayDate}`,
+      url: `admin/account-reports/fetch-revenue-by-date?date=${newpayDate}&statusId=${statusId}`,
       accessKey: true,
     })
-    */
-
-    // DUMMY RESPONSE
-    const response = {
-      response: 200,
-      success: true,
-      message: "REVENUE FETCHED SUCCESSFULLY",
-      date: "August 10, 2026",
-      totalAmount: "4000.00",
-      data: [
-        {
-          paymentId: "PAY001",
-          phoneNumber: "07050903886",
-          email: "seunemmanuel107@gmail.com",
-          amountPaid: "800.00",
-          payDate: "2026-08-10",
-          studentData: {
-            studentId: "SID00320260624110353",
-            firstName: "John",
-            lastName: "Emmanuel",
-            passport: "default.jpg"
-          },
-          institutionData: {
-            institutionName: "Gateway ICT Polytechnic",
-            departmentName: "Computer Science"
-          },
-          programData: {
-            programName: "SIWES",
-            courseName: "Backend Web Development"
-          },
-          levelData: {
-            matricNumber: "18012211071",
-            levelName: "ND I"
-          },
-          statusData: {
-            statusId: "5",
-            statusName: "SUCCESSFUL"
-          }
-        },
-        {
-          paymentId: "PAY002",
-          phoneNumber: "08034567890",
-          email: "maryjohnson@gmail.com",
-          amountPaid: "800.00",
-          payDate: "2026-08-10",
-
-          studentData: {
-            studentId: "SID00320260624110354",
-            firstName: "Mary",
-            lastName: "Johnson",
-            passport: "default.jpg"
-          },
-
-          institutionData: {
-            institutionName: "Federal Polytechnic Offa",
-            departmentName: "Computer Science"
-          },
-
-          programData: {
-            programName: "Industrial Training",
-            courseName: "Frontend Development"
-          },
-
-          levelData: {
-            matricNumber: "OFFA/CSC/2024/102",
-            levelName: "ND II"
-          },
-
-          statusData: {
-            statusId: "5",
-            statusName: "SUCCESSFUL"
-          }
-        },
-        {
-          paymentId: "PAY003",
-          phoneNumber: "08123456789",
-          email: "davidadebayo@gmail.com",
-          amountPaid: "800.00",
-          payDate: "2026-08-10",
-
-          studentData: {
-            studentId: "SID00320260624110355",
-            firstName: "David",
-            lastName: "Adebayo",
-            passport: "default.jpg"
-          },
-
-          institutionData: {
-            institutionName: "Lagos State University",
-            departmentName: "Software Engineering"
-          },
-
-          programData: {
-            programName: "SIWES",
-            courseName: "Full Stack Development"
-          },
-
-          levelData: {
-            matricNumber: "LASU/SE/2023/115",
-            levelName: "300 Level"
-          },
-
-          statusData: {
-            statusId: "5",
-            statusName: "SUCCESSFUL"
-          }
-        },
-        {
-          paymentId: "PAY004",
-          phoneNumber: "08098765432",
-          email: "blessingrabiu@gmail.com",
-          amountPaid: "800.00",
-          payDate: "2026-08-10",
-
-          studentData: {
-            studentId: "SID00320260624110356",
-            firstName: "Blessing",
-            lastName: "Rabiu",
-            passport: "default.jpg"
-          },
-
-          institutionData: {
-            institutionName: "Kwara State Polytechnic",
-            departmentName: "Computer Science"
-          },
-
-          programData: {
-            programName: "Industrial Training",
-            courseName: "Mobile App Development"
-          },
-
-          levelData: {
-            matricNumber: "KWP/CSC/2024/221",
-            levelName: "ND II"
-          },
-
-          statusData: {
-            statusId: "5",
-            statusName: "SUCCESSFUL"
-          }
-        },
-        {
-          paymentId: "PAY005",
-          phoneNumber: "07011223344",
-          email: "samuelyakubu@gmail.com",
-          amountPaid: "800.00",
-          payDate: "2026-08-10",
-
-          studentData: {
-            studentId: "SID00320260624110357",
-            firstName: "Samuel",
-            lastName: "Yakubu",
-            passport: "default.jpg"
-          },
-
-          institutionData: {
-            institutionName: "University of Ilorin",
-            departmentName: "Computer Science"
-          },
-
-          programData: {
-            programName: "SIWES",
-            courseName: "Cybersecurity"
-          },
-
-          levelData: {
-            matricNumber: "UIL/CSC/2023/089",
-            levelName: "300 Level"
-          },
-
-          statusData: {
-            statusId: "3",
-            statusName: "PENDING"
-          }
+    .then((response) => {
+      if (response?.data && response?.data.length > 0) {
+        _initFetchStatusReportTableData(response);
+        $('#date').html(response?.date);
+        if (statusId === '5' && response?.data.length > 0) {
+          $('#totalByDateAmount').html("<s>N</s>" + thousandSeperator(response?.totalAmount));
+          $('#sumCreditCardPaymentsByDate').html("<s>N</s>" + thousandSeperator(response?.statistics?.sumCreditCardPayments));
+          $('#sumBankTransferPaymentsByDate').html("<s>N</s>" + thousandSeperator(response?.statistics?.sumBankTransferPayments));
+          $('#countCreditCardPaymentsByDate').html(response?.statistics?.countCreditCardPayments);
+          $('#countBankTransferPaymentsByDate').html(response?.statistics?.countBankTransferPayments);
+          $('#sumPaystackChargesByDate').html("<s>N</s>" + thousandSeperator(response?.statistics?.sumPaystackCharges));
+          $('#sumPaystackRemittanceByDate').html("<s>N</s>" + thousandSeperator(response?.statistics?.sumPaystackRemittance));
         }
-      ]
-    };
-
-    if (response?.data && response?.data.length > 0) {
-      _initFetchStatusReportTableData(response);
-      $('#date').html(response?.date);
-      if (statusId === '5') {
-        $('output').show();
-        $('#totalAmount').html("<s>N</s>" + thousandSeperator(response.totalAmount));
       } else {
-        $('output').hide();
+        _showEmptyState({
+          container: "acoountStatusReportPageContent",
+          message: "No payment records found!",
+          colspan: 20,
+          paginationContainer: "acoountStatusReportContentPaginationControls",
+        });
       }
-    } else {
-      _showEmptyState({
-        container: "acoountStatusReportPageContent",
-        message: "No payment records found!",
-        colspan: 20,
-        paginationContainer: "acoountStatusReportContentPaginationControls",
-      });
-    }
+    })
+    .catch((error) => {
+      _staffValidationCheck(error.response);
+      console.error("Error:", error);
+      if (error.status==0) {
+        _alertClose();
+        _showEmptyState({
+          container: "acoountStatusReportPageContent",
+          message: "Check your internet connection and try again",
+          colspan: 20,
+          paginationContainer: "acoountStatusReportContentPaginationControls",
+        });
+      }
+    });
   } catch (error) {
-    console.error(error);
+    _alertClose();
+    console.error("Error:", error);
+    _callCatchError(() => _loadPaymentsByStatus(newpayDate, statusId));
   }
 }
 
 /// Render Status Report Table Data ///
 function _renderStatusReportTableData(data, start) {
   return data.map((item, i) => {
-    const no = start + i + 1;
-    const studentData = item.studentData || {};
-    const institutionData = item.institutionData || {};
-    const programData = item.programData || {};
-    const levelData = item.levelData || {};
-    const statusData = item.statusData || {};
-    const studentId = studentData.studentId || "";
-    const passport = studentData.passport || "default.jpg";
-    const fullname = `${studentData.firstName || ""} ${studentData.lastName || ""}`.trim();
-    const phoneNumber = item.phoneNumber || "";
-    const email = item.email || "";
-    const institutionName = institutionData.institutionName || "";
-    const departmentName = institutionData.departmentName || "";
-    const programName = programData.programName || "";
-    const courseName = programData.courseName || "";
-    const matricNumber = levelData.matricNumber || "";
-    const levelName = levelData.levelName || "";
-    const amountPaid = item.amountPaid || "0";
-    const payDate = item.payDate || "";
-    const statusId = statusData.statusId || "";
-    const statusName = statusData.statusName || "";
-    const paymentId = item.paymentId || "";
-
     $('#revenueAlert').removeClass('alert-success alert-failed');
-      if (statusName === 'SUCCESSFUL') {
+      if (item?.statusData?.statusName === 'SUCCESSFUL') {
         $('#revenueAlert').addClass('alert-success');
       } else {
         $('#revenueAlert').addClass('alert-failed');
     }
 
-    if (statusId === '3') {
+    if (item?.statusData?.statusId === 3) {
       $('#actionHeader').show();
     } else {
       $('#actionHeader').hide();
     }
     
     let buttonHtml = '';
+    let imageHtml = '';
 
-    if (statusId === '3') {
+    if (item?.statusData?.statusId === 5) {
+      imageHtml = `
+        <div class="image-div general-passport">
+          <img src="${passportPath}/${item?.studentData?.passport}" alt="${item?.studentData.firstName || ""} ${item?.studentData.lastName || ""}" />
+        </div>
+      `;
+    }
+
+    if (item?.statusData?.statusId === 3) {
       buttonHtml = `
         <td>
           <div class="btn-div">
-            <button class="confirm-btn"
-              id="confirmBtn_${paymentId}"
+            <button class="btn confirm-btn"
+              id="confirmBtn_${item?.paymentId}"
               title="Click to confirm payment"
-              onclick="_paymentConfirmation('success', '${paymentId}', '${paymentId}');">
+              onclick="_paymentConfirmation('success', '${item?.paymentId}', '${item?.paymentId}');">
               <i class="bi-check-circle"></i>
-            </button>
-
-            <button class="confirm-btn cancel-btn"
-              id="cancelBtn_${paymentId}"
-              title="Click to cancel payment"
-              onclick="_paymentConfirmation('cancel', '${paymentId}', '${paymentId}');">
-              <i class="bi-x-circle"></i>
+              REFRESH
             </button>
           </div>
         </td>
@@ -660,64 +434,50 @@ function _renderStatusReportTableData(data, start) {
     
     return `
       <tr class="tb-row">
-        <td>${no}</td>
+        <td>${start + i + 1}</td>
+        <td class="clickable-td"
+            title="Click to view payment breakdown"
+            onclick="">
+          <div class="text-back-div">
+            <div class="text-div">
+              <div class="first-class">${item?.paymentId}</div>
+              <div class="second-class">${item?.payDate}</div>
+            </div>
+          </div>
+        </td>
+
         <td>
           <div class="text-back-div">
-            <div class="image-div general-passport">
-              <img src="${passportPath}/${passport}" alt="${fullname}" />
-            </div>
+            ${imageHtml}
 
             <div class="text-div">
-              <div class="first-class">${fullname}</div>
-              <div class="second-class">${studentId}</div>
+              <div class="first-class">${item?.studentData.firstName || ""} ${item?.studentData.lastName || ""}</div>
+              <div class="second-class">${item?.studentData?.studentId}</div>
             </div>
           </div>
         </td>
 
         <td>
           <div class="text-div">
-            <div>${phoneNumber}</div>
-            <div>${email}</div>
+            <div>${item?.studentData.phoneNumber}</div>
+            <div>${item?.studentData.emailAddress || ""}</div>
           </div>
         </td>
-
+        <td><s>N</s>${thousandSeperator(item?.amount)}</td>
+        <td><s>N</s>${thousandSeperator(item?.paystackRemittance)}</td>
+        <td><s>N</s>${thousandSeperator(item?.paystackCharges)}</td>
+        <td>${item?.paymentPurposeData?.paymentPurposeName}</td>
+        <td>${item?.paymentMethodData?.paymentMethodName}</td>
         <td>
-          <div class="text-div">
-            <div>${institutionName}</div>
-            <div>${departmentName}</div>
+          <div class="status-div ${item?.statusData?.statusName}">
+            ${item?.statusData?.statusName}
           </div>
         </td>
-
-        <td>
-          <div class="text-div">
-            <div>${programName}</div>
-            <div>${courseName}</div>
-          </div>
-        </td>
-
-        <td>
-          <div class="text-div">
-            <div>${matricNumber}</div>
-            <div>${levelName}</div>
-          </div>
-        </td>
-        <td><s>N</s>${thousandSeperator(amountPaid)}</td>
-        <td>
-          <div class="status-div ${statusName}">
-            ${statusName}
-          </div>
-        </td>
-        <td>${payDate}</td>
         <td>
           <div class="btn-div">
             <button class="btn view-btn"
               title="Click to view payment breakdown"
-              onclick="_getForm({
-              page:'paymentBreakDownForm',
-              id:'${paymentId}',
-              layer:2,
-              url:trainingAdminPortalMiddlewareUrl
-            });">
+              onclick="_fetchRevenueById('${item?.paymentId}');">
               VIEW DETAILS
             </button>
           </div>
@@ -740,4 +500,30 @@ function _initFetchStatusReportTableData(response) {
 
   __paginatorHandlers["acoountStatusReportContentPaginationControls"] = paginator;
   paginator.renderPage();
+}
+
+//// Fetch payment revenue by ID ////
+function _fetchRevenueById(paymentId) {
+    $("#get-more-div-secondary").css({'display': 'flex','justify-content': 'center','align-items': 'center'}) .fadeIn(500);
+	try {
+		//// call endpoint //////
+		_callFetchEndPoints({
+			url: `admin/account-reports/fetch-revenue-by-id?paymentId=${paymentId}`,
+			accessKey: true,
+		})
+		.then((response) => {
+			sessionStorage.setItem("getPaymentDetailsSession", JSON.stringify(response?.data));
+			_getForm({page: 'paymentBreakDownForm', layer:2, url: trainingAdminPortalMiddlewareUrl});
+		 })
+		.catch((error) => {
+			_staffValidationCheck(error.response);
+			_alertClose(2);
+			console.error("Error:", error);
+			_callAjaxError(() => _fetchRevenueById(paymentId), error.message); // retry if needed
+		});
+	} catch (error) {
+		_alertClose(2);
+		console.error("Error:", error);
+		_callCatchError(() => _fetchRevenueById(paymentId));
+  	}
 }

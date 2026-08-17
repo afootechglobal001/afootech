@@ -3331,11 +3331,10 @@ main {
 .table-div .table .tb-row .btn-div .confirm-btn{
 	min-width: 45px;
 	padding: 9px 20px;
-	font-size: 14px;
+	font-size: 10px;
 	border: none;
 	cursor: pointer;
-	border-radius: 20px;
-	background: var(--active-color);
+	background: var(--primary-color);
 	color: var(--text-white);
 }
 
