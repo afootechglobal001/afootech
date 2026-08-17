@@ -8,7 +8,7 @@ switch ($action){
 
 	case 'get_page':
 		$page=$_POST['page'];
-		$ids=$_POST['ids'];
+		$id=$_POST['id'];
 		$pageCategory=$_POST['pageCategory'];
 		require_once('dashboard-content.php');
 		require_once('staff-content.php');
