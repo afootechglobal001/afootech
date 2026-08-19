@@ -384,13 +384,13 @@
 
                         <div class="content-container" id="getPaymentNav">
                             <script>
-                            _getPaymentStatusNav({
-                                divid: 'successfulPage',
-                                page: 'successfulPage',
-                                id: '<?php echo $id; ?>',
-                                url: trainingAdminPortalMiddlewareUrl
-                            });
-                            sessionStorage.setItem("sessionPayDate", '<?php echo $id; ?>');
+                                _getPaymentStatusNav({
+                                    divid: 'successfulPage',
+                                    page: 'successfulPage',
+                                    id: '<?php echo $id; ?>',
+                                    url: trainingAdminPortalMiddlewareUrl
+                                });
+                                sessionStorage.setItem("sessionPayDate", '<?php echo $id; ?>');
                             </script>
                         </div>
                     </div>
@@ -409,8 +409,7 @@
         </div>
 
         <div class="btn-container">
-            <button class="btn"><i class="bi-printer"></i> PRINT</button>
-            <button class="btn"><i class="bi-file-earmark-excel"></i> EXPORT</button>
+            <button class="btn" onclick="exportAccountTableToExcel('printPaymentTable','Payment_Transaction_List');"><i class="bi-file-earmark-excel"></i> EXPORT</button>
         </div>
     </div>
 
@@ -515,7 +514,7 @@
     </div>
 
     <div class="table-div animated fadeIn">
-        <table class="table" cellspacing="0" style="width:100%">
+        <table class="table" cellspacing="0" style="width:100%" id="printPaymentTable">
             <thead>
                 <tr class="tb-col">
                     <th>sn</th>
@@ -564,7 +563,6 @@
         </div>
 
         <div class="btn-container">
-            <button class="btn"><i class="bi-printer"></i> PRINT</button>
             <button class="btn"><i class="bi-file-earmark-excel"></i> EXPORT</button>
         </div>
     </div>
@@ -619,7 +617,6 @@
         </div>
 
         <div class="btn-container">
-            <button class="btn"><i class="bi-printer"></i> PRINT</button>
             <button class="btn"><i class="bi-file-earmark-excel"></i> EXPORT</button>
         </div>
     </div>
@@ -967,7 +964,7 @@
                             let showButton = '';
                             if (getPaymentDetailsSession?.statusData?.statusId === 5) {
                                 showButton +=
-                                `<button class="btn" title="PRINT RECEIPT" id="printBtn" onclick=""> <i class="bi-printer"></i> PRINT RECEIPT </button>`; 
+                                `<button class="btn" title="PRINT RECEIPT" id="printBtn" onclick="_printPaymentBreakDownReciept();"> <i class="bi-printer"></i> PRINT RECEIPT </button>`; 
                             }
                             $("#showPrintReceiptButton").html(showButton);
                         });
@@ -976,43 +973,4 @@
             </div>
         </div>
     </section>
-<?php } ?>
-
-<?php if ($page == 'resendRecieptSelectForm') { ?>
-    <div class="caption-div animated zoomIn">
-        <div class="title-div">
-            <div class="title"><i class="bi-folder-symlink-fill"></i> RESEND PAYMENT RECIEPT</div>
-            <button class="close-btn" onclick="_alertClose(<?php echo $modalLayer ?>);" title="Close"><i
-                    class="bi-x-lg"></i></button>
-        </div>
-
-        <div class="div-in animated fadeIn">
-            <div class="alert alert-success form-alert"> <i class="bi-person"></i> Hello, You’re about to continue with this
-                operation.
-                Please provide the required <span>Name</span>, and <span>Email</span>, to proceed.
-            </div>
-
-            <div class="text_field_container" id="parentFullname_container">
-                <script>
-                textField({
-                    id: 'parentFullname',
-                    title: 'Reciever Name'
-                });
-                </script>
-            </div>
-
-            <div class="text_field_container" id="recieptParentEmail_container">
-                <script>
-                textField({
-                    id: 'recieptParentEmail',
-                    title: 'Reciever Email'
-                });
-                </script>
-            </div>
-
-            <button class="btn" id="proceedBtn" title="Resend Reciept" onclick="_resendPaymentReciept();">RESEND <i
-                    class="bi-reply-all"></i>
-            </button>
-        </div>
-    </div>
 <?php } ?>
