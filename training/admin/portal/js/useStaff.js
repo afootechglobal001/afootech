@@ -271,7 +271,7 @@ function _fetchEachSaff(staffId) {
   	}
 }
 
-//// /// Update Staff ////
+//// Update Staff ////
 function _updateStaff(){
 	try {
 		////////get all needed values////////////

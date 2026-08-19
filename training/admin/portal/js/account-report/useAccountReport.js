@@ -421,9 +421,9 @@ function _renderStatusReportTableData(data, start) {
         <td>
           <div class="btn-div">
             <button class="btn confirm-btn"
-              id="confirmBtn_${item?.paymentId}"
+              id="refreshBtn_${item?.paymentId}"
               title="Click to confirm payment"
-              onclick="_paymentConfirmation('success', '${item?.paymentId}', '${item?.paymentId}');">
+              onclick="_proceedVerifyPaystackTransaction('${item?.paymentId}');">
               <i class="bi-check-circle"></i>
               REFRESH
             </button>
@@ -437,7 +437,7 @@ function _renderStatusReportTableData(data, start) {
         <td>${start + i + 1}</td>
         <td class="clickable-td"
             title="Click to view payment breakdown"
-            onclick="">
+              onclick="_fetchRevenueById('${item?.paymentId}');">
           <div class="text-back-div">
             <div class="text-div">
               <div class="first-class">${item?.paymentId}</div>
@@ -526,4 +526,254 @@ function _fetchRevenueById(paymentId) {
 		console.error("Error:", error);
 		_callCatchError(() => _fetchRevenueById(paymentId));
   	}
+}
+
+//// Print payment breakdown receipt ////
+function _printPaymentBreakDownReciept() {
+  let getPaymentDetailsSession = JSON.parse(sessionStorage.getItem("getPaymentDetailsSession"));
+
+  if (getPaymentDetailsSession) {
+		sessionStorage.setItem("printGeneralPaymentRecieptBreakdownSession", JSON.stringify(getPaymentDetailsSession));
+		window.open(`${websiteUrl}/training/print-payment-receipt`, '_blank');
+  }
+}
+
+///// Export ///
+function exportAccountTableToExcel(tableID, filename) {
+  var dataType = 'application/vnd.ms-excel';
+    var $table = $('#' + tableID);
+    var removedImages = [];
+
+    // Temporarily remove all images from the table
+    $table.find('img').each(function () {
+        var $img = $(this);
+        removedImages.push({
+            parent: $img.parent(),
+            nextSibling: $img.next(),
+            element: $img
+        });
+        $img.remove();
+    });
+
+    // Convert table to HTML
+    var tableHTML = $table.prop('outerHTML').replace(/ /g, '%20').replace(/#/g, '%23');
+
+    // Specify file name
+    filename = filename ? filename + '.xls' : 'excel_data.xls';
+
+    // Create download link
+    var $downloadLink = $('<a></a>');
+    $('body').append($downloadLink);
+
+    if (window.navigator.msSaveOrOpenBlob) {
+        var blob = new Blob(['\ufeff', tableHTML], { type: dataType });
+        window.navigator.msSaveOrOpenBlob(blob, filename);
+    } else {
+        $downloadLink.attr('href', 'data:' + dataType + ', ' + tableHTML);
+        $downloadLink.attr('download', filename);
+        $downloadLink[0].click();
+    }
+
+    // Restore the removed images
+    $.each(removedImages, function (i, item) {
+        if (item.nextSibling.length) {
+            item.element.insertBefore(item.nextSibling);
+        } else {
+            item.parent.append(item.element);
+        }
+    });
+
+    // Clean up
+    $downloadLink.remove();
+}
+
+/// Proceed Verify Paystack Transaction ///
+function _proceedVerifyPaystackTransaction(paymentId) {
+  try {
+    ///// get btn text/////
+	  const btnText = $(`#refreshBtn_${paymentId}`).html();
+    _btnDisable(`refreshBtn_${paymentId}`, btnText, true);
+
+		//// call endpoint //////
+		_callFetchEndPoints({
+			url: `admin/account-reports/verify-paystack-transaction?paymentId=${paymentId}`,
+			accessKey: true,
+		})
+		.then((response) => {
+      const paymentId = response?.paymentId; 
+      const secretKey = response?.secretKey;
+    
+      _verifyPaystackTransaction(paymentId, secretKey, btnText);
+		})
+		.catch((error) => {
+			_staffValidationCheck(error.response);
+			console.error("Error:", error);
+      _callAjaxError(() => _proceedVerifyPaystackTransaction(paymentId), error.message); // retry if needed
+      _btnDisable(`refreshBtn_${paymentId}`, btnText, false);
+		});
+	} catch (error) {
+		_alertClose();
+		console.error("Error:", error);
+    _callCatchError(() => _proceedVerifyPaystackTransaction(paymentId));
+    _btnDisable(`refreshBtn_${paymentId}`, btnText, false);
+  }
+}
+
+function _verifyPaystackTransaction(paymentId, secretKey, btnText) {
+  let sessionPayDate = sessionStorage.getItem("sessionPayDate");
+  $.ajax({
+    url: `https://api.paystack.co/transaction/verify/${paymentId}`,
+    type: "GET",
+    headers: {
+      "Authorization": "Bearer " + secretKey,
+      "Content-Type": "application/json"
+    },
+    success: function (data) {
+      if (data.status === true && data.data.status === "success") {
+        const paystackId = $.trim(data?.data?.id);
+        const paystackCharges = $.trim(data?.data?.fees);
+        _callVerifyPaymentSuccess(paymentId, paystackId, paystackCharges, btnText);
+      } else {
+        _callVerifyPaymentCancelled(paymentId);
+        _showCustomConfirm({
+          title: "Transaction Not Successful!",
+          message: "This transaction was not successful and has been automatically cancelled by the system.",
+          alertType: "error",
+          falseActionBtn: true,
+          trueActionBtnText: "View Cancelled Payments",
+          falseActionBtnText: "Stay Here",
+          closeOnOverlayClick: false,
+          trueActionCallback: () => {
+            _getPaymentStatusNav({
+              divid: 'cancelledPage',
+              page: 'cancelledPage',
+              id: sessionPayDate,
+              url: trainingAdminPortalMiddlewareUrl
+            });
+          },
+          falseActionCallback: () => {
+            _getPaymentStatusNav({
+              divid: 'pendingPage',
+              page: 'pendingPage',
+              id: sessionPayDate,
+              url: trainingAdminPortalMiddlewareUrl
+            });
+          },
+        });
+        $(`#refreshBtn_${paymentId}`).html(btnText).prop("disabled", false);
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error("Error:", error);
+        _callVerifyPaymentCancelled(paymentId);
+        _showCustomConfirm({
+            title: "Transaction Not Successful!",
+            message: "This transaction was not successful and has been automatically cancelled by the system.",
+            alertType: "error",
+            falseActionBtn: true,
+            trueActionBtnText: "View Cancelled Payments",
+            falseActionBtnText: "Stay Here",
+            closeOnOverlayClick: false,
+            trueActionCallback: () => {
+              _getPaymentStatusNav({
+                divid: 'cancelledPage',
+                page: 'cancelledPage',
+                id: sessionPayDate,
+                url: trainingAdminPortalMiddlewareUrl
+              });
+            },
+            falseActionCallback: () => {
+              _getPaymentStatusNav({
+                divid: 'pendingPage',
+                page: 'pendingPage',
+                id: sessionPayDate,
+                url: trainingAdminPortalMiddlewareUrl
+              });
+            },
+        });
+      $(`#refreshBtn_${paymentId}`).html(btnText).prop("disabled", false);
+    }
+  });
+}
+
+function _callVerifyPaymentSuccess(paymentId, paystackId, paystackCharges, btnText) {
+ let sessionPayDate = sessionStorage.getItem("sessionPayDate");
+  try {
+    const formData = {
+      paymentId: paymentId,
+      paystackId: paystackId,
+      paystackCharges: paystackCharges,
+    };
+    
+    $.ajax({
+      type: "POST",
+      url: `${endPoint}/parent/payment/payment-success`,
+      data: JSON.stringify(formData),
+      dataType: "json",
+      cache: false,
+      headers: getAuthHeaders(),
+      processData: false,
+      success: function (data) {
+        if (data.success) {
+          _showCustomConfirm({
+            title: "Transaction Successful!",
+            message: data.message,
+            alertType: "success",
+            falseActionBtn: true,
+            trueActionBtnText: "View Successful Payments",
+            falseActionBtnText: "Stay Here",
+            closeOnOverlayClick: false,
+            trueActionCallback: () => {
+              _getPaymentStatusNav({
+                divid: 'successfulPage',
+                page: 'successfulPage',
+                id: sessionPayDate,
+                url: trainingAdminPortalMiddlewareUrl
+              });
+            },
+            falseActionCallback: () => {
+              _getPaymentStatusNav({
+                divid: 'pendingPage',
+                page: 'pendingPage',
+                id: sessionPayDate,
+                url: trainingAdminPortalMiddlewareUrl
+              });
+            },
+        });
+        } else {
+          _actionAlert(data.message, false);
+          $(`#refreshBtn_${paymentId}`).html(btnText).prop("disabled", false);
+        }
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function _callVerifyPaymentCancelled(paymentId) {
+  try {
+    const formData = {
+      paymentId: paymentId,
+    };
+
+    $.ajax({
+      type: "POST",
+      url: `${endPoint}/parent/payment/payment-cancelled`,
+      data: JSON.stringify(formData),
+      dataType: "json",
+      cache: false,
+      headers: getAuthHeaders(),
+      processData: false,
+      success: function () {},
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
