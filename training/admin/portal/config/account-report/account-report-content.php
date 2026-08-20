@@ -845,20 +845,32 @@
                         let content = "";
                         if (confirmedByData) {
                             content += `
-                                <div class="alert alert-success form-alert">
-                                <span>Payment Confirmed By:</span>
-                                <div class="alert-list-div">
-                                    <div class="alert-list-back-div">
-                                        <div class="alert-list">
-                                            <div>Staff Id:</div>
-                                            <div><span>${confirmedByData?.staffId}</span></div>
+                            <div class="main-content-div form-main-content">
+                                <div class="tables-content-div form-content-div">
+                                    <div class="content-title">
+                                        <div class="title">
+                                            <i class="bi bi-credit-card"></i>
+                                            <p>Payment Confirmed By</p>
                                         </div>
                                     </div>
 
-                                    <div class="alert-list-back-div">
-                                        <div class="alert-list">
-                                            <div>Staff FullName:</div>
-                                            <div><span>${confirmedByData?.fullName}</span></div>
+                                    <div class="form-text">
+                                        <div class="alert alert-success form-alert">
+                                            <div class="alert-list-div">
+                                                <div class="alert-list-back-div">
+                                                    <div class="alert-list">
+                                                        <div>Staff FullName:</div>
+                                                        <div><span>${confirmedByData?.fullname}</span></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="alert-list-back-div">
+                                                    <div class="alert-list">
+                                                        <div>Staff Email:</div>
+                                                        <div><span>${confirmedByData?.emailAddress}</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
