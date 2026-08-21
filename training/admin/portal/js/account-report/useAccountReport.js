@@ -399,7 +399,7 @@ function _renderStatusReportTableData(data, start) {
         $('#revenueAlert').addClass('alert-failed');
     }
 
-    if (item?.statusData?.statusId === 3) {
+    if (item?.statusData?.statusId === 3 || item?.statusData?.statusId === 4) {
       $('#actionHeader').show();
     } else {
       $('#actionHeader').hide();
@@ -411,7 +411,7 @@ function _renderStatusReportTableData(data, start) {
     if (item?.statusData?.statusId === 5) {
       imageHtml = `
         <div class="image-div general-passport">
-          <img src="${passportPath}/${item?.studentData?.passport}" alt="${item?.studentData.firstName || ""} ${item?.studentData.lastName || ""}" />
+          <img src="${passportPath}/${item?.studentData?.passport || ""}" alt="${item?.studentData?.firstName || ""} ${item?.studentData?.lastName || ""}" />
         </div>
       `;
     }
@@ -426,6 +426,19 @@ function _renderStatusReportTableData(data, start) {
               onclick="_proceedVerifyPaystackTransaction('${item?.paymentId}');">
               <i class="bi-check-circle"></i>
               REFRESH
+            </button>
+          </div>
+        </td>
+      `;
+    } else if (item?.statusData?.statusId === 4) {
+      buttonHtml = `
+        <td>
+          <div class="btn-div">
+            <button class="btn confirm-btn"
+              id="reconcileBtn_${item?.paymentId}"
+              title="Click to reconcile payment"
+              onclick="_proccedPaymentReconciliation('${item?.paymentId}');">
+              RECONCILE
             </button>
           </div>
         </td>
@@ -451,7 +464,7 @@ function _renderStatusReportTableData(data, start) {
             ${imageHtml}
 
             <div class="text-div">
-              <div class="first-class">${item?.studentData.firstName || ""} ${item?.studentData.lastName || ""}</div>
+              <div class="first-class">${item?.studentData?.firstName || ""} ${item?.studentData?.lastName || ""}</div>
               <div class="second-class">${item?.studentData?.studentId}</div>
             </div>
           </div>
@@ -459,8 +472,8 @@ function _renderStatusReportTableData(data, start) {
 
         <td>
           <div class="text-div">
-            <div>${item?.studentData.phoneNumber}</div>
-            <div>${item?.studentData.emailAddress || ""}</div>
+            <div>${item?.studentData?.phoneNumber}</div>
+            <div>${item?.studentData?.emailAddress || ""}</div>
           </div>
         </td>
         <td><s>N</s>${thousandSeperator(item?.amount)}</td>
@@ -587,8 +600,28 @@ function exportAccountTableToExcel(tableID, filename) {
     $downloadLink.remove();
 }
 
-/// Proceed Verify Paystack Transaction ///
+//// Proceed Verify Paystack Transaction ////
 function _proceedVerifyPaystackTransaction(paymentId) {
+    try {
+      ////// confirm action////
+		_showCustomConfirm({
+      callback: () => {
+        _proceedVerifyPaystackTransactionCallback(paymentId);
+      },
+      title: "Are you sure?",
+      message: 'Are you sure you want to continue? This action is irreversible.',
+      alertType: "warning",
+      falseActionBtn: true,
+      closeOnOverlayClick: true,
+    });
+    } catch (error) {
+      console.error("Error:", error);
+      _callCatchError(() => _proceedVerifyPaystackTransaction(paymentId));
+    }
+}
+
+/// Proceed Verify Paystack Transaction CallBack///
+function _proceedVerifyPaystackTransactionCallback(paymentId) {
   try {
     ///// get btn text/////
 	  const btnText = $(`#refreshBtn_${paymentId}`).html();
@@ -600,26 +633,37 @@ function _proceedVerifyPaystackTransaction(paymentId) {
 			accessKey: true,
 		})
 		.then((response) => {
-      const paymentId = response?.paymentId; 
+      const paymentId = response?.paymentData?.paymentId; 
+      const paymentPurposeId = response?.paymentData?.paymentPurposeId;
       const secretKey = response?.secretKey;
-    
-      _verifyPaystackTransaction(paymentId, secretKey, btnText);
+  
+      _verifyPaystackTransaction(paymentId, secretKey, paymentPurposeId, btnText);
 		})
 		.catch((error) => {
 			_staffValidationCheck(error.response);
 			console.error("Error:", error);
-      _callAjaxError(() => _proceedVerifyPaystackTransaction(paymentId), error.message); // retry if needed
+      if (error.status == 0) {
+        _callAjaxError(() => _proceedVerifyPaystackTransaction(paymentId), error.message); // retry if needed
+      } else {
+        _showCustomConfirm({
+          title: "Unable to Verify Payment",
+          message: error.message,
+          alertType: "error",
+          trueActionBtnText: "OK",
+          closeOnOverlayClick: true,
+        });
+      }
       _btnDisable(`refreshBtn_${paymentId}`, btnText, false);
 		});
 	} catch (error) {
-		_alertClose();
 		console.error("Error:", error);
     _callCatchError(() => _proceedVerifyPaystackTransaction(paymentId));
     _btnDisable(`refreshBtn_${paymentId}`, btnText, false);
   }
 }
 
-function _verifyPaystackTransaction(paymentId, secretKey, btnText) {
+//// Verify Paystack Transaction ///
+function _verifyPaystackTransaction(paymentId, secretKey, paymentPurposeId, btnText) {
   let sessionPayDate = sessionStorage.getItem("sessionPayDate");
   $.ajax({
     url: `https://api.paystack.co/transaction/verify/${paymentId}`,
@@ -632,9 +676,10 @@ function _verifyPaystackTransaction(paymentId, secretKey, btnText) {
       if (data.status === true && data.data.status === "success") {
         const paystackId = $.trim(data?.data?.id);
         const paystackCharges = $.trim(data?.data?.fees);
-        _callVerifyPaymentSuccess(paymentId, paystackId, paystackCharges, btnText);
+
+        _callPaymentSuccess(paymentId, paystackId, paystackCharges, paymentPurposeId, btnText);
       } else {
-        _callVerifyPaymentCancelled(paymentId);
+        _callPaymentCancelled(paymentId, paymentPurposeId);
         _showCustomConfirm({
           title: "Transaction Not Successful!",
           message: "This transaction was not successful and has been automatically cancelled by the system.",
@@ -665,7 +710,7 @@ function _verifyPaystackTransaction(paymentId, secretKey, btnText) {
     },
     error: function (xhr, status, error) {
       console.error("Error:", error);
-        _callVerifyPaymentCancelled(paymentId);
+        _callPaymentCancelled(paymentId, paymentPurposeId);
         _showCustomConfirm({
             title: "Transaction Not Successful!",
             message: "This transaction was not successful and has been automatically cancelled by the system.",
@@ -696,84 +741,174 @@ function _verifyPaystackTransaction(paymentId, secretKey, btnText) {
   });
 }
 
-function _callVerifyPaymentSuccess(paymentId, paystackId, paystackCharges, btnText) {
- let sessionPayDate = sessionStorage.getItem("sessionPayDate");
+/// Call Payment Success ///
+function _callPaymentSuccess(paymentId, paystackId, paystackCharges, paymentPurposeId, btnText) {
+  let sessionPayDate = sessionStorage.getItem("sessionPayDate");
   try {
-    const formData = {
-      paymentId: paymentId,
-      paystackId: paystackId,
-      paystackCharges: paystackCharges,
-    };
-    
-    $.ajax({
-      type: "POST",
-      url: `${endPoint}/parent/payment/payment-success`,
-      data: JSON.stringify(formData),
-      dataType: "json",
-      cache: false,
-      headers: getAuthHeaders(),
-      processData: false,
-      success: function (data) {
-        if (data.success) {
-          _showCustomConfirm({
-            title: "Transaction Successful!",
-            message: data.message,
-            alertType: "success",
-            falseActionBtn: true,
-            trueActionBtnText: "View Successful Payments",
-            falseActionBtnText: "Stay Here",
-            closeOnOverlayClick: false,
-            trueActionCallback: () => {
-              _getPaymentStatusNav({
-                divid: 'successfulPage',
-                page: 'successfulPage',
-                id: sessionPayDate,
-                url: trainingAdminPortalMiddlewareUrl
-              });
-            },
-            falseActionCallback: () => {
-              _getPaymentStatusNav({
-                divid: 'pendingPage',
-                page: 'pendingPage',
-                id: sessionPayDate,
-                url: trainingAdminPortalMiddlewareUrl
-              });
-            },
+      ///// Form Data /////
+      const formData = {
+        paymentId: paymentId,
+        paystackId: paystackId,
+        paystackCharges: paystackCharges,
+      };
+      
+      //// EndPoint URL /////
+      let url = paymentPurposeId === "form" ? `registration/payment-successful` : paymentPurposeId === "tuition" ? `students/payment/payment-successful` : ``;
+
+      ///// Call EndPoint /////
+      _callRawEndPoints({
+        url: url,
+        formData,
+      })
+      .then((response) => {
+        _showCustomConfirm({
+          title: "Transaction Successful!",
+          message: response?.message,
+          alertType: "success",
+          falseActionBtn: true,
+          trueActionBtnText: "View Successful Payments",
+          falseActionBtnText: "Stay Here",
+          closeOnOverlayClick: false,
+          trueActionCallback: () => {
+            _getPaymentStatusNav({
+              divid: 'successfulPage',
+              page: 'successfulPage',
+              id: sessionPayDate,
+              url: trainingAdminPortalMiddlewareUrl
+            });
+          },
+          falseActionCallback: () => {
+            _getPaymentStatusNav({
+              divid: 'pendingPage',
+              page: 'pendingPage',
+              id: sessionPayDate,
+              url: trainingAdminPortalMiddlewareUrl
+            });
+          },
         });
-        } else {
-          _actionAlert(data.message, false);
-          $(`#refreshBtn_${paymentId}`).html(btnText).prop("disabled", false);
-        }
-      },
-      error: function (error) {
-        console.log(error);
-      },
-    });
+      })
+        .catch((error) => {
+        _staffValidationCheck(error.response);
+          console.error("Error:", error);
+          if (error.status == 0) {
+            _callAjaxError(() => _callPaymentSuccess(paymentId, paystackId, paystackCharges, paymentPurposeId, btnText), error.message); // retry if needed
+          } else {
+            _showCustomConfirm({
+              title: "Unable to Confirm Payment",
+              message: error.message,
+              alertType: "warning",
+              trueActionBtnText: "OK",
+              closeOnOverlayClick: true,
+            });
+            $(`#refreshBtn_${paymentId}`).html(btnText).prop("disabled", false);
+          }
+      });
   } catch (error) {
-    console.log(error);
+    console.error("Error:", error);
+    _callCatchError(() =>
+      _callPaymentSuccess(paymentId, paystackId, paystackCharges, paymentPurposeId, btnText),
+    );
   }
 }
 
-function _callVerifyPaymentCancelled(paymentId) {
+/// Call Payment Cancelled ///
+function _callPaymentCancelled(paymentId, paymentPurposeId) {
   try {
+    //// EndPoint URL /////
+    let url = paymentPurposeId === "form" ? `registration/payment-cancelled?paymentId=${paymentId}` : paymentPurposeId === "tuition" ? `students/payment/payment-cancelled?paymentId=${paymentId}` : ``;
+    _callFetchEndPoints({
+      url: url,
+    })
+    .then(() => {
+    })
+    .catch((error) => {
+      _staffValidationCheck(error.response);
+      console.error("Error:", error);
+    });
+    } catch (error) {
+      console.error("Error:", error);
+      _callCatchError(() =>
+        _callPaymentCancelled(paymentId, paymentPurposeId),
+      );
+    }
+}
+
+//// Proceed Payment Reconciliation ////
+function _proccedPaymentReconciliation(paymentId) {
+    try {
+      ////// confirm action////
+		_showCustomConfirm({
+      callback: () => {
+        _proccedPaymentReconciliationCallback(paymentId);
+      },
+      title: "Are you sure?", 
+      message: 'Are you sure you want to continue? This action is irreversible.',
+      alertType: "warning",
+      falseActionBtn: true,
+      closeOnOverlayClick: true,
+    });
+    } catch (error) {
+      console.error("Error:", error);
+      _callCatchError(() => _proccedPaymentReconciliation(paymentId));
+    }
+}
+
+/// Call Payment Reconciliation Callback ///
+function _proccedPaymentReconciliationCallback(paymentId) {
+  let sessionPayDate = sessionStorage.getItem("sessionPayDate");
+  try {
+    ///// get btn text/////
+    const btnText = $(`#reconcileBtn_${paymentId}`).html();
+    _btnDisable(`reconcileBtn_${paymentId}`, btnText, true);   
+  
+    /// Form Data /////
     const formData = {
       paymentId: paymentId,
-    };
-
-    $.ajax({
-      type: "POST",
-      url: `${endPoint}/parent/payment/payment-cancelled`,
-      data: JSON.stringify(formData),
-      dataType: "json",
-      cache: false,
-      headers: getAuthHeaders(),
-      processData: false,
-      success: function () {},
-      error: function (error) {
-        console.log(error);
-      },
-    });
+    };  
+    
+    ///// Call EndPoint /////
+    _callRawEndPoints({
+      url: `admin/account-reports/payment-reconciliation`,
+      formData,
+      accessKey: true,
+    })
+    .then((response) => {
+      _showCustomConfirm({
+        callback: () => {
+          _getPaymentStatusNav({
+            divid: 'pendingPage',
+            page: 'pendingPage',
+            id: sessionPayDate,
+            url: trainingAdminPortalMiddlewareUrl
+          });
+        },
+        title: "Transaction Reconciliation Successful!",
+        message: response?.message,
+        alertType: "success",
+        trueActionBtnText: "DONE",
+        closeOnOverlayClick: false,
+      });
+    })
+      .catch((error) => {
+      _staffValidationCheck(error.response);
+        console.error("Error:", error);
+        if (error.status == 0) {
+          _callAjaxError(() => _proccedPaymentReconciliationCallback(paymentId), error.message); // retry if needed
+        } else {
+          _showCustomConfirm({
+            title: "Unable to Reconcile Payment",
+            message: error.message,
+            alertType: "error",
+            trueActionBtnText: "OK",
+            closeOnOverlayClick: true,
+          });
+          $(`#reconcileBtn_${paymentId}`).html(btnText).prop("disabled", false);
+        }
+      });
   } catch (error) {
-    console.log(error);
+    console.error("Error:", error);
+    _callCatchError(() =>
+      _proccedPaymentReconciliationCallback(paymentId),
+    );
   }
 }

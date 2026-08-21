@@ -52,6 +52,10 @@ html {
   --sub-text-color: #d7353a;
   --emerald: #10b981;
   --purple: #8b5cf6;
+  --table-icon-bg: rgba(59,130,246,.15);
+  --table-icon-border: rgba(59,130,246,.12);
+  --table-icon-color: #0C2B4B;
+  --general-border-color: rgba(215,215,215,.5);
 }
 
 h1,

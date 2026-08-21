@@ -144,7 +144,7 @@
 }
 
 .receipt-container .receipt-title .stamp-wrapper .stamp {
-	width: 100px;
+	width: 80px;
 	display: flex;
 	justify-self: flex-end;
 	align-self: flex-end;

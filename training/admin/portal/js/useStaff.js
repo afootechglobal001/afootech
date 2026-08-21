@@ -360,7 +360,13 @@ function _saveUpdateStaffCallback(formData) {
 			_callAjaxError(() => _saveUpdateStaffCallback(formData), error.message); // retry if needed
 			_btnDisable("updateBtn", btnText, false);
 		} else {
-			_actionAlert(error.message, false);
+			_showCustomConfirm({
+				title: "Unable to update staff",
+				message: error.message,
+				alertType: "error",
+				trueActionBtnText: "OK",
+				closeOnOverlayClick: true,
+			});
 			_btnDisable("updateBtn", btnText, false);
 		}
     });
