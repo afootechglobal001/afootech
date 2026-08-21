@@ -626,7 +626,7 @@
     </div>
 <?php } ?>
 
-<!-- ////// Student Payment History /// -->
+<!-- ////// Student Payment History //// -->
 <?php if ($page == 'studentPaymentHistory') { ?>
     <div class="main-content-div dash-main-content-div" data-aos="fade-in" data-aos-duration="1200">
         <div class="tables-content-div">
