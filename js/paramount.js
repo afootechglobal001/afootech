@@ -5,11 +5,12 @@ function _getPage(options) {
         page = '',
 		action='get_page',
 		url='',
-		pageContainer='page-content'
+    pageContainer = 'page-content',
+    id = "",
     } = options;
 
 		$("#"+pageContainer).html('<div class="ajax-loader"><img src="'+ websiteUrl +'/all-images/images/spinner.gif"/></div>').css({'display': 'flex','flex-direction': 'column','gap': '20px','align-items': 'center','align-items': 'center'}).fadeIn(500);
-		const dataString = "action=" + action + "&page=" + page;
+		const dataString = "action=" + action + "&page=" + page + "&id=" + id;
 		$.ajax({
 			type: "POST",
 			url: url,
@@ -31,11 +32,26 @@ function _getForm(options) {
 		url=''
     } = options;
 
-    // Allow overlay click only for cartForm
-    if (page === "cartForm") {
+    // Allow overlay click only for Gallery Form
+    if (page === "galleryDetails") {
       allowOverlayClose = true;
+      $('body').addClass('no-scroll');
     } else {
       allowOverlayClose = false;
+    }
+
+    if (layer===1 && page!=="revenueBreakdown") {
+      // Save the current form
+      sessionStorage.setItem(
+        "currentDashboardForm",
+        JSON.stringify({
+          page,
+          id,
+          layer,
+          action,
+          url,
+        })
+      );
     }
 
     const target = layer === 1 ? '#get-form-more-div' : layer === 2  ? '#get-more-div-secondary' : '#get-more-third-layer';
@@ -48,6 +64,10 @@ function _getForm(options) {
         cache: false,
         success: function (html) {
           $(target).html(html);
+
+          if (page === "galleryDetails") {
+            _initializeGallery();
+          }
         },
   });
 }
@@ -59,7 +79,12 @@ function _alertClose(layer=1){
 		'<div class="icon"><img src="'+ websiteUrl +'/all-images/images/loading.gif" width="20px" alt="Loading"/></div>' +
 		'<div class="text"><p>LOADING...</p></div>'+
 		'</div>';
-			$(layer === 1 ? '#get-form-more-div' : layer === 2  ? '#get-more-div-secondary' : '#get-more-third-layer').html(text).fadeOut(200);
+  $(layer === 1 ? '#get-form-more-div' : layer === 2 ? '#get-more-div-secondary' : '#get-more-third-layer').html(text).fadeOut(200);
+  $('body').removeClass('no-scroll');
+
+  if (layer ===1) {
+    sessionStorage.removeItem("currentDashboardForm");
+  }
 }
 
 $(document).on('click', '#get-form-more-div', function () {
@@ -139,10 +164,10 @@ function _showCustomConfirm(options) {
 			<div class="btn-div">
 				${
           falseActionBtn
-            ? `<button id="confirmCancelBtn" class="btn false-btn">${falseActionBtnText}</button>`
+            ? `<button id="confirmCancelBtn" class="btn false-btn" title="${falseActionBtnText}">${falseActionBtnText}</button>`
             : ""
         }
-				<button id="confirmOkBtn" class="btn">${trueActionBtnText}</button>
+				<button id="confirmOkBtn" class="btn" title="${trueActionBtnText}">${trueActionBtnText}</button>
 			</div>
 		</div>
 	`;
@@ -164,14 +189,15 @@ function _showCustomConfirm(options) {
       });
   }
 
-    $("#customConfirmModal").off("click");
-if (closeOnOverlayClick) {
-  $("#customConfirmModal").on("click", function (e) {
-    if (e.target === this) {
-      _modalClose();
-    }
-  });
-}
+  $("#customConfirmModal").off("click");
+
+  if (closeOnOverlayClick) {
+    $("#customConfirmModal").on("click", function (e) {
+      if (e.target === this) {
+        _modalClose();
+      }
+    });
+  }
 }
 function _modalClose() {
   $("#customConfirmModal").html("").fadeOut(200);
@@ -193,7 +219,9 @@ function _validateEmptyValue(fieldId, fieldName) {
 }
 
 function _validateEmail(fieldId, fieldName) {
-  const value = $("#" + fieldId).val().trim();
+  const value = $("#" + fieldId)
+    .val()
+    .trim();
   if (!value) {
     $("#" + fieldId).addClass("issue");
     $("#issue_" + fieldId).html("PROVIDE " + fieldName.toUpperCase());
@@ -207,7 +235,7 @@ function _validateEmail(fieldId, fieldName) {
   if (/email|username/i.test(fieldName)) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       isValid = false;
-      message = "PROVIDE A VALID " + fieldName.toUpperCase() + " ADDRESS";
+      message = "PROVIDE A VALID " + fieldName.toUpperCase();
     }
   }
 
@@ -410,10 +438,147 @@ function _hideLoader() {
   $('#globalLoader').fadeOut(150);
 }
 
-function _formatDate(dateString) {
-  if (!dateString) return "N/A"; // fallback if no date
-  const dateObj = new Date(dateString);
-  const options = { day: "2-digit", month: "short", year: "numeric" };
-  // Example: 25 Jan 2025
-  return dateObj.toLocaleDateString("en-GB", options).replace(" ", " ");
+function _formatDate(newDate) {
+  if (!newDate) return "";
+
+  const d = new Date(newDate);
+  const day = d.getDate();
+  const month = d.toLocaleDateString("en-US", { month: "long" });
+  const year = d.getFullYear();
+
+  // Get ordinal suffix
+  const getOrdinal = (n) => {
+    const j = n % 10,
+      k = n % 100;
+
+    if (j === 1 && k !== 11) return `${n}st`;
+    if (j === 2 && k !== 12) return `${n}nd`;
+    if (j === 3 && k !== 13) return `${n}rd`;
+    return `${n}th`;
+  };
+
+  return `${getOrdinal(day)} ${month}, ${year}`;
+}
+
+function _formatShortDate(dateTime) {
+  if (!dateTime) return "";
+
+  const d = new Date(dateTime.replace(" ", "T"));
+
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+function _formatTime(dateTime) {
+    if (!dateTime) return "";
+
+    // Tell JS this is UTC
+    const utcDate = new Date(dateTime.replace(" ", "T") + "Z");
+
+    return utcDate.toLocaleTimeString("en-NG", {
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+    }).toUpperCase();
+}
+
+function capitalizeFirstLetterOfEachWord(inputText) {
+  const words = inputText.toLowerCase().split(" ");
+  for (let i = 0; i < words.length; i++) {
+    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+  }
+  const result = words.join(" ");
+  return result;
+}
+
+function _userRoleCheck(){
+	$('.switch input').on('change', function () {
+		const label = $(this).next().next(); // Grab the toggle-label span
+		label.text($(this).prop('checked') ? 'Yes' : 'No');
+	});
+}
+
+function getFirstLettersOfEachWord(str) {
+  return str
+    .split(" ") // split by spaces
+    .filter((word) => word) // remove empty strings (in case of double spaces)
+    .map((word) => word[0].toUpperCase()) // take first letter and uppercase it
+    .join(""); // join into a single string
+}
+
+/// countdown function ///
+function _counDownOtp(timer) {
+    $("#resendOtpBtn").hide();
+    $("#resendCountdown").fadeIn(500);
+
+    const countdown = setInterval(() => {
+        if (timer > 0) {
+        timer--;
+
+        let minutes = Math.floor(timer / 60);
+        let seconds = timer % 60;
+
+        if (timer >= 60) {
+            // Show MM:SS when 1 min or more
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            $("#resendCountdown").html(
+            'Resend in <strong id="timer">' +
+                minutes +
+                ":" +
+                seconds +
+                "</strong> min",
+            );
+        } else {
+            // Show seconds only when below 1 minute
+            $("#resendCountdown").html(
+            'Resend in <strong id="timer">' + seconds + "</strong> sec",
+            );
+        }
+        } else {
+        clearInterval(countdown);
+        $("#resendCountdown").hide();
+        $("#resendOtpBtn").fadeIn(500);
+        }
+    }, 1000);
+
+    return () => clearInterval(countdown);
+}
+function _showEmptyState(props) {
+  const {
+    container = "",
+    message = "Something went wrong",
+    colspan = null,
+    button = "",
+    paginationContainer = ""
+  } = props;
+
+  let content = `
+    <div class="empty-state-div">
+      <div class="icon">
+        <img src="${websiteUrl}/all-images/images/no-record.png" alt="Warning" />
+      </div>
+      <p>${message}</p>
+      ${button ? `<div>${button}</div>` : ""}
+    </div>
+  `;
+
+  if (colspan) {
+    content = `
+      <tr>
+        <td colspan="${colspan}">
+          ${content}
+        </td>
+      </tr>
+    `;
+  }
+
+  $(`#${container}`).html(content);
+
+  if (paginationContainer) {
+    $(`#${paginationContainer}`).empty().hide();
+  }
 }
