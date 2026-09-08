@@ -3018,7 +3018,7 @@ main {
 /*-----------table component---------------------------------------------------------------------------------------*/
 .tables-content-div {
 	background-color: var(--bg-white);
-	border-radius: 10px;
+	border-radius: 15px;
 	width: 100%;
 	min-height: 100px;
 	border: 1px solid rgba(215, 215, 215, .6);
@@ -3368,7 +3368,9 @@ main {
   transform: scale(1.05); /* subtle hover grow */
 }
 
-
+.table-div .table .tb-row .btn i{
+	font-size: 9px;
+}
 
 .table-div .table .tb-row .btn-div{
 	display: flex;
@@ -4894,11 +4896,41 @@ main {
 }
 
 .user-profile-div .profile-content-div .report-field-inner-div{ 
-	width: 95%;
+	width:95%;
+}
+
+.user-profile-div .profile-content-div .plan-field-inner-div{ 
+	width:100%;
 }
 
 .other-pages-ajax-loader {
 	top: 30%;
+}
+
+
+.user-profile-div .profile-content-div .plan-field-inner-div .modal-title{ 
+	width: calc(96.5% - 60px);
+	padding: 20px 30px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--link-color);
+    background: rgba(7, 162, 240, 0.068);
+    border: rgba(59, 131, 246, 0.096) 1px solid;
+	border-radius: 15px;
+	margin-bottom: 10px;
+}
+
+.user-profile-div .profile-content-div .plan-field-inner-div .modal-title .icon-div{ 
+	width: 50px;
+	height: 50px;
+	background: rgba(7, 162, 240, 0.068);
+	border: rgba(59, 131, 246, 0.103) 1px solid;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 28px;
 }
 
 .user-profile-div .profile-content-div .field-back-div .user-in{ 
@@ -4954,6 +4986,17 @@ main {
 .colum-table-content .col-3{  
 	width: calc(33.4% - 10px) !important;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 .form-bottom-btn-div{
 	display: flex;
@@ -5602,21 +5645,36 @@ main {
     width: 100%;
 	display: flex;
 	flex-direction: column;
-	border-radius: 10px;
+	border-radius: 15px;
 	background: var(--white);
 	border: 1px solid var(--general-border-color);
-} 
+	cursor: pointer;
+	transition: all .3s ease;
+}
 
-.program-wrapper .program-item .top-text{
+.program-wrapper .program-item:hover{
+    transform: translateY(-2px);
+	box-shadow: 0 0 25px rgba(51, 51, 51, 0.1);
+}
+
+.program-wrapper .program-item .title-content{
     width: 100%;
-	min-height: 60px;
 	display: flex;
 	align-items: center;
-	border-bottom: 1px solid var(--general-border-color);
-} 
+	background: var(--white);
+	cursor: pointer;
+	transition: all .3s ease;
+	background: #f8f8f8;
+	border-radius: 15px 15px 0px 0px;
+	box-sizing: border-box;
+}
 
-.program-wrapper .program-item .top-text .number{
-	padding: 0px 20px;
+.program-wrapper .program-item .program-title-content{
+	border-radius: 15px;
+}
+
+.program-wrapper .program-item .title-content .number {
+	padding: 10px 25px;
 	line-height: 60px;
 	font-family: title-font;
 	color: var(--text-title-color);
@@ -5624,36 +5682,110 @@ main {
 	border-right: 1px solid var(--general-border-color);
 } 
 
-.program-wrapper .program-item .top-text .title-div{
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	padding: 0px 20px;
-} 
-
-.program-wrapper .program-item .top-text .title-div .icon-div{
-	width: 40px;
-	height: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 25px;
-	font-size: 18px;
-	background: rgba(2, 132, 199, 0.1);
-	border: rgba(59,130,246,.14) 1px solid;
-} 
-
-.program-wrapper .program-item .top-text .title-div .text-div{
+.program-wrapper .program-item .title-content .content-div{
 	width: 100%;
-	font-family: title-font;
-	color: var(--text-title-color);
-	font-size: 15px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	padding: 10px 20px;
 } 
 
-.program-wrapper .program-item .bottom-text p{
-    padding: 20px;
-	font-size: 16px;
+.program-wrapper .program-item .title-content .content-div .left-content{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.program-wrapper .program-item .title-content .content-div .left-content .icon-div{
+	width: 45px;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 12px;
+	font-size: 20px;
+	color: var(--link-color);
+	background: rgba(7, 162, 240, 0.1);
+	border: rgba(59,130,246,.14) 1px solid;
+	flex-shrink: 0;
 } 
+
+.program-wrapper .program-item .title-content .content-div .left-content .text-div{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+} 
+
+.program-wrapper .program-item .title-content .content-div .left-content .text-div h2{
+	font-family: sub-title-font;
+	color: var(--text-title-color);
+	font-size: 17px;
+} 
+
+.program-wrapper .program-item .title-content .content-div .left-content .text-div p{
+	font-size: 14px;
+	color: var(--sub-body-color);
+	font-family: body-font;
+} 
+
+.program-wrapper .program-item .title-content .content-div .nav-wrapper{
+	display: flex;
+	gap: 15px;
+} 
+
+.program-wrapper .program-item .title-content .content-div .nav-wrapper .btn{
+	border: none;
+    height: 35px;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    border-radius: 25px;
+    font-family: sub-title-font;
+    padding: 0px 15px;
+    color: var(--text-white);
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    background-size: 100%;
+    background-position: left;
+    transition: background-position 0.4s ease-in-out, transform 0.2s ease-in-out;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+	font-size: 12px;
+} 
+
+.program-wrapper .program-item .title-content .content-div .nav-wrapper .btn:hover {
+	background-size: 200% 100%;
+	background-position: right;
+  	transform: scale(1.05); /* subtle hover grow */
+}
+
+
+.program-wrapper .program-item .title-content .content-div .nav-wrapper .btn i{
+	font-size: 11px;
+} 
+
+.program-wrapper .program-item .title-content .content-div .nav-cont{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	color: var(--link-color);
+	border-radius: 25px;
+	font-size: 30px;
+	flex-shrink: 0;
+} 
+
+.program-wrapper .program-item .title-content .content-div .nav-wrapper .toggle-nav{
+	font-size: 17px;
+	width: 35px !important;
+	height: 35px !important;
+	background: #ebebeb;
+} 
+
+.program-wrapper .program-item .open-toggle{
+    padding: 30px;
+    font-size: 12px;
+}
