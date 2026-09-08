@@ -32,6 +32,18 @@
             </div>
 
             <div class="nav-back-div">
+                <div class="nav-div" title="Pricing" id="pricingPage"
+                    onclick="_getActivePage({page:'pricingPage', divid:'pricingPage'});">
+                    <i class="fa-solid fa-tags"></i>
+                    <span>Pricing</span>
+                </div>
+
+                <div class="nav-div" title="Course Setup" id="coursePage"
+                    onclick="_getActivePage({page:'coursePage', divid:'coursePage'});">
+                    <i class="bi bi-mortarboard"></i>
+                    <span>Course Setup</span>
+                </div>
+
                 <div class="nav-div" title="System Settings" id="settingsPage"
                     onclick="_getActivePage({page:'settingsPage', divid:'settingsPage'});">
                     <i class="bi-gear"></i>
