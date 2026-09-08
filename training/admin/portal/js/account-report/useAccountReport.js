@@ -15,7 +15,7 @@ function _getActiveReportNav(props) {
 }
 function _getReportActiveNav(divid) {
   $(
-    "#filterByDate"
+    "#filterByDate, #filterByFees"
   ).removeClass("active");
   $("#" + divid).addClass("active");
 }
@@ -477,8 +477,8 @@ function _renderStatusReportTableData(data, start) {
           </div>
         </td>
         <td><s>N</s>${thousandSeperator(item?.amount)}</td>
-        <td><s>N</s>${thousandSeperator(item?.paystackRemittance)}</td>
         <td><s>N</s>${thousandSeperator(item?.paystackCharges)}</td>
+        <td><s>N</s>${thousandSeperator(item?.paystackRemittance)}</td>
         <td>${item?.paymentPurposeData?.paymentPurposeName}</td>
         <td>${item?.paymentMethodData?.paymentMethodName}</td>
         <td>

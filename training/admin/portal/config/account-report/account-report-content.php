@@ -27,6 +27,11 @@
                         onclick="_getActiveReportNav({divid:'filterByDate', page: 'filterByDate', url: trainingAdminPortalMiddlewareUrl});">
                         <i class="bi-calendar2-check"></i> Date Range
                     </li>
+
+                    <li class="active" title="Filter Revenue By Fees" id="filterByFees"
+                        onclick="_getActiveReportNav({divid:'filterByFees', page: 'filterByFees', url: trainingAdminPortalMiddlewareUrl});">
+                        <i class="bi-credit-card"></i> Fees
+                    </li>
                 </ul>
             </div>
 
@@ -324,6 +329,227 @@
                             };
                             $("#chartContainer2").CanvasJSChart(options);
                             </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            _fetchReportRevenueFiltering('srch-30', 'Last 30 Days');
+        });
+    </script>
+<?php } ?>
+
+<!-- Filter By Fees Revenue Pages -->
+<?php if ($page == 'filterByFees') { ?>
+    <div class="chart-div-notifications report-chart-div">
+        <div class="text-wrapper">
+            <div class="text"><i class="bi-graph-up-arrow"></i> Showing Matrix for </div>
+
+            <div class="text text-right" onclick="select_search()">
+                <span id="srch-text">Last 30 Days</span>
+                <div class="icon-div"><i class="bi-caret-down"></i></div>
+
+                <div class="srch-select alert-srch-select">
+                    <div id="srch-today" onclick="_fetchReportRevenueFiltering('srch-today', 'Today');">Today
+                    </div>
+                    <div id="srch-week" onclick="_fetchReportRevenueFiltering('srch-week', 'This Week');">This
+                        Week</div>
+                    <div id="srch-7" onclick="_fetchReportRevenueFiltering('srch-7', 'Last 7 Days');">Last 7 Days
+                    </div>
+                    <div id="srch-month" onclick="_fetchReportRevenueFiltering('srch-month', 'This Month');">This
+                        Month</div>
+                    <div id="srch-30" onclick="_fetchReportRevenueFiltering('srch-30', 'Last 30 Days');">Last 30 Days
+                    </div>
+                    <div id="srch-90" onclick="_fetchReportRevenueFiltering('srch-90', 'Last 90 Days');">Last 90 Days
+                    </div>
+                    <div id="srch-year" onclick="_fetchReportRevenueFiltering('srch-year', 'This Year');">This
+                        Year</div>
+                    <div id="srch-1year" onclick="_fetchReportRevenueFiltering('srch-1year', 'Last 1 Year');">Last 1
+                        Year</div>
+                    <div onclick="srch_custom('Custom Search')">Custom Search</div>
+                </div>
+            </div>
+
+            <div class="text">
+                <div class="custom-srch-div">
+                    <div class="custom-srch-div-in">
+                        <div class="text_field_container dash_field_container">
+                            <input class="text_field bar_cust_text_field" type="text" id="datepickers-from"
+                                placeholder="" />
+                            <div class="placeholder bar_cust_placeholder"><i class="bi-calendar3"></i> From
+                            </div>
+                            <div class="issueText" id="issue_from"></div>
+                        </div>
+
+                        <div class="text_field_container dash_field_container">
+                            <input class="text_field bar_cust_text_field" type="text" id="datepickers-to" placeholder="" />
+                            <div class="placeholder bar_cust_placeholder"><i class="bi-calendar3"></i> To </div>
+                            <div class="issueText" id="issue_to"></div>
+                        </div>
+                        <button type="button" class="btn" id="applyCustomSearchBtn"
+                            onclick="_fetchCustomReportRevenueFiltering();">Apply</button>
+                    </div>
+                </div>
+            </div>
+
+            <script language="javascript">
+            $('#datepickers-from').datetimepicker({
+                lang: 'en',
+                timepicker: false,
+                format: 'Y-m-d',
+                formatDate: 'Y-M-d',
+            });
+
+            $('#datepickers-to').datetimepicker({
+                lang: 'en',
+                timepicker: false,
+                format: 'Y-m-d',
+                formatDate: 'Y-M-d',
+            });
+            </script>
+        </div>
+
+        <div class="revenue-date">
+            <i class="bi-info-circle"></i> Revenue report between <strong id="dateFrom">Loading...</strong> and <strong
+                id="dateTo">Loading...</strong>
+        </div>
+    </div>
+
+    <div class="fetch-report-back-div">
+        <div class="report-dashbaord-wrapper animated fadeIn">
+            <div class="dashboard-statistics-wrapper">
+                <div class="left-dashbaord-container">
+                    <div class="statistics-chart-back-div">
+                        <div class="report-statistics-back-div">
+                            <div class="report-statistics-div" id="branch" title="Revenue from All Channels">
+                                <div class="statistics-inner-div">
+                                    <div class="icon-div active">
+                                        <i class="bi bi-cash-stack"></i>
+                                    </div>
+
+                                    <div class="report-statistics-text">
+                                        <p>Total Revenue</p>
+                                        <span>Revenue from All Channels</span>
+                                        <h2 id="totalRevenue"><s>N</s>0.00</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="report-statistics-div" id="branch" title="Credit Card">
+                                <div class="statistics-inner-div">
+                                    <div class="icon-div secondary">
+                                        <i class="bi bi-credit-card"></i>
+                                    </div>
+
+                                    <div class="report-statistics-text">
+                                        <p>Credit Card Revenue</p>
+                                        <span>Total Amount Paid via Credit Card</span>
+                                        <h2 id="sumCreditCardPayments"><s>N</s>0.00</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="report-statistics-div" title="Bank Transfer Revenue">
+                                <div class="statistics-inner-div">
+                                    <div class="icon-div">
+                                        <i class="bi bi-bank"></i>
+                                    </div>
+
+                                    <div class="report-statistics-text">
+                                        <p>Bank Transfer Revenue</p>
+                                        <span>Total Amount Paid via Bank Transfer</span>
+                                        <h2 id="sumBankTransferPayments"><s>N</s>0.00</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="report-statistics-div" title="Number of Card Payments">
+                                <div class="statistics-inner-div">
+                                    <div class="icon-div active">
+                                        <i class="bi bi-wallet"></i>
+                                    </div>
+
+                                    <div class="report-statistics-text">
+                                        <p>Credit Card Transactions</p>
+                                        <span>Number of Card Payments</span>
+                                        <h2 id="countCreditCardPayments">0</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="report-statistics-div" title="Bank Transfer Transactions">
+                                <div class="statistics-inner-div">
+                                    <div class="icon-div active">
+                                        <i class="bi bi-bank"></i>
+                                    </div>
+
+                                    <div class="report-statistics-text">
+                                        <p>Bank Transfer Transactions</p>
+                                        <span>Number of Bank Transfer Payments</span>
+                                        <h2 id="countBankTransferPayments">0</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="report-statistics-div" title="Paystack Charges">
+                                <div class="statistics-inner-div">
+                                    <div class="icon-div danger">
+                                        <i class="bi bi-receipt-cutoff"></i>
+                                    </div>
+
+                                    <div class="report-statistics-text">
+                                        <p>Paystack Charges</p>
+                                        <span>Total Transaction Charges</span>
+                                        <h2 id="sumPaystackCharges"><s>N</s>0.00</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="report-statistics-div" title="Paystack Remittance">
+                                <div class="statistics-inner-div">
+                                    <div class="icon-div primary">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </div>
+
+                                    <div class="report-statistics-text">
+                                        <p>Paystack Remittance</p>
+                                        <span>Total Amount Remitted</span>
+                                        <h2 id="sumPaystackRemittance"><s>N</s>0.00</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-div animated fadeIn">
+                            <table class="table" cellspacing="0" style="width:100%">
+                                <thead>
+                                    <tr class="tb-col">
+                                        <th>sn</th>
+                                        <th>Date</th>
+                                        <th>Successful(<s>N</s>)</th>
+                                        <th>Pending(<s>N</s>)</th>
+                                        <th>Cancelled(<s>N</s>)</th>
+                                        <th>View</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="acoountReportPageContent">
+                                    <!-- CONTENT GOES HERE -->
+                                    <tr>
+                                        <td colspan="20">
+                                            <div class="content-loading-div">
+                                                <img src="<?php echo $websiteUrl ?>/images/spinner.gif" alt="Loading" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- Pagination -->
+                            <div id="acoountReportPageContentPaginationControls" class="pagination-div"></div>
                         </div>
                     </div>
                 </div>

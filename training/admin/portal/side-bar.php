@@ -34,7 +34,7 @@
             <div class="nav-back-div">
                 <div class="nav-div" title="Pricing" id="pricingPage"
                     onclick="_getActivePage({page:'pricingPage', divid:'pricingPage'});">
-                    <i class="fa-solid fa-tags"></i>
+                    <i class="bi bi-tags-fill"></i>
                     <span>Pricing</span>
                 </div>
 

@@ -53,17 +53,21 @@ function _chevronCollapse(divId) {
   var x = document.getElementById(divId + "num");
   var titleDiv = x.closest(".pages-toggle-title");
 
-  if (x.innerHTML === '&nbsp;<i class="bi-plus"></i>&nbsp;') {
-    x.innerHTML = '&nbsp;<i class="bi-dash"></i>&nbsp;';
+  if (x.innerHTML === '&nbsp;<i class="bi bi-chevron-up"></i>&nbsp;') {
+    x.innerHTML = '&nbsp;<i class="bi bi-chevron-down"></i>&nbsp;';
     $("#" + divId + "answer").addClass("active-li");
     $(titleDiv).addClass("active-toggle");
   } else {
-    x.innerHTML = '&nbsp;<i class="bi-plus"></i>&nbsp;';
+    x.innerHTML = '&nbsp;<i class="bi bi-chevron-up"></i>&nbsp;';
     $(titleDiv).removeClass("active-toggle");
   }
 
   $("#" + divId + "answer").slideToggle("slow");
 }
+
+
+
+
 
 function _logOut() {
   sessionStorage.clear();
