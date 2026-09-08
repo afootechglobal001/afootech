@@ -6,6 +6,7 @@
 
 <link href="<?php echo $websiteUrl?>/all-images/images/icon.png" rel="shortcut icon" type="image-png" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 <link href="<?php echo $websiteUrl?>/style/animate.css" type="text/css" rel="stylesheet" media="all">
 <link href="<?php echo $websiteUrl?>/style/aos.css" type="text/css" rel="stylesheet" />
 <link href="<?php echo $websiteUrl?>/style/paramount.css?v=<?php echo $codeVersion?>" type="text/css"rel="stylesheet" />
@@ -36,3 +37,4 @@
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/useStudent.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/useRole.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/account-report/useAccountReport.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
+<script src="<?php echo $websiteUrl?>/training/admin/portal/js/useCourse.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>

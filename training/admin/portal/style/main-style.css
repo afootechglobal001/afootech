@@ -3221,11 +3221,15 @@ main {
 }
 
 .table-div .table .tb-row .text-back-div .text-div .second-class{
-	font-size: 10px;
+	font-size: 11px;
 	color: var(--text-color);
 	display: flex;
 	align-items: center;
 	gap: 4px;
+}
+
+.table-div .table .tb-row .text-back-div .text-div .course-desc{
+	width: 380px;
 }
 
 .table-div .table .tb-row .text-back-div .text-div .second-class i,
@@ -5584,3 +5588,72 @@ main {
 .program-container .program-card .program-actions .done-btn{
     background: #42732c;
 }
+
+
+
+.program-wrapper{
+    width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.program-wrapper .program-item{
+    width: 100%;
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	background: var(--white);
+	border: 1px solid var(--general-border-color);
+} 
+
+.program-wrapper .program-item .top-text{
+    width: 100%;
+	min-height: 60px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid var(--general-border-color);
+} 
+
+.program-wrapper .program-item .top-text .number{
+	padding: 0px 20px;
+	line-height: 60px;
+	font-family: title-font;
+	color: var(--text-title-color);
+	font-size: 20px;
+	border-right: 1px solid var(--general-border-color);
+} 
+
+.program-wrapper .program-item .top-text .title-div{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 0px 20px;
+} 
+
+.program-wrapper .program-item .top-text .title-div .icon-div{
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 25px;
+	font-size: 18px;
+	background: rgba(2, 132, 199, 0.1);
+	border: rgba(59,130,246,.14) 1px solid;
+} 
+
+.program-wrapper .program-item .top-text .title-div .text-div{
+	width: 100%;
+	font-family: title-font;
+	color: var(--text-title-color);
+	font-size: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+} 
+
+.program-wrapper .program-item .bottom-text p{
+    padding: 20px;
+	font-size: 16px;
+} 

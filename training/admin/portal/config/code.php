@@ -16,6 +16,8 @@ switch ($action){
 		require_once('settings-content.php');
 		require_once('role-content.php');
 		require_once('account-report/account-report-content.php');
+		require_once('course-content.php');
+		require_once('pricing-content.php');
 	break;
 
 	case 'get_form':
@@ -29,6 +31,8 @@ switch ($action){
 		require_once('settings-content.php');
 		require_once('role-content.php');
 		require_once('account-report/account-report-content.php');
+		require_once('course-content.php');
+		require_once('pricing-content.php');
 	break;
 }
 ?>

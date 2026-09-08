@@ -56,6 +56,7 @@ html {
   --table-icon-border: rgba(59,130,246,.12);
   --table-icon-color: #0C2B4B;
   --general-border-color: rgba(215,215,215,.5);
+  --text-title-color: rgba(14, 42, 70);
 }
 
 h1,
