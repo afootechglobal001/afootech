@@ -40,7 +40,9 @@
                                 <th>sn</th>
                                 <th>Course ID</th>
                                 <th>Course Name</th>
-                                <th>Last Updated</th>
+                                <th>Created At</th>
+                                <th>Updated At</th>
+                                <th>Created By</th>
                                 <th>Updated By</th>
                                 <th>Status</th>
                                 <th>Action</th>

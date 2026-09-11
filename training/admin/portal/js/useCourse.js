@@ -47,13 +47,17 @@ function _createAndUpdateCourse(){
 
 ///// Save Create or Update Course Callback /////
 function _createAndUpdateCourseCallback(formData) {
+	const getEachCourseDetailsSession = JSON.parse(sessionStorage.getItem("getEachCourseDetailsSession") || "{}");
 	///// get btn text/////
 	const btnText = $("#submitBtn").html();
 	_btnDisable("submitBtn", btnText, true);
 	
+	/// check if update or create ///
+	let url = getEachCourseDetailsSession?.courseId ? `admin/courses/update-course?courseId=${getEachCourseDetailsSession?.courseId}` : `admin/courses/create-course`;
+
 	//// call endpoint //////
 	_callRawEndPoints({
-		url: `admin/course/create-course`,
+		url,
 		formData,
 		accessKey: true,
 	})
@@ -78,14 +82,14 @@ function _createAndUpdateCourseCallback(formData) {
 			_callAjaxError(() => _createAndUpdateCourse(formData), error.message); // retry if needed
 			_btnDisable("submitBtn", btnText, false);
 		} else {
-		_showCustomConfirm({
-			title: "Unable to Create Course",
-			message: error.message,
-			alertType: "error",
-			trueActionBtnText: "OK",
-			closeOnOverlayClick: true,
-		});
-		_btnDisable("submitBtn", btnText, false);
+			_showCustomConfirm({
+				title: getEachCourseDetailsSession?.courseId ? "Unable to Update Course" : "Unable to Create Course",
+				message: error.message,
+				alertType: "error",
+				trueActionBtnText: "OK",
+				closeOnOverlayClick: true,
+			});
+			_btnDisable("submitBtn", btnText, false);
 		}
     });
 }
@@ -93,75 +97,12 @@ function _createAndUpdateCourseCallback(formData) {
 /// Fetch Course Data ///
 function _fetchCourseData() {
 	try {
-		const dummyResponse = {
-			data: [
-				{
-					courseId: "C001",
-					courseName: "AI & AUTOMATION PROGRAMMING",
-					updatedTime: "2026-09-05 10:30:00",
-					updatedByData: {
-						staffName: "John Doe",
-						staffEmail: "john.doe@example.com"
-					},
-					statusData: {
-						statusName: "ACTIVE"
-					}
-				},
-				{
-					courseId: "C002",
-					courseName: "FRONT-END DEVELOPMENT",
-					updatedTime: "2026-09-04 14:15:00",
-					updatedByData: {
-						staffName: "Jane Smith",
-						staffEmail: "jane.smith@example.com"
-					},
-					statusData: {
-						statusName: "ACTIVE"
-					}
-				},
-				{
-					courseId: "C003",
-					courseName: "BACKEND WEB DEVELOPMENT",
-					updatedTime: "2026-09-03 09:45:00",
-					updatedByData: {
-						staffName: "Michael Brown",
-						staffEmail: "michael.brown@example.com"
-					},
-					statusData: {
-						statusName: "ACTIVE"
-					}
-				},
-				{
-					courseId: "C004",
-					courseName: "UI/UX & ADVANCED GRAPHIC DESIGNING",
-					updatedTime: "2026-09-02 16:20:00",
-					updatedByData: {
-						staffName: "Sarah Williams",
-						staffEmail: "sarah.williams@example.com"
-					},
-					statusData: {
-						statusName: "ACTIVE"
-					}
-				}
-			]
-		};
-
-		// Use dummy data
-		_initFetchCourseData(dummyResponse.data);
-
-
-		// ============================================================
-		// REAL API ENDPOINT
-		// Uncomment when backend endpoint is ready
-		// ============================================================
-
-		/*
 		_callFetchEndPoints({
-			url: `admin/course/fetch-course`,
+			url: `admin/courses/fetch-course`,
 			accessKey: true,
 		})
 		.then((response) => {
-			_initFetchCourseData(response.data);
+			_initFetchCourseData(response?.data);
 		})
 		.catch((error) => {
 			_staffValidationCheck(error.response);
@@ -185,9 +126,8 @@ function _fetchCourseData() {
 					message: error.message,
 					colspan: 20,
 					button: `
-						<button class="btn"
-							title="ADD NEW COURSE"
-							onclick="sessionStorage.removeItem('useEachCourseSession'); _getForm({page: 'courseReg', url: adminPortalMiddlewareUrl});">
+						<button class="btn" title="ADD NEW COURSE"
+							onclick="sessionStorage.removeItem('getEachCourseDetailsSession'); _getForm({page: 'courseReg', url: trainingAdminPortalMiddlewareUrl});">
 							<i class="bi-plus-square"></i> ADD NEW COURSE
 						</button>
 					`,
@@ -195,8 +135,6 @@ function _fetchCourseData() {
 				});
 			}
 		});
-		*/
-
 	} catch (error) {
 		console.error("Error:", error);
 		_callCatchError(() => _fetchCourseData());
@@ -228,6 +166,19 @@ function _renderCourseData(data, start) {
 				<div class="text-back-div">
 					<div class="text-div">
 						<div class="first-class">
+							<i class="bi bi-calendar2-check"></i> ${_formatShortDate(item?.createdTime || "00-00-00 00:00:00")}
+						</div>
+
+						<div class="second-class date-item">
+							<i class="bi bi-clock"></i> ${_formatTime(item?.createdTime || "00:00:00")}
+						</div>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="text-back-div">
+					<div class="text-div">
+						<div class="first-class">
 							<i class="bi bi-calendar2-check"></i> ${_formatShortDate(item?.updatedTime || "00-00-00 00:00:00")}
 						</div>
 
@@ -241,11 +192,24 @@ function _renderCourseData(data, start) {
 				<div class="text-back-div">
 					<div class="text-div">
 						<div class="first-class">
-							${item?.updatedByData?.staffName || "-----"}
+							${item?.createdByData?.fullname || "-----"}
 						</div>
 
 						<div class="second-class">
-							${item?.updatedByData?.staffEmail || "-----"}
+							${item?.createdByData?.emailAddress || "-----"}
+						</div>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div class="text-back-div">
+					<div class="text-div">
+						<div class="first-class">
+							${item?.updatedByData?.fullname || "-----"}
+						</div>
+
+						<div class="second-class">
+							${item?.updatedByData?.emailAddress || "-----"}
 						</div>
 					</div>
 				</div>
@@ -281,55 +245,11 @@ function _fetchEachCourse(courseId) {
         .fadeIn(500);
 
     try {
-
-        // ============================================================
-        // DUMMY COURSE DATA
-        // ============================================================
-
-		const dummyCourses = {
-			data: {
-				courseId: "C001",
-				courseName: "AI & AUTOMATION PROGRAMMING",
-				courseDescription: "A beginner-friendly introduction to web development, covering HTML, CSS, JavaScript and basic web development concepts.",
-				updatedTime: "2026-09-05 10:30:00",
-				updatedByData: {
-					staffName: "John Doe",
-					staffEmail: "john.doe@example.com"
-				},
-				statusData: {
-					statusId: 1,
-					statusName: "ACTIVE"
-				}
-			},
-		}
-
-        sessionStorage.setItem(
-            "getEachCourseDetailsSession",
-            JSON.stringify(dummyCourses?.data || {})
-        );
-
-        // ============================================================
-        // OPEN COURSE FORM
-        // ============================================================
-
-        _getForm({
-            page: 'courseReg',
-            url: trainingAdminPortalMiddlewareUrl
-        });
-
-
-        // ============================================================
-        // REAL API ENDPOINT
-        // Uncomment this when backend endpoint is ready
-        // ============================================================
-
-        /*
         _callFetchEndPoints({
-            url: `admin/course/fetch-course?courseId=${courseId}`,
+            url: `admin/courses/fetch-course?courseId=${courseId}`,
             accessKey: true,
         })
         .then((response) => {
-
             sessionStorage.setItem(
                 "getEachCourseDetailsSession",
                 JSON.stringify(response?.data?.[0] || {})
@@ -339,30 +259,19 @@ function _fetchEachCourse(courseId) {
                 page: 'courseReg',
                 url: trainingAdminPortalMiddlewareUrl
             });
-
         })
         .catch((error) => {
-
             _staffValidationCheck(error.response);
-
             _alertClose();
-
             console.error("Error:", error);
-
             _callAjaxError(
                 () => _fetchEachCourse(courseId),
                 error.message
             );
-
         });
-        */
-
     } catch (error) {
-
         _alertClose();
-
         console.error("Error:", error);
-
         _callCatchError(
             () => _fetchEachCourse(courseId)
         );
