@@ -54,11 +54,11 @@
         <div class="text-wrapper">
             <div class="text"><i class="bi-graph-up-arrow"></i> Showing Matrix for </div>
 
-            <div class="text text-right" onclick="select_search()">
+            <div class="text text-right" onclick="_reportSelectSearch()">
                 <span id="srch-text">Last 30 Days</span>
                 <div class="icon-div"><i class="bi-caret-down"></i></div>
 
-                <div class="srch-select alert-srch-select">
+                <div class="srch-select report-page-dropdown">
                     <div id="srch-today" onclick="_fetchReportRevenueFiltering('srch-today', 'Today');">Today
                     </div>
                     <div id="srch-week" onclick="_fetchReportRevenueFiltering('srch-week', 'This Week');">This
@@ -349,26 +349,26 @@
         <div class="text-wrapper">
             <div class="text"><i class="bi-graph-up-arrow"></i> Showing Matrix for </div>
 
-            <div class="text text-right" onclick="select_search()">
+            <div class="text text-right" onclick="_reportSelectSearch()">
                 <span id="srch-text">Last 30 Days</span>
                 <div class="icon-div"><i class="bi-caret-down"></i></div>
 
-                <div class="srch-select alert-srch-select">
-                    <div id="srch-today" onclick="_fetchReportRevenueFiltering('srch-today', 'Today');">Today
+                <div class="srch-select report-page-dropdown">
+                    <div id="srch-today" onclick="_proceedFetchReportRevenueByFeesFiltering('srch-today', 'Today');">Today
                     </div>
-                    <div id="srch-week" onclick="_fetchReportRevenueFiltering('srch-week', 'This Week');">This
+                    <div id="srch-week" onclick="_proceedFetchReportRevenueByFeesFiltering('srch-week', 'This Week');">This
                         Week</div>
-                    <div id="srch-7" onclick="_fetchReportRevenueFiltering('srch-7', 'Last 7 Days');">Last 7 Days
+                    <div id="srch-7" onclick="_proceedFetchReportRevenueByFeesFiltering('srch-7', 'Last 7 Days');">Last 7 Days
                     </div>
-                    <div id="srch-month" onclick="_fetchReportRevenueFiltering('srch-month', 'This Month');">This
+                    <div id="srch-month" onclick="_proceedFetchReportRevenueByFeesFiltering('srch-month', 'This Month');">This
                         Month</div>
-                    <div id="srch-30" onclick="_fetchReportRevenueFiltering('srch-30', 'Last 30 Days');">Last 30 Days
+                    <div id="srch-30" onclick="_proceedFetchReportRevenueByFeesFiltering('srch-30', 'Last 30 Days');">Last 30 Days
                     </div>
-                    <div id="srch-90" onclick="_fetchReportRevenueFiltering('srch-90', 'Last 90 Days');">Last 90 Days
+                    <div id="srch-90" onclick="_proceedFetchReportRevenueByFeesFiltering('srch-90', 'Last 90 Days');">Last 90 Days
                     </div>
-                    <div id="srch-year" onclick="_fetchReportRevenueFiltering('srch-year', 'This Year');">This
+                    <div id="srch-year" onclick="_proceedFetchReportRevenueByFeesFiltering('srch-year', 'This Year');">This
                         Year</div>
-                    <div id="srch-1year" onclick="_fetchReportRevenueFiltering('srch-1year', 'Last 1 Year');">Last 1
+                    <div id="srch-1year" onclick="_proceedFetchReportRevenueByFeesFiltering('srch-1year', 'Last 1 Year');">Last 1
                         Year</div>
                     <div onclick="srch_custom('Custom Search')">Custom Search</div>
                 </div>
@@ -397,32 +397,36 @@
             </div>
 
             <script language="javascript">
-            $('#datepickers-from').datetimepicker({
-                lang: 'en',
-                timepicker: false,
-                format: 'Y-m-d',
-                formatDate: 'Y-M-d',
-            });
+                $('#datepickers-from').datetimepicker({
+                    lang: 'en',
+                    timepicker: false,
+                    format: 'Y-m-d',
+                    formatDate: 'Y-M-d',
+                });
 
-            $('#datepickers-to').datetimepicker({
-                lang: 'en',
-                timepicker: false,
-                format: 'Y-m-d',
-                formatDate: 'Y-M-d',
-            });
+                $('#datepickers-to').datetimepicker({
+                    lang: 'en',
+                    timepicker: false,
+                    format: 'Y-m-d',
+                    formatDate: 'Y-M-d',
+                });
             </script>
+
+            <div id="paymentPurposeTab">
+                <script>_fetchPaymentPurposeTab();</script>
+            </div>    
         </div>
 
         <div class="revenue-date">
-            <i class="bi-info-circle"></i> Revenue report between <strong id="dateFrom">Loading...</strong> and <strong
-                id="dateTo">Loading...</strong>
+            <i class="bi-info-circle"></i> Revenue report between <strong id="byFeesDateFrom">Loading...</strong> and <strong
+                id="byFeesDateTo">Loading...</strong>
         </div>
     </div>
 
     <div class="fetch-report-back-div">
         <div class="report-dashbaord-wrapper animated fadeIn">
             <div class="dashboard-statistics-wrapper">
-                <div class="left-dashbaord-container">
+                <div class="left-dashbaord-container full-width-container">
                     <div class="statistics-chart-back-div">
                         <div class="report-statistics-back-div">
                             <div class="report-statistics-div" id="branch" title="Revenue from All Channels">
@@ -434,7 +438,7 @@
                                     <div class="report-statistics-text">
                                         <p>Total Revenue</p>
                                         <span>Revenue from All Channels</span>
-                                        <h2 id="totalRevenue"><s>N</s>0.00</h2>
+                                        <h2 id="byFeesTotalRevenue"><s>N</s>0.00</h2>
                                     </div>
                                 </div>
                             </div>
@@ -448,7 +452,7 @@
                                     <div class="report-statistics-text">
                                         <p>Credit Card Revenue</p>
                                         <span>Total Amount Paid via Credit Card</span>
-                                        <h2 id="sumCreditCardPayments"><s>N</s>0.00</h2>
+                                        <h2 id="byFeesSumCreditCardPayments"><s>N</s>0.00</h2>
                                     </div>
                                 </div>
                             </div>
@@ -462,7 +466,7 @@
                                     <div class="report-statistics-text">
                                         <p>Bank Transfer Revenue</p>
                                         <span>Total Amount Paid via Bank Transfer</span>
-                                        <h2 id="sumBankTransferPayments"><s>N</s>0.00</h2>
+                                        <h2 id="byFeesSumBankTransferPayments"><s>N</s>0.00</h2>
                                     </div>
                                 </div>
                             </div>
@@ -476,7 +480,7 @@
                                     <div class="report-statistics-text">
                                         <p>Credit Card Transactions</p>
                                         <span>Number of Card Payments</span>
-                                        <h2 id="countCreditCardPayments">0</h2>
+                                        <h2 id="byFeesCountCreditCardPayments">0</h2>
                                     </div>
                                 </div>
                             </div>
@@ -490,7 +494,7 @@
                                     <div class="report-statistics-text">
                                         <p>Bank Transfer Transactions</p>
                                         <span>Number of Bank Transfer Payments</span>
-                                        <h2 id="countBankTransferPayments">0</h2>
+                                        <h2 id="byFeesCountBankTransferPayments">0</h2>
                                     </div>
                                 </div>
                             </div>
@@ -504,7 +508,7 @@
                                     <div class="report-statistics-text">
                                         <p>Paystack Charges</p>
                                         <span>Total Transaction Charges</span>
-                                        <h2 id="sumPaystackCharges"><s>N</s>0.00</h2>
+                                        <h2 id="byFeesSumPaystackCharges"><s>N</s>0.00</h2>
                                     </div>
                                 </div>
                             </div>
@@ -518,7 +522,7 @@
                                     <div class="report-statistics-text">
                                         <p>Paystack Remittance</p>
                                         <span>Total Amount Remitted</span>
-                                        <h2 id="sumPaystackRemittance"><s>N</s>0.00</h2>
+                                        <h2 id="byFeesSumPaystackRemittance"><s>N</s>0.00</h2>
                                     </div>
                                 </div>
                             </div>
@@ -529,39 +533,39 @@
                                 <thead>
                                     <tr class="tb-col">
                                         <th>sn</th>
-                                        <th>Date</th>
-                                        <th>Successful(<s>N</s>)</th>
-                                        <th>Pending(<s>N</s>)</th>
-                                        <th>Cancelled(<s>N</s>)</th>
+                                        <th>Transaction ID</th>
+                                        <th>Student Info</th>
+                                        <th>Contact</th>
+                                        <th>Amount</th>
+                                        <th>Charges</th>
+                                        <th>Remittance</th>
+                                        <th>Payment Purpose</th>
+                                        <th>Payment Method</th>
+                                        <th>Status</th>
                                         <th>View</th>
+                                        <th id="actionHeader" style="display:none;">Action</th>
                                     </tr>
                                 </thead>
 
-                                <tbody id="acoountReportPageContent">
+                                <tbody id="accountReportByFeesPageContent">
                                     <!-- CONTENT GOES HERE -->
                                     <tr>
                                         <td colspan="20">
                                             <div class="content-loading-div">
-                                                <img src="<?php echo $websiteUrl ?>/images/spinner.gif" alt="Loading" />
+                                                <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <!-- Pagination -->
-                            <div id="acoountReportPageContentPaginationControls" class="pagination-div"></div>
+                            <div id="accountReportByFeesPageContentPaginationControls" class="pagination-div"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            _fetchReportRevenueFiltering('srch-30', 'Last 30 Days');
-        });
-    </script>
 <?php } ?>
 
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->

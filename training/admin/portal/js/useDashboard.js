@@ -33,8 +33,8 @@ function _closeProfileDiv(event) {
 }
 $(document).on("click", _closeProfileDiv);
 
-function select_search() {
-  $(".srch-select").toggle("fast");
+function _dashBoardSelectSearch() {
+  $(".dash-report-dropdown").toggle("fast");
 }
 
 function srch_custom(text) {
@@ -43,8 +43,8 @@ function srch_custom(text) {
 }
 
 function _closeSearchDiv(event) {
-  if (!$(event.target).closest(".srch-select, .text-right").length) {
-    $(".srch-select").hide("slow");
+  if (!$(event.target).closest(".dash-report-dropdown, .text-right").length) {
+    $(".dash-report-dropdown").hide("slow");
   }
 }
 $(document).on("click", _closeSearchDiv);
@@ -137,84 +137,17 @@ function _getSelectStatusId(fieldId, statusIds) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/// Account Custom Revenue Filtering ////////
+/// Dashboard Revenue Filtering ////////
 function _fetchDashBoardRevenueFiltering(filterWith, text) {
-  $("#srch-text").html(text);
-  $(".custom-srch-div").fadeOut(500);
-  let dateFrom;
-  const dateTo = new Date().toISOString().split("T")[0];
-  if (filterWith === "srch-today") {
-    dateFrom = new Date().toISOString().split("T")[0];
-  } else if (filterWith === "srch-week") {
-    const currentDate = new Date();
-    const firstDayOfWeek = new Date(
-      currentDate.setDate(currentDate.getDate() - currentDate.getDay())
-    )
-      .toISOString()
-      .split("T")[0];
-    dateFrom = firstDayOfWeek;
-  } else if (filterWith === "srch-7") {
-    /// for last 7 days
-    const currentDate = new Date();
-    const pastDate = new Date(currentDate.setDate(currentDate.getDate() - 6))
-      .toISOString()
-      .split("T")[0];
-    dateFrom = pastDate;
-  } else if (filterWith === "srch-30") {
-    /// for last 30 days
-    const currentDate = new Date();
-    const pastDate = new Date(currentDate.setDate(currentDate.getDate() - 29))
-      .toISOString()
-      .split("T")[0];
-    dateFrom = pastDate;
-  } else if (filterWith === "srch-90") {
-    /// for last 90 days
-    const currentDate = new Date();
-    const pastDate = new Date(currentDate.setDate(currentDate.getDate() - 89))
-      .toISOString()
-      .split("T")[0];
-    dateFrom = pastDate;
-  } else if (filterWith === "srch-month") {
-    const currentDate = new Date();
-    const firstDayOfMonth = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      2
-    )
-      .toISOString()
-      .split("T")[0];
-    dateFrom = firstDayOfMonth;
-  } else if (filterWith === "srch-year") {
-    const currentDate = new Date();
-    const firstDayOfYear = new Date(currentDate.getFullYear(), 0, 2)
-      .toISOString()
-      .split("T")[0];
-    dateFrom = firstDayOfYear;
-  } else if (filterWith === "srch-1year") {
-    /// for last 1 year
-    const currentDate = new Date();
-    const pastDate = new Date(
-      currentDate.setFullYear(currentDate.getFullYear() - 1)
-    )
-      .toISOString()
-      .split("T")[0];
-    dateFrom = pastDate;
-  }
-
-  _reportDashboardRevenueFiltering(dateFrom, dateTo);
+	$("#srch-text").html(text);
+	$(".custom-srch-div").fadeOut(500);
+	const revenueDate = _getRevenueDateFiltering(filterWith);
+	_reportDashboardRevenueFiltering(
+		revenueDate.dateFrom,
+		revenueDate.dateTo
+	);
 }
+
 function _fetchDashboardCustomRevenueFiltering() {
   let issueCount = 0;
 
@@ -238,7 +171,7 @@ function _fetchDashboardCustomRevenueFiltering() {
     return;
   }
 
-  _reportRevenueFiltering(dateFrom, dateTo);
+  _reportDashboardRevenueFiltering(dateFrom, dateTo);
 }
 
 function _reportDashboardRevenueFiltering(dateFrom, dateTo) {
