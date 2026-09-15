@@ -808,7 +808,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 7px;
 }
 
 .chart-div-notifications .text{
@@ -851,10 +851,16 @@ main {
 	margin-top: 320px;
 	width:150px; 
 	z-index:100;
-	padding-top:5px;
-	border-radius:5px;
+	border-radius:15px;
 	display: none;
 	z-index: 300;
+	padding: 10px 0px;
+}
+
+.chart-div-notifications .text-right .report-dropdown{
+	min-height:50px; 
+    background:var(--sub-body-color); 
+	margin-top: 120px;
 }
 
 .chart-div-notifications .text-right .srch-select:after{
@@ -869,19 +875,19 @@ main {
 }
 
 .chart-div-notifications .text-right .srch-select div{
-	padding:7px;
-	height:15px;
-	line-height: 15px;
-	color:#ccc;
+	padding:9px 10px;
+	height:9px;
+	line-height: 9px;
+	color: var(--text-white);
 	transition: all 0.2s ease-in 0.2s;
 	cursor:pointer;
-	font-size:15px;
+	font-size:14px;
+	font-family: body-font;
 }
 
 .chart-div-notifications .text-right .srch-select div:hover{
-	padding:10px;
-	color:#424242;
-	background:rgba(215, 215, 215, .6);
+	color:#383838;
+	background:rgba(215, 215, 215, .7);
 	transition: all 0.2s ease-in 0.2s;
 }
 
@@ -5262,6 +5268,9 @@ main {
   min-height: 500px;
 }
 
+.dashboard-statistics-wrapper .full-width-container {
+  width: 100%;
+}
 
 .statistics-chart-back-div {
   width: 100%;
@@ -5719,7 +5728,7 @@ main {
 .program-wrapper .program-item .title-content .content-div .left-content .text-div h2{
 	font-family: sub-title-font;
 	color: var(--text-title-color);
-	font-size: 17px;
+	font-size: 16px;
 } 
 
 .program-wrapper .program-item .title-content .content-div .left-content .text-div p{
@@ -5788,4 +5797,16 @@ main {
 .program-wrapper .program-item .open-toggle{
     padding: 30px;
     font-size: 12px;
+}
+
+.select_field_container {
+  height: 35px !important;
+  min-width: 160px;
+}
+
+.select_field_container .select_text_field {
+  	min-height: 35px !important;
+  	font-size: 11px;
+  	border-radius: 25px;
+    background: rgba(215, 215, 215, 0.4);
 }

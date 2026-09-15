@@ -25,12 +25,10 @@
 <link href="<?php echo $websiteUrl?>/slide-property/product-carousel/carousel.css" rel="stylesheet" type="text/css" />
 <script src="<?php echo $websiteUrl?>/slide-property/product-carousel/carousel.js" type="text/javascript"></script>
 
-<!-- external link -->
 <!-- Slick CSS -->
-<link href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" rel="stylesheet" type="text/css" />
 <!-- Slick JS -->
-<script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js" type="text/javascript"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/js/site/useCertificate.js?v=<?php echo $codeVersion?>"></script>
 
 <meta property="og:type" content="Website" />

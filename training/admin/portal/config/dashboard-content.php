@@ -121,11 +121,11 @@
                         <div class="text-wrapper">
                             <div class="text"><i class="bi-graph-up-arrow"></i> Showing Matrix for </div>
 
-                            <div class="text text-right" onclick="select_search()">
+                            <div class="text text-right" onclick="_dashBoardSelectSearch()">
                                 <span id="srch-text">Last 30 Days</span>
                                 <div class="icon-div"><i class="bi-caret-down"></i></div>
 
-                                <div class="srch-select alert-srch-select">
+                                <div class="srch-select dash-report-dropdown">
                                     <div id="srch-today" onclick="_fetchDashBoardRevenueFiltering('srch-today', 'Today');">Today
                                     </div>
                                     <div id="srch-week" onclick="_fetchDashBoardRevenueFiltering('srch-week', 'This Week');">This

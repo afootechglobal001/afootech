@@ -582,3 +582,85 @@ function _showEmptyState(props) {
     $(`#${paginationContainer}`).empty().hide();
   }
 }
+
+function _getRevenueDateFiltering(filterWith) {
+	const dateTo = new Date().toISOString().split("T")[0];
+	let dateFrom;
+	if (filterWith === "srch-today") {
+		dateFrom = new Date().toISOString().split("T")[0];
+	} else if (filterWith === "srch-week") {
+		const currentDate = new Date();
+		const firstDayOfWeek = new Date(
+			currentDate.setDate(
+				currentDate.getDate() - currentDate.getDay()
+			)
+		)
+			.toISOString()
+			.split("T")[0];
+
+		dateFrom = firstDayOfWeek;
+	} else if (filterWith === "srch-7") {
+		/// for last 7 days
+		const currentDate = new Date();
+		const pastDate = new Date(
+			currentDate.setDate(currentDate.getDate() - 6)
+		)
+			.toISOString()
+			.split("T")[0];
+
+		dateFrom = pastDate;
+	} else if (filterWith === "srch-30") {
+		/// for last 30 days
+		const currentDate = new Date();
+		const pastDate = new Date(
+			currentDate.setDate(currentDate.getDate() - 29)
+		)
+			.toISOString()
+			.split("T")[0];
+		dateFrom = pastDate;
+	} else if (filterWith === "srch-90") {
+		/// for last 90 days
+		const currentDate = new Date();
+		const pastDate = new Date(
+			currentDate.setDate(currentDate.getDate() - 89)
+		)
+			.toISOString()
+			.split("T")[0];
+		dateFrom = pastDate;
+	} else if (filterWith === "srch-month") {
+		const currentDate = new Date();
+		const firstDayOfMonth = new Date(
+			currentDate.getFullYear(),
+			currentDate.getMonth(),
+			2
+		)
+			.toISOString()
+			.split("T")[0];
+		dateFrom = firstDayOfMonth;
+	} else if (filterWith === "srch-year") {
+		const currentDate = new Date();
+		const firstDayOfYear = new Date(
+			currentDate.getFullYear(),
+			0,
+			2
+		)
+			.toISOString()
+			.split("T")[0];
+		dateFrom = firstDayOfYear;
+	} else if (filterWith === "srch-1year") {
+		/// for last 1 year
+		const currentDate = new Date();
+		const pastDate = new Date(
+			currentDate.setFullYear(
+				currentDate.getFullYear() - 1
+			)
+		)
+			.toISOString()
+			.split("T")[0];
+		dateFrom = pastDate;
+	}
+	return {
+		dateFrom: dateFrom,
+		dateTo: dateTo
+	};
+}

@@ -38,3 +38,4 @@
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/useRole.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/account-report/useAccountReport.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/training/admin/portal/js/useCourse.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
+<script src="<?php echo $websiteUrl?>/training/admin/portal/js/usePricing.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
