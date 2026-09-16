@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="main-content-div" data-aos="fade-in" data-aos-duration="1500">
+    <div class="main-content-div report-content-div" data-aos="fade-in" data-aos-duration="1500">
         <div class="nav-content-back-div">
             <div class="nav-container">
                 <ul>
