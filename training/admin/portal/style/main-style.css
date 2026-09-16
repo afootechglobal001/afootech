@@ -265,10 +265,6 @@ main {
 	padding-top: 0px;
 }
 
-.report-content-div {
-	min-height: 400px;
-}
-
 .form-main-content-div {
 	padding: 0px 30px !important;
 }
@@ -5167,6 +5163,8 @@ main {
   width: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 500px;
+  background: var(--bg-white);
 }
 
 .nav-content-back-div .nav-container {
