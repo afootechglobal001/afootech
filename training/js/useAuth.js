@@ -270,19 +270,21 @@ function _getSelectProgramCourseDuration(fieldId) {
 		})
         .then((response) => {
             $("#searchList_" + fieldId).html("");
+
+            /// Set Selected Program, Course And Duration response in session ///
+            localStorage.setItem(
+                "getSelectedProgramCourseDurationSession",
+                JSON.stringify(response)
+            );
+
 			for (let i = 0; i < response.data.length; i++) {
 				const id = response.data[i].durationId;
                 const value = response.data[i].durationName;
                 const formFee = response.data[i].formFee;
                 const trainingAmountText = `<s>N</s>${thousandSeperator(formFee)}`;
-
-				$('#searchList_'+ fieldId).append('<li onclick="_clickOption(\'searchList_' + fieldId + '\', \'' + id + '\', \'' + value + ' (' + trainingAmountText + ')' + '\');">' + value + ' (' + trainingAmountText + ')' + '</li>');
+				$('#searchList_'+ fieldId).append('<li onclick="_selectProgramCourseDuration(\'' + id +'\'); _clickOption(\'searchList_' + fieldId + '\', \'' + id + '\', \'' + value + ' (' + trainingAmountText + ')' + '\');">' + value + ' (' + trainingAmountText + ')' + '</li>');
             }	
-            /// Set Selected Program, Course And Duration response in session ///
-            localStorage.setItem(
-            "getSelectedProgramCourseDurationSession",
-            JSON.stringify(response)
-            );
+            
 		})
 		.catch((error) => {
 			console.error("Error:", error);
@@ -292,6 +294,30 @@ function _getSelectProgramCourseDuration(fieldId) {
 		_actionAlert('An unexpected error occurred. Please try again.', false);
   	}
 }
+
+//// Save Selected Program Course Duration ////
+function _selectProgramCourseDuration(durationId) {
+    const session = JSON.parse(localStorage.getItem("getSelectedProgramCourseDurationSession")) || {};
+    const selectedDuration = session?.data?.find(
+        item => item.durationId == durationId
+    );
+
+    if (!selectedDuration) {
+        return;
+    }
+
+    session.selectedDuration = {
+        durationId: selectedDuration.durationId,
+        durationName: selectedDuration.durationName,
+        formFee: selectedDuration.formFee
+    };
+
+    localStorage.setItem(
+        "getSelectedProgramCourseDurationSession",
+        JSON.stringify(session)
+    );
+}
+
 
 //// Get Payment Method Preset Data ////
 function _getSelectPaymentMethod(fieldId) {

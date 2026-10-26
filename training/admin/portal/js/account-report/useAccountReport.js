@@ -42,72 +42,32 @@ function _getActivePaymentStatusNav(divid) {
   $("#" + divid).addClass("active-li");
 }
 
+function _paymentMethodDropdown() {
+  $("#report-dropdown").toggle("fast");
+}
+
+function _reportSelectSearch() {
+  $(".report-page-dropdown").toggle("fast");
+}
+
+function _closeReportSearchDiv(event) {
+  if (!$(event.target).closest(".report-page-dropdown, #report-dropdown, .text-right").length) {
+    $(".report-page-dropdown, #report-dropdown").hide("slow");
+  }
+}
+$(document).on("click", _closeReportSearchDiv);
+
 /// Account Custom Revenue Filtering ////////
 function _fetchReportRevenueFiltering(filterWith, text) {
-  $("#srch-text").html(text);
-  $(".custom-srch-div").fadeOut(500);
-  let dateFrom;
-  const dateTo = new Date().toISOString().split("T")[0];
-  if (filterWith === "srch-today") {
-    dateFrom = new Date().toISOString().split("T")[0];
-  } else if (filterWith === "srch-week") {
-    const currentDate = new Date();
-    const firstDayOfWeek = new Date(
-      currentDate.setDate(currentDate.getDate() - currentDate.getDay())
-    )
-      .toISOString()
-      .split("T")[0];
-    dateFrom = firstDayOfWeek;
-  } else if (filterWith === "srch-7") {
-    /// for last 7 days
-    const currentDate = new Date();
-    const pastDate = new Date(currentDate.setDate(currentDate.getDate() - 6))
-      .toISOString()
-      .split("T")[0];
-    dateFrom = pastDate;
-  } else if (filterWith === "srch-30") {
-    /// for last 30 days
-    const currentDate = new Date();
-    const pastDate = new Date(currentDate.setDate(currentDate.getDate() - 29))
-      .toISOString()
-      .split("T")[0];
-    dateFrom = pastDate;
-  } else if (filterWith === "srch-90") {
-    /// for last 90 days
-    const currentDate = new Date();
-    const pastDate = new Date(currentDate.setDate(currentDate.getDate() - 89))
-      .toISOString()
-      .split("T")[0];
-    dateFrom = pastDate;
-  } else if (filterWith === "srch-month") {
-    const currentDate = new Date();
-    const firstDayOfMonth = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      2
-    )
-      .toISOString()
-      .split("T")[0];
-    dateFrom = firstDayOfMonth;
-  } else if (filterWith === "srch-year") {
-    const currentDate = new Date();
-    const firstDayOfYear = new Date(currentDate.getFullYear(), 0, 2)
-      .toISOString()
-      .split("T")[0];
-    dateFrom = firstDayOfYear;
-  } else if (filterWith === "srch-1year") {
-    /// for last 1 year
-    const currentDate = new Date();
-    const pastDate = new Date(
-      currentDate.setFullYear(currentDate.getFullYear() - 1)
-    )
-      .toISOString()
-      .split("T")[0];
-    dateFrom = pastDate;
-  }
-
-  _reportRevenueFiltering(dateFrom, dateTo);
+	$("#srch-text").html(text);
+	$(".custom-srch-div").fadeOut(500);
+	const revenueDate = _getRevenueDateFiltering(filterWith);
+	_reportRevenueFiltering(
+		revenueDate.dateFrom,
+		revenueDate.dateTo
+	);
 }
+
 function _fetchCustomReportRevenueFiltering() {
   let issueCount = 0;
 
@@ -136,14 +96,7 @@ function _fetchCustomReportRevenueFiltering() {
 
 /// Render Account Report Revenue Filtering ///
 function _reportRevenueFiltering(dateFrom, dateTo) {
-  $("#get-form-more-div")
-    .css({
-      display: "flex",
-      "justify-content": "center",
-      "align-items": "center",
-    })
-    .fadeIn(500);
-
+    _showLoader("Processing...");
     try {
       //// call endpoint //////
       _callFetchEndPoints({
@@ -230,13 +183,13 @@ function _reportRevenueFiltering(dateFrom, dateTo) {
             paginationContainer: "acoountReportPageContentPaginationControls",
           });
         }
-        $("#get-form-more-div").fadeOut(500);
+        _hideLoader();
       })
       .catch((error) => {
         _staffValidationCheck(error.response);
         console.error("Error:", error);
         if (error.status==0) {
-				  _alertClose();
+				  _hideLoader();
            _showEmptyState({
             container: "acoountReportPageContent",
             message: "Check your internet connection and try again",
@@ -246,7 +199,7 @@ function _reportRevenueFiltering(dateFrom, dateTo) {
         }
       });
     } catch (error) {
-      _alertClose();
+      _hideLoader();
       console.error("Error:", error);
       _callCatchError(() => _reportRevenueFiltering(dateFrom, dateTo));
   	}
@@ -911,4 +864,232 @@ function _proccedPaymentReconciliationCallback(paymentId) {
       _proccedPaymentReconciliationCallback(paymentId),
     );
   }
+}
+
+
+
+/// Fetch Payment Purpose Tab ///
+function _fetchPaymentPurposeTab() {
+  _showLoader("Processing...");
+	try {
+		_callFetchEndPoints({
+			url: `preset-data/fetch-payment-purpose`,
+		})
+		.then((response) => {
+      let content = "";
+      /// first payment purpose ///
+			const firstPaymentPurpose = response?.data?.[0];
+
+			selectedPaymentPurposeId = firstPaymentPurpose?.paymentPurposeId || "";
+			content += `
+				<div class="text text-right" onclick="_paymentMethodDropdown()">
+					<span id="srch-text" class="drop-down-srch-text">
+						${capitalizeFirstLetterOfEachWord(firstPaymentPurpose?.paymentPurposeName)}
+					</span>
+					<div class="icon-div">
+						<i class="bi-caret-down"></i>
+					</div>
+					<div class="srch-select report-dropdown" id="report-dropdown" onclick="event.stopPropagation();">
+			`;
+			for (let i = 0; i < response?.data?.length; i++) {
+				const paymentPurposeId = response?.data?.[i]?.paymentPurposeId;
+				const paymentPurposeName = response?.data?.[i]?.paymentPurposeName;
+				content += `
+					<div
+						id="${paymentPurposeId}"
+						onclick="_selectPaymentPurpose(
+							event,
+							'${paymentPurposeId}',
+							'${paymentPurposeName}'
+						);">
+						${capitalizeFirstLetterOfEachWord(paymentPurposeName)}
+					</div>
+				`;
+			}
+			content += `
+					</div>
+				</div>
+			`;
+      $('#paymentPurposeTab').html(content);
+      _proceedFetchReportRevenueByFeesFiltering(
+				'srch-30',
+				'Last 30 Days'
+      );
+      _hideLoader();
+		})
+		.catch((error) => {
+      _hideLoader();
+			console.error("Error:", error);
+		});
+	} catch (error) {
+    _hideLoader();
+		console.error("Error:", error);
+	}
+}
+
+let selectedPaymentPurposeId = "";
+let selectedRevenueDateFilter = "srch-30";
+function _selectPaymentPurpose(event, paymentPurposeId, paymentPurposeName) {
+	event.stopPropagation();
+	selectedPaymentPurposeId = paymentPurposeId;
+	$('.drop-down-srch-text').html(
+		capitalizeFirstLetterOfEachWord(paymentPurposeName)
+  );
+  _paymentMethodDropdown();
+
+  // Re-fetch using the currently selected date filter
+	_proceedFetchReportRevenueByFeesFiltering(
+		selectedRevenueDateFilter,
+		$("#srch-text").html()
+	);
+}
+
+/// Report Revenue By Fess Filtering ////////
+function _proceedFetchReportRevenueByFeesFiltering(filterWith, text) {
+	$("#srch-text").html(text);
+	// Remember the selected date filter
+	selectedRevenueDateFilter = filterWith;
+	const revenueDate = _getRevenueDateFiltering(filterWith);
+
+	_fetchReportRevenueByFeesFiltering(
+		revenueDate.dateFrom,
+		revenueDate.dateTo,
+		selectedPaymentPurposeId,
+	);
+}
+
+/// Load Payments by Status ///
+function _fetchReportRevenueByFeesFiltering(dateFrom, dateTo, paymentPurposeId) {
+   _showLoader("Processing...");
+  try {
+    //// call endpoint //////
+    _callFetchEndPoints({
+      url: `admin/account-reports/fetch-revenue-by-fees?dateFrom=${dateFrom}&dateTo=${dateTo}&paymentPurposeId=${paymentPurposeId}`,
+      accessKey: true,
+    })
+    .then((response) => {
+      // Update custom date from and date to///
+      $('#byFeesTotalRevenue').html("<s>N</s>" + thousandSeperator(response?.totalRevenue));
+      $("#byFeesDateFrom").html(response?.dateFrom);
+      $("#byFeesDateTo").html(response?.dateTo);
+      
+      $('#byFeesSumCreditCardPayments').html("<s>N</s>" + thousandSeperator(response?.statistics?.sumCreditCardPayments));
+      $('#byFeesSumBankTransferPayments').html("<s>N</s>" + thousandSeperator(response?.statistics?.sumBankTransferPayments));
+      $('#byFeesCountCreditCardPayments').html(response?.statistics?.countCreditCardPayments);
+      $('#byFeesCountBankTransferPayments').html(response?.statistics?.countBankTransferPayments);
+      $('#byFeesSumPaystackCharges').html("<s>N</s>" + thousandSeperator(response?.statistics?.sumPaystackCharges));
+      $('#byFeesSumPaystackRemittance').html("<s>N</s>" + thousandSeperator(response?.statistics?.sumPaystackRemittance));
+
+      if (response?.data && response?.data.length > 0) {
+        _initFetchReportByFeesTableData(response);
+      } else {
+        _showEmptyState({
+          container: "accountReportByFeesPageContent",
+          message: "No payment records found!",
+          colspan: 20,
+          paginationContainer: "accountReportByFeesPageContentPaginationControls",
+        });
+      }
+      _hideLoader();
+    })
+    .catch((error) => {
+      _staffValidationCheck(error.response);
+      console.error("Error:", error);
+      if (error.status==0) {
+        _hideLoader();
+        _showEmptyState({
+          container: "accountReportByFeesPageContent",
+          message: "Check your internet connection and try again",
+          colspan: 20,
+          paginationContainer: "accountReportByFeesPageContentPaginationControls",
+        });
+      }
+    });
+  } catch (error) {
+    _hideLoader();
+    console.error("Error:", error);
+    _callCatchError(() => _fetchReportRevenueByFeesFiltering(dateFrom, dateTo));
+  }
+}
+
+/// Render Report By Fees Table Data ///
+function _renderReportByFeesTableData(data, start) {
+  return data.map((item, i) => {
+    let imageHtml = '';
+
+    if (item?.statusData?.statusId === 5) {
+      imageHtml = `
+        <div class="image-div general-passport">
+          <img src="${passportPath}/${item?.studentData?.passport || ""}" alt="${item?.studentData?.firstName || ""} ${item?.studentData?.lastName || ""}" />
+        </div>
+      `;
+    }
+    
+    return `
+      <tr class="tb-row">
+        <td>${start + i + 1}</td>
+        <td class="clickable-td"
+            title="Click to view payment breakdown"
+              onclick="_fetchRevenueById('${item?.paymentId}');">
+          <div class="text-back-div">
+            <div class="text-div">
+              <div class="first-class">${item?.paymentId}</div>
+              <div class="second-class">${item?.payDate}</div>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div class="text-back-div">
+            ${imageHtml}
+
+            <div class="text-div">
+              <div class="first-class">${item?.studentData?.firstName || ""} ${item?.studentData?.lastName || ""}</div>
+              <div class="second-class">${item?.studentData?.studentId}</div>
+            </div>
+          </div>
+        </td>
+
+        <td>
+          <div class="text-div">
+            <div>${item?.studentData?.phoneNumber}</div>
+            <div>${item?.studentData?.emailAddress || ""}</div>
+          </div>
+        </td>
+        <td><s>N</s>${thousandSeperator(item?.amount)}</td>
+        <td><s>N</s>${thousandSeperator(item?.paystackCharges)}</td>
+        <td><s>N</s>${thousandSeperator(item?.paystackRemittance)}</td>
+        <td>${item?.paymentPurposeData?.paymentPurposeName}</td>
+        <td>${item?.paymentMethodData?.paymentMethodName}</td>
+        <td>
+          <div class="status-div ${item?.statusData?.statusName}">
+            ${item?.statusData?.statusName}
+          </div>
+        </td>
+        <td>
+          <div class="btn-div">
+            <button class="btn view-btn"
+              title="Click to view payment breakdown"
+              onclick="_fetchRevenueById('${item?.paymentId}');">
+              VIEW DETAILS
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join("");
+}
+
+/// Initialize Fetch Report By Fees Table Data ///
+function _initFetchReportByFeesTableData(response) {
+  const paginator = new Paginator(
+    response.data || [],
+    _renderReportByFeesTableData,
+    "accountReportByFeesPageContentPaginationControls",
+    "accountReportByFeesPageContent",
+    10
+  );
+
+  __paginatorHandlers["accountReportByFeesPageContentPaginationControls"] = paginator;
+  paginator.renderPage();
 }

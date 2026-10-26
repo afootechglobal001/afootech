@@ -178,10 +178,7 @@
             <div class="text_field_container" id="durationId_container">
                 <script>
                     $(document).ready(function() {
-                        const selectedDuration = getSelectedProgramCourseDurationSession?.data?.find(
-                            item => item.durationId == getSelectedProgramCourseDurationSession?.data?.[0]?.durationId
-                        );
-
+                        const selectedDuration = getSelectedProgramCourseDurationSession?.selectedDuration || {};
                         selectField({
                             id: 'durationId',
                             title: 'Select Duration',
@@ -342,7 +339,7 @@
                             <div>
                                 <span id="durationName">
                                     <script>
-                                        $("#durationName").html(getSelectedProgramCourseDurationSession?.data?.[0]?.durationName);
+                                        $("#durationName").html(getSelectedProgramCourseDurationSession?.selectedDuration?.durationName || '');
                                     </script>
                                 </span>
                             </div>
@@ -355,7 +352,7 @@
                 <span><i class="bi-pencil-square"></i> Note:</span>
                 Kindly note that a <span><strong style="color:red;">non-refundable</strong></span> registration fee of  (<strong><span style="font-size:14px;" id="formFee"><s>N</s>
                     <script>
-                        $("#formFee").html('<s>N</s>' + thousandSeperator(getSelectedProgramCourseDurationSession?.data?.[0]?.formFee));
+                        $("#formFee").html('<s>N</s>' + thousandSeperator(getSelectedProgramCourseDurationSession?.selectedDuration?.formFee || 0));
                     </script></span></strong>) will be required before completing your registration.
             </div>
 

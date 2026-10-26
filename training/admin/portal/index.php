@@ -21,7 +21,9 @@
                 });
 
                 let savedForm = sessionStorage.getItem("currentDashboardForm") ?? '';
-                _getForm(JSON.parse(savedForm));
+                if (savedForm) {
+                    _getForm(JSON.parse(savedForm));
+                }
             });
         </script>
     </main>
